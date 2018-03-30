@@ -1,0 +1,12 @@
+@import "../../../node_modules/normalize.css/normalize.css";
+
+body {
+	background-color: #eee;
+}
+
+#app {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}

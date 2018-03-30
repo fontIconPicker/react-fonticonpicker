@@ -3,7 +3,8 @@
 		["@babel/preset-env", {
 			"targets": {
 				"browsers": ["last 2 versions"]
-			}
+			},
+			"shippedProposals": true
 		}],
 		["@babel/preset-react"]
 	],

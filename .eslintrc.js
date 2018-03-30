@@ -25,6 +25,9 @@ module.exports = {
         "quotes": ["error", "single"],
         "comma-dangle": ["error", "always-multiline"],
         "semi": ["error", "always"],
-        "no-extra-semi": "error"
+        "no-extra-semi": "error",
+        "react/no-unused-prop-types": 1,
+        "react/no-unused-state": 1,
+        "no-unused-vars": 1
     }
 };
