@@ -89,4 +89,4 @@ Temporary Items
 .apdisk
 
 # Build
-dist/
+build/
