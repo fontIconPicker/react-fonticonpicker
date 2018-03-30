@@ -7,16 +7,17 @@ import React from 'react';
 
 class App extends React.PureComponent {
 	state = {
-		icons: {},
-		search: {},
-		iconsOnPage: [],
+		// icons: {},
+		// search: {},
+		// iconsOnPage: [],
 	};
 	render() {
 		console.log('I am from App.jsx');
 		return (
 			<div>
 				<h1>This is so Awesome</h1>
-				<p>💪</p>
+				<p>FontIconPicker</p>
+				<p>I am awesome... I guess</p>
 			</div>
 		);
 	}

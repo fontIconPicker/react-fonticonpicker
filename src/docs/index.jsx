@@ -1,12 +1,5 @@
 import React from 'react';
 import {render} from 'react-dom';
-import FontIconPicker from '../js/FontIconPicker';
+import HotComponent from './HotComponent';
 
-const Demo = () => (
-	<div>
-		<h1>Demo with examples of the component</h1>
-		<FontIconPicker />
-	</div>
-);
-
-render( <Demo />, document.getElementById('app') )
+render( <HotComponent />, document.getElementById('app') );
