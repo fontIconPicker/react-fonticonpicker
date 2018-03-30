@@ -1,5 +1,6 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line // eslint-disable-line
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line
 const webpack = require('webpack'); // eslint-disable-line
 const pkg = require('./package.json');
 
@@ -37,6 +38,7 @@ module.exports = {
 		library: 'FontIconPicker',
 		libraryTarget: 'umd',
 	},
+	devtool: 'source-map',
 	externals: {
 		react: {
 			commonjs: 'react',
@@ -72,11 +74,18 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							importLoaders: 1,
+							sourceMap: true,
 						},
 					}, {
 						loader: 'postcss-loader',
+						options: {
+							sourceMap: true,
+						},
 					}, {
 						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+						},
 					}],
 				}),
 			},
@@ -84,6 +93,9 @@ module.exports = {
 	},
 	plugins: [
 		addBanner,
+		new UglifyJSPlugin({
+			sourceMap: true,
+		}),
 		extractSass,
 	],
 	resolve: {

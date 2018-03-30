@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
+const CleanWebpackPlugin = require('clean-webpack-plugin'); // eslint-disable-line
 
 module.exports = {
 	entry: path.join(__dirname, 'src/docs'),
@@ -14,6 +15,17 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				use: ['babel-loader', 'eslint-loader'],
 				exclude: /node_modules/,
+			},
+			{
+				test: /\.css$/,
+				use:[{
+					loader: 'style-loader',
+				}, {
+					loader: 'css-loader',
+					options: {
+						sourceMap: true,
+					},
+				}],
 			},
 			{
 				test: /\.scss$/,
@@ -31,9 +43,19 @@ module.exports = {
 					},
 				}],
 			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf|svg|png|jpg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {},
+					},
+				],
+			},
 		],
 	},
 	plugins: [
+		new CleanWebpackPlugin(['build']),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src/docs/index.html'),
 		}),

@@ -2,11 +2,10 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-
 // Just a wrapper for main entry
-import App from './components/App';
+import FontIconPicker from './components/FontIconPicker';
 // Import the styles
 import '../scss/style.scss';
 
-export default App;
+export default FontIconPicker;
 
