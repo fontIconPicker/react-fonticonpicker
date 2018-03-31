@@ -9,6 +9,7 @@ import className from 'classnames';
 import { flattenPossiblyCategorizedSource } from '../helpers/iconHelpers';
 import FipButton from './FipButton';
 import FipDropDown from './FipDropDown';
+import FipDropDownPortal from './FipDropDownPortal';
 
 class FontIconPicker extends React.PureComponent {
 	static propTypes = {
@@ -37,6 +38,10 @@ class FontIconPicker extends React.PureComponent {
 		]),
 		isMulti: PropTypes.bool,
 		renderer: PropTypes.func,
+		appendTo: PropTypes.oneOfType([
+			PropTypes.bool,
+			PropTypes.string,
+		]),
 	};
 
 	static defaultProps = {
@@ -49,6 +54,7 @@ class FontIconPicker extends React.PureComponent {
 		value: '',
 		isMulti: true,
 		renderer: null,
+		appendTo: false,
 	};
 
 	constructor(props) {
@@ -97,7 +103,10 @@ class FontIconPicker extends React.PureComponent {
 		return (
 			<div className={this.state.elemClass}>
 				<FipButton toggleDropDown={this.handleOpen} />
-				{(this.state.isOpen) ? <FipDropDown /> : null }
+				{(this.state.isOpen) ?
+					<FipDropDownPortal appendRoot={this.props.appendTo}><FipDropDown /></FipDropDownPortal> :
+					null
+				}
 			</div>
 		);
 	}

@@ -5,7 +5,8 @@
 
 import React from 'react';
 
-const FipDropDown = () => <div>I am dropdown</div>;
+const FipDropDown = (props) => (
+	<div className="rfipdropdown__selector">I am going to be the selector</div>
+);
 
 export default FipDropDown;
-

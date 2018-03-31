@@ -14,15 +14,27 @@ class DocApp extends React.PureComponent {
 	}
 	render() {
 		return (
-			<div>
-				<h2><i className="icomoon-dice" /> FontIconPicker <i className="icomoon-quill" /></h2>
-				<FontIconPicker
-					icons={iconDefs.icomoonIcons}
-					search={iconDefs.icomoonIconsSearch}
-					onChange={this.handleChange}
-				/>
-				<p>Current value: {this.state.value}</p>
-			</div>
+			<React.Fragment>
+				<div>
+					<h2><i className="icomoon-dice" /> Append to Body <i className="icomoon-quill" /></h2>
+					<FontIconPicker
+						icons={iconDefs.icomoonIcons}
+						search={iconDefs.icomoonIconsSearch}
+						onChange={this.handleChange}
+						appendTo='body'
+					/>
+					<p>Current value: {this.state.value}</p>
+				</div>
+				<div>
+					<h2><i className="icomoon-dice" /> Append to Self <i className="icomoon-quill" /></h2>
+					<FontIconPicker
+						icons={iconDefs.icomoonIcons}
+						search={iconDefs.icomoonIconsSearch}
+						onChange={this.handleChange}
+					/>
+					<p>Current value: {this.state.value}</p>
+				</div>
+			</React.Fragment>
 		);
 	}
 }
