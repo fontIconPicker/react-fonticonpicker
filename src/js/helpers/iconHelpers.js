@@ -7,7 +7,7 @@ export function flattenPossiblyCategorizedSource(source) {
 	if (Array.isArray(source)) {
 		return {
 			categories: [],
-			flattened: [...source],
+			flattened: [ ...source ],
 		};
 	}
 	// It is an object, let's assume that
@@ -15,14 +15,14 @@ export function flattenPossiblyCategorizedSource(source) {
 	// which is intentional
 
 	// create a copy because this is a pure function
-	const sourceCopy = {...source};
+	const sourceCopy = { ...source };
 	// create categories and flattened arrays
 	let categories = [];
 	let flattened = [];
 	// loop over and add to the variables
 	Object.keys(sourceCopy).forEach(cat => {
-		categories = [...categories, cat];
-		flattened = [...flattened, ...sourceCopy[cat]];
+		categories = [ ...categories, cat ];
+		flattened = [ ...flattened, ...sourceCopy[cat] ];
 	});
 	return {
 		categories,

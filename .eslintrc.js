@@ -28,6 +28,8 @@ module.exports = {
         "no-extra-semi": "error",
         "react/no-unused-prop-types": 1,
         "react/no-unused-state": 1,
-        "no-unused-vars": 1
+        "no-unused-vars": 1,
+        "array-bracket-spacing": ["error", "always"],
+        "object-curly-spacing": ["error", "always"]
     }
 };

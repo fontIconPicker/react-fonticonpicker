@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // eslint-disable-line
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin'); // eslint-disable-line
 const webpack = require('webpack'); // eslint-disable-line
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line
 const pkg = require('./package.json');
@@ -29,7 +30,7 @@ const addBanner = new webpack.BannerPlugin({
 	include: /\.(js|jsx|css)$/,
 });
 const extractSass = new ExtractTextPlugin({
-	filename: 'style-[hash].css',
+	filename: 'style.css',
 });
 
 
@@ -44,14 +45,14 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				use: ['babel-loader'],
+				use: [ 'babel-loader' ],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.css$/,
 				use: extractSass.extract({
 					fallback: 'style-loader',
-					use:[{
+					use:[ {
 						loader: 'css-loader',
 						options: {
 							importLoaders: 1,
@@ -62,14 +63,14 @@ module.exports = {
 						options: {
 							sourceMap: true,
 						},
-					}],
+					} ],
 				}),
 			},
 			{
 				test: /\.scss$/,
 				use: extractSass.extract({
 					fallback: 'style-loader',
-					use: [{
+					use: [ {
 						loader: 'css-loader',
 						options: {
 							importLoaders: 1,
@@ -85,7 +86,7 @@ module.exports = {
 						options: {
 							sourceMap: true,
 						},
-					}],
+					} ],
 				}),
 			},
 			{
@@ -102,7 +103,14 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new CleanWebpackPlugin(['docs']),
+		new CleanWebpackPlugin([ 'docs' ]),
+		new FaviconsWebpackPlugin({
+			logo: path.join(__dirname, 'src/docs/picker.png'),
+			prefix: 'favicons/',
+			background: 'transparent',
+			theme_color: '#E3F2FD',
+			title: 'React fontIconPicker',
+		}),
 		addBanner,
 		new UglifyJSPlugin({
 			sourceMap: true,
@@ -113,7 +121,7 @@ module.exports = {
 		extractSass,
 	],
 	resolve: {
-		extensions: ['.js', '.jsx'],
+		extensions: [ '.js', '.jsx' ],
 	},
 	mode: 'production',
 };

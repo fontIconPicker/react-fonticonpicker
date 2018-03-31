@@ -5,7 +5,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {flattenPossiblyCategorizedSource} from '../helpers/iconHelpers';
+import className from 'classnames';
+import { flattenPossiblyCategorizedSource } from '../helpers/iconHelpers';
+import FipButton from './FipButton';
+import FipDropDown from './FipDropDown';
 
 class FontIconPicker extends React.PureComponent {
 	static propTypes = {
@@ -22,6 +25,18 @@ class FontIconPicker extends React.PureComponent {
 		onChange: PropTypes.func.isRequired,
 		showCategory: PropTypes.bool,
 		showSearch: PropTypes.bool,
+		emptyValue: PropTypes.oneOfType([
+			PropTypes.array,
+			PropTypes.number,
+			PropTypes.string,
+		]),
+		value: PropTypes.oneOfType([
+			PropTypes.array,
+			PropTypes.number,
+			PropTypes.string,
+		]),
+		isMulti: PropTypes.bool,
+		renderer: PropTypes.func,
 	};
 
 	static defaultProps = {
@@ -30,15 +45,34 @@ class FontIconPicker extends React.PureComponent {
 		theme: 'default',
 		showCategory: true,
 		showSearch: true,
+		emptyValue: '',
+		value: '',
+		isMulti: true,
+		renderer: null,
 	};
 
 	constructor(props) {
 		// Call the super
 		super(props);
-		// create the first state
+		// create the flattened icons, search and category
 		const flattenedSource = flattenPossiblyCategorizedSource(this.props.icons);
-		const {categories, flattened: icons} = flattenedSource;
+		const { categories, flattened: icons } = flattenedSource;
 		const searchSource = flattenPossiblyCategorizedSource(this.props.search).flattened;
+		// the class (BEM)
+		const parentClassNames = className(
+			// block
+			'rfip',
+			// modifier
+			// 1. theme
+			`rfip--theme-${this.props.theme}`
+		);
+
+		// current value
+		let { value } = this.props;
+		const { emptyValue } = this.props;
+		if ( ! value ) {
+			value = emptyValue;
+		}
 
 		// create the state
 		this.state = {
@@ -46,15 +80,24 @@ class FontIconPicker extends React.PureComponent {
 			searchSource,
 			categories,
 			currentPage: 0,
+			elemClass: parentClassNames,
+			isOpen: false,
+			value,
 		};
+	}
+
+	handleOpen = () => {
+		// create a copy of the state being modified
+		// with the toggled value
+		const isOpen = ! this.state.isOpen;
+		this.setState({ isOpen });
 	}
 
 	render() {
 		return (
-			<div>
-				<h1>This is so Awesome</h1>
-				<p>FontIconPicker</p>
-				<p>I am awesome... I guess</p>
+			<div className={this.state.elemClass}>
+				<FipButton toggleDropDown={this.handleOpen} />
+				{(this.state.isOpen) ? <FipDropDown /> : null }
 			</div>
 		);
 	}

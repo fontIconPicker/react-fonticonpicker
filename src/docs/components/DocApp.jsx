@@ -10,7 +10,7 @@ class DocApp extends React.PureComponent {
 	}
 	handleChange = (value) => {
 		const newValue = value;
-		this.setState({value: newValue});
+		this.setState({ value: newValue });
 	}
 	render() {
 		return (

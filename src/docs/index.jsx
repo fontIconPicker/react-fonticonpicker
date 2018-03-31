@@ -1,6 +1,6 @@
 // import node stuff
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 
 // import local dependencies
 import DocApp from './components/DocApp';
