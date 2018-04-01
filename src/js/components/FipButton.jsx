@@ -10,6 +10,7 @@ import classNames from 'classnames';
 class FipButton extends React.PureComponent {
 	static propTypes = {
 		toggleDropDown: PropTypes.func.isRequired,
+		domRef: PropTypes.object.isRequired, // eslint-disable-line
 	};
 
 	static buttonClass = 'rfipbtn__button';
@@ -58,7 +59,7 @@ class FipButton extends React.PureComponent {
 		};
 
 		return (
-			<div className="rfipbtn">
+			<div className="rfipbtn" ref={this.props.domRef}>
 				<button className={this.state.buttonClasses} {...handlers}>
 					Open Me
 				</button>

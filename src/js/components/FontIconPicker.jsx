@@ -27,7 +27,6 @@ class FontIconPicker extends React.PureComponent {
 			PropTypes.arrayOf(PropTypes.string),
 		]),
 		iconsPerPage: PropTypes.number,
-		maxColumnsPerPage: PropTypes.number,
 		theme: PropTypes.string,
 		onChange: PropTypes.func.isRequired,
 		showCategory: PropTypes.bool,
@@ -53,7 +52,6 @@ class FontIconPicker extends React.PureComponent {
 	static defaultProps = {
 		search: null,
 		iconsPerPage: 20,
-		maxColumnsPerPage: 5,
 		theme: 'default',
 		showCategory: true,
 		showSearch: true,
@@ -69,6 +67,10 @@ class FontIconPicker extends React.PureComponent {
 	constructor(props) {
 		// Call the super
 		super(props);
+		// some references we need for outside click
+		this.fipButtonRef = React.createRef();
+		this.fipDropDownRef = React.createRef();
+
 		// the class (BEM)
 		const parentClassNames = className(
 			// block
@@ -98,12 +100,46 @@ class FontIconPicker extends React.PureComponent {
 		};
 	}
 
+	componentWillMount() {
+		const events = ['mousedown', 'touchend'];
+		events.forEach(value => {
+			document.addEventListener(value, this.handleOuterClick, false);
+		});
+	}
+
+	componentWillUnmount() {
+		const events = ['mousedown', 'touchend'];
+		events.forEach(value => {
+			document.removeEventListener(value, this.handleOuterClick, false);
+		});
+	}
+
+	/**
+	 * Handle the outer click event
+	 * It checks if event came from outside
+	 * If so, then close the dropdown
+	 */
+	handleOuterClick = event => {
+		const { target } = event;
+		// is it inner?
+		if (
+			this.fipButtonRef.current.contains(target) ||
+			(this.fipDropDownRef.current &&
+				this.fipDropDownRef.current.contains(target))
+		) {
+			// then don't do anything
+			return;
+		}
+		// toggle the dropdown
+		this.setState({ isOpen: false });
+	};
+
 	/**
 	 * Handle the dropdown open thingy.
 	 *
 	 * Toggle the state isOpen and rest is done by React.
 	 */
-	handleOpen = () => {
+	handleToggle = () => {
 		// create a copy of the state being modified
 		// with the toggled value
 		const isOpen = !this.state.isOpen;
@@ -136,6 +172,7 @@ class FontIconPicker extends React.PureComponent {
 	 * The reason we do this because, we would like preserve
 	 */
 	handleChangeCategory = newCategory => {
+		console.log('handle category from parent');
 		this.setState({ currentCategory: newCategory });
 	};
 
@@ -160,7 +197,6 @@ class FontIconPicker extends React.PureComponent {
 			showCategory,
 			showSearch,
 			iconsPerPage,
-			maxColumnsPerPage,
 			allCatPlaceholder,
 		} = this.props;
 		// store in an object to spread later
@@ -174,7 +210,6 @@ class FontIconPicker extends React.PureComponent {
 			showCategory,
 			showSearch,
 			iconsPerPage,
-			maxColumnsPerPage,
 			allCatPlaceholder,
 			handleChangeValue: this.handleChangeValue,
 			handleChangeCategory: this.handleChangeCategory,
@@ -183,9 +218,15 @@ class FontIconPicker extends React.PureComponent {
 		};
 		return (
 			<div className={this.state.elemClass}>
-				<FipButton toggleDropDown={this.handleOpen} />
+				<FipButton
+					toggleDropDown={this.handleToggle}
+					domRef={this.fipButtonRef}
+				/>
 				{this.state.isOpen ? (
-					<FipDropDownPortal appendRoot={this.props.appendTo}>
+					<FipDropDownPortal
+						appendRoot={this.props.appendTo}
+						domRef={this.fipDropDownRef}
+					>
 						<FipDropDown {...dropDownProps} />
 					</FipDropDownPortal>
 				) : null}

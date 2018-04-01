@@ -1,0 +1,32 @@
+// Dropdown
+.rfipdropdown {
+	width: 272px;
+	max-width: 100%;
+
+	// Selector box
+	&__selector {
+		padding: 16px;
+
+		// Select item
+		&__select {
+			width: 100%;
+			margin: 0 0 16px;
+		}
+
+		// Icons box
+		&__icons {
+			display: flex;
+			flex: 1 1 20%;
+			flex-flow: row wrap;
+
+			// Invidual icons
+			span {
+				width: 20%;
+				height: 48px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+}

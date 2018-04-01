@@ -12,6 +12,7 @@ class FipDropDownPortal extends React.PureComponent {
 	static propTypes = {
 		appendRoot: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 		children: PropTypes.node.isRequired,
+		domRef: PropTypes.object.isRequired, // eslint-disable-line
 	};
 
 	static defaultProps = {
@@ -43,7 +44,7 @@ class FipDropDownPortal extends React.PureComponent {
 
 	render() {
 		const fipDropDownNode = (
-			<div className={this.state.portalClasses}>
+			<div className={this.state.portalClasses} ref={this.props.domRef}>
 				{this.props.children}
 			</div>
 		);

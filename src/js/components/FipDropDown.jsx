@@ -39,7 +39,6 @@ class FipDropDown extends React.PureComponent {
 		showCategory: PropTypes.bool.isRequired,
 		showSearch: PropTypes.bool.isRequired,
 		iconsPerPage: PropTypes.number.isRequired,
-		maxColumnsPerPage: PropTypes.number.isRequired,
 		allCatPlaceholder: PropTypes.string.isRequired,
 		handleChangeValue: PropTypes.func.isRequired,
 		handleChangeCategory: PropTypes.func.isRequired,
@@ -138,6 +137,7 @@ class FipDropDown extends React.PureComponent {
 	 * Sets internal state and also calls the parent app.
 	 */
 	handleCategory = event => {
+		console.log('Handle category from child');
 		const currentCategory = parseInt(event.target.value, 10);
 		// Now check against the currently selected category and get flattened
 		// icons and search
@@ -163,19 +163,16 @@ class FipDropDown extends React.PureComponent {
 
 	render() {
 		const icons = this.getCurrentViewIcons();
-		console.log(this.categories);
+		console.log(this.state.currentCategory);
 		return (
 			<div className="rfipdropdown__selector">
 				<select
 					className="rfipdropdown__selector__select"
 					onChange={this.handleCategory}
+					value={this.state.currentCategory}
 				>
 					{this.categories.map((value, index) => (
-						<option
-							key={value}
-							value={index}
-							selected={index === this.state.currentCategory}
-						>
+						<option key={value} value={index}>
 							{value}
 						</option>
 					))}
