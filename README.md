@@ -22,3 +22,7 @@ npm run start
 ```
 
 Will open a webpack dev server with hot reload.
+
+## Todo
+
+1. Optimize category select. Maybe we can create cache on open and maintain it.

@@ -43,7 +43,9 @@ class FontIconPicker extends React.PureComponent {
 			PropTypes.string,
 		]),
 		isMulti: PropTypes.bool,
-		renderer: PropTypes.func,
+		renderUsing: PropTypes.string,
+		convertHex: PropTypes.bool,
+		renderFunc: PropTypes.func,
 		appendTo: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 		currentPage: PropTypes.number,
 		allCatPlaceholder: PropTypes.string,
@@ -51,14 +53,16 @@ class FontIconPicker extends React.PureComponent {
 
 	static defaultProps = {
 		search: null,
-		iconsPerPage: 20,
+		iconsPerPage: 25,
 		theme: 'default',
 		showCategory: true,
 		showSearch: true,
 		emptyValue: '',
 		value: '',
 		isMulti: true,
-		renderer: null,
+		renderUsing: 'data-icomoon',
+		convertHex: true,
+		renderFunc: null,
 		appendTo: false,
 		currentPage: 0,
 		allCatPlaceholder: 'Show from all',
@@ -130,8 +134,8 @@ class FontIconPicker extends React.PureComponent {
 			// then don't do anything
 			return;
 		}
-		// toggle the dropdown
-		this.setState({ isOpen: false });
+		// close the dropdown
+		this.closeDropdown();
 	};
 
 	/**
@@ -144,6 +148,20 @@ class FontIconPicker extends React.PureComponent {
 		// with the toggled value
 		const isOpen = !this.state.isOpen;
 		this.setState({ isOpen });
+	};
+
+	/**
+	 * Open the dropdown by setting the state
+	 */
+	openDropdown = () => {
+		this.setState({ isOpen: true });
+	};
+
+	/**
+	 * Close the dropdown by setting the state
+	 */
+	closeDropdown = () => {
+		this.setState({ isOpen: false });
 	};
 
 	/**
@@ -172,7 +190,6 @@ class FontIconPicker extends React.PureComponent {
 	 * The reason we do this because, we would like preserve
 	 */
 	handleChangeCategory = newCategory => {
-		console.log('handle category from parent');
 		this.setState({ currentCategory: newCategory });
 	};
 
@@ -192,15 +209,20 @@ class FontIconPicker extends React.PureComponent {
 			currentSearch,
 		} = this.state;
 		const {
+			isMulti,
 			icons,
 			search,
 			showCategory,
 			showSearch,
 			iconsPerPage,
 			allCatPlaceholder,
+			renderUsing,
+			convertHex,
+			renderFunc,
 		} = this.props;
 		// store in an object to spread later
 		const dropDownProps = {
+			isMulti,
 			value,
 			currentCategory,
 			currentPage,
@@ -211,6 +233,9 @@ class FontIconPicker extends React.PureComponent {
 			showSearch,
 			iconsPerPage,
 			allCatPlaceholder,
+			renderUsing,
+			convertHex,
+			renderFunc,
 			handleChangeValue: this.handleChangeValue,
 			handleChangeCategory: this.handleChangeCategory,
 			handleChangePage: this.handleChangePage,

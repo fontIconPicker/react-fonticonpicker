@@ -1,7 +1,7 @@
 /**
  * Flatten a categorized source and return both categories and flattened items.
  * @param {object} source The source object where key represent categories and it has array of items
- *
+ * @param {string|null} category The category key to look for
  * @return {array} Flattened source. Could be an empty array if none was found
  */
 export function flattenPossiblyCategorizedSource(source, category = null) {
@@ -48,9 +48,25 @@ export function getPossibleCategories(source) {
 }
 
 /**
+ * Convert a decimal number to hexadecimal HTML representation
+ *
+ * @param {number} number The number to convert to, could be a string
+ * @return {string} The hex representation
+ */
+export function convertToHex(number) {
+	return String.fromCodePoint(parseInt(number, 10));
+	// return `&#x${parseInt(number, 10).toString(16)};`;
+}
+
+/**
  * FuzzySearch Implementation
  *
+ * Adopted from
  * {@link https://github.com/bevacqua/fuzzysearch}
+ *
+ * Changed the implementation a little bit to compare
+ * against lowercase values and support unicode.
+ *
  * The MIT License (MIT)
  * Copyright © 2015 Nicolas Bevacqua
  * @param {string} needle
@@ -58,6 +74,8 @@ export function getPossibleCategories(source) {
  */
 /* eslint-disable */
 export function fuzzySearch(needle, haystack) {
+	needle = needle.toLowerCase();
+	haystack = haystack.toLowerCase();
 	let hlen = haystack.length;
 	let nlen = needle.length;
 	if (nlen > hlen) {
@@ -67,9 +85,9 @@ export function fuzzySearch(needle, haystack) {
 		return needle === haystack;
 	}
 	outer: for (let i = 0, j = 0; i < nlen; i++) {
-		let nch = needle.charCodeAt(i);
+		let nch = needle.codePointAt(i);
 		while (j < hlen) {
-			if (haystack.charCodeAt(j++) === nch) {
+			if (haystack.codePointAt(j++) === nch) {
 				continue outer;
 			}
 		}
