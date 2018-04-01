@@ -46,3 +46,4 @@ class DocApp extends React.PureComponent {
 }
 
 export default hot(module)(DocApp);
+// export default DocApp;

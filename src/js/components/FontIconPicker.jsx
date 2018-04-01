@@ -6,7 +6,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import className from 'classnames';
-import { flattenPossiblyCategorizedSource } from '../helpers/iconHelpers';
 import FipButton from './FipButton';
 import FipDropDown from './FipDropDown';
 import FipDropDownPortal from './FipDropDownPortal';
@@ -14,8 +13,14 @@ import FipDropDownPortal from './FipDropDownPortal';
 class FontIconPicker extends React.PureComponent {
 	static propTypes = {
 		icons: PropTypes.oneOfType([
-			PropTypes.object,
 			PropTypes.arrayOf(PropTypes.string),
+			PropTypes.arrayOf(PropTypes.number),
+			PropTypes.objectOf(
+				PropTypes.oneOfType([
+					PropTypes.arrayOf(PropTypes.number),
+					PropTypes.arrayOf(PropTypes.string),
+				]),
+			),
 		]).isRequired,
 		search: PropTypes.oneOfType([
 			PropTypes.object,
@@ -42,6 +47,7 @@ class FontIconPicker extends React.PureComponent {
 		renderer: PropTypes.func,
 		appendTo: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 		currentPage: PropTypes.number,
+		allCatPlaceholder: PropTypes.string,
 	};
 
 	static defaultProps = {
@@ -57,20 +63,12 @@ class FontIconPicker extends React.PureComponent {
 		renderer: null,
 		appendTo: false,
 		currentPage: 0,
+		allCatPlaceholder: 'Show from all',
 	};
 
 	constructor(props) {
 		// Call the super
 		super(props);
-		// create the flattened icons, search and category
-		const flattenedSource = flattenPossiblyCategorizedSource(
-			this.props.icons,
-		);
-		const { categories, flattened: icons } = flattenedSource;
-		const searchSource =
-			this.props.search === null
-				? [...icons]
-				: flattenPossiblyCategorizedSource(this.props.search).flattened;
 		// the class (BEM)
 		const parentClassNames = className(
 			// block
@@ -91,13 +89,12 @@ class FontIconPicker extends React.PureComponent {
 
 		// create the state
 		this.state = {
-			icons,
-			searchSource,
-			categories,
+			currentCategory: 0,
 			currentPage,
 			elemClass: parentClassNames,
 			isOpen: false,
 			value,
+			currentSearch: '',
 		};
 	}
 
@@ -114,6 +111,16 @@ class FontIconPicker extends React.PureComponent {
 	};
 
 	/**
+	 * Handle change value
+	 * Set the internal state
+	 * and call the props
+	 */
+	handleChangeValue = newValue => {
+		this.setState({ value: newValue });
+		this.props.onChange(newValue);
+	};
+
+	/**
 	 * Handle page change for dropdown
 	 *
 	 * We save it in the state for the root component
@@ -124,32 +131,55 @@ class FontIconPicker extends React.PureComponent {
 		this.setState({ currentPage: newPage });
 	};
 
+	/**
+	 * Handle change category from the child component
+	 * The reason we do this because, we would like preserve
+	 */
+	handleChangeCategory = newCategory => {
+		this.setState({ currentCategory: newCategory });
+	};
+
+	/**
+	 * Handle change search string
+	 */
+	handleChangeSearch = newSearch => {
+		this.setState({ currentSearch: newSearch });
+	};
+
 	render() {
 		// extract props for FipDropDown
 		const {
-			icons,
-			searchSource,
-			categories,
 			value,
+			currentCategory,
 			currentPage,
+			currentSearch,
 		} = this.state;
 		const {
+			icons,
+			search,
 			showCategory,
 			showSearch,
 			iconsPerPage,
 			maxColumnsPerPage,
+			allCatPlaceholder,
 		} = this.props;
 		// store in an object to spread later
 		const dropDownProps = {
-			icons,
-			searchSource,
-			categories,
 			value,
+			currentCategory,
 			currentPage,
-			iconsPerPage,
-			maxColumnsPerPage,
+			currentSearch,
+			icons,
+			search,
 			showCategory,
 			showSearch,
+			iconsPerPage,
+			maxColumnsPerPage,
+			allCatPlaceholder,
+			handleChangeValue: this.handleChangeValue,
+			handleChangeCategory: this.handleChangeCategory,
+			handleChangePage: this.handleChangePage,
+			handleChangeSearch: this.handleChangeSearch,
 		};
 		return (
 			<div className={this.state.elemClass}>
