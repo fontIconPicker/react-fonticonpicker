@@ -10,4 +10,4 @@ import './fonts/icomoon/style.css';
 import './fonts/fontello/css/fontello.css';
 import './scss/style.scss';
 
-render( <DocApp />, document.getElementById('app') );
+render(<DocApp />, document.getElementById('app'));

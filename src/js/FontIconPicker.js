@@ -8,4 +8,3 @@ import FontIconPicker from './components/FontIconPicker';
 import '../scss/style.scss';
 
 export default FontIconPicker;
-

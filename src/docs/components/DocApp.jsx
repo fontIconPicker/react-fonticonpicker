@@ -7,26 +7,32 @@ import * as iconDefs from '../helpers/iconDefs';
 class DocApp extends React.PureComponent {
 	state = {
 		value: 'none',
-	}
-	handleChange = (value) => {
+	};
+	handleChange = value => {
 		const newValue = value;
 		this.setState({ value: newValue });
-	}
+	};
 	render() {
 		return (
 			<React.Fragment>
 				<div>
-					<h2><i className="icomoon-dice" /> Append to Body <i className="icomoon-quill" /></h2>
+					<h2>
+						<i className="icomoon-dice" /> Append to Body{' '}
+						<i className="icomoon-quill" />
+					</h2>
 					<FontIconPicker
 						icons={iconDefs.icomoonIcons}
 						search={iconDefs.icomoonIconsSearch}
 						onChange={this.handleChange}
-						appendTo='body'
+						appendTo="body"
 					/>
 					<p>Current value: {this.state.value}</p>
 				</div>
 				<div>
-					<h2><i className="icomoon-dice" /> Append to Self <i className="icomoon-quill" /></h2>
+					<h2>
+						<i className="icomoon-dice" /> Append to Self{' '}
+						<i className="icomoon-quill" />
+					</h2>
 					<FontIconPicker
 						icons={iconDefs.icomoonIcons}
 						search={iconDefs.icomoonIconsSearch}

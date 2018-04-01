@@ -10,10 +10,7 @@ import className from 'classnames';
 
 class FipDropDownPortal extends React.PureComponent {
 	static propTypes = {
-		appendRoot: PropTypes.oneOfType([
-			PropTypes.bool,
-			PropTypes.string,
-		]),
+		appendRoot: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 		children: PropTypes.node.isRequired,
 	};
 
@@ -27,7 +24,7 @@ class FipDropDownPortal extends React.PureComponent {
 		// where to append the dropdown?
 		let appendRoot = 'self';
 		const portalClasses = className('rfipdropdown', {
-			'rfipdropdown--portal': (this.props.appendRoot !== false),
+			'rfipdropdown--portal': this.props.appendRoot !== false,
 		});
 		if (this.props.appendRoot !== false) {
 			// fip assumes that the node is already in the DOM tree
@@ -57,12 +54,8 @@ class FipDropDownPortal extends React.PureComponent {
 			return fipDropDownNode;
 		}
 		// render to the DOM
-		return createPortal(
-			fipDropDownNode,
-			this.state.appendRoot
-		);
+		return createPortal(fipDropDownNode, this.state.appendRoot);
 	}
 }
 
 export default FipDropDownPortal;
-

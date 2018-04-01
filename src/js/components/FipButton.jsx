@@ -7,11 +7,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-
 class FipButton extends React.PureComponent {
 	static propTypes = {
 		toggleDropDown: PropTypes.func.isRequired,
-	}
+	};
 
 	static buttonClass = 'rfipbtn__button';
 
@@ -37,12 +36,15 @@ class FipButton extends React.PureComponent {
 		}
 	};
 
-	handleFocus = event => {
-		const buttonClasses = classNames(this.constructor.buttonClass, `${this.constructor.buttonClass}--focus`);
+	handleFocus = () => {
+		const buttonClasses = classNames(
+			this.constructor.buttonClass,
+			`${this.constructor.buttonClass}--focus`,
+		);
 		this.setState({ buttonClasses });
 	};
 
-	handleBlur = event => {
+	handleBlur = () => {
 		const buttonClasses = classNames(this.constructor.buttonClass);
 		this.setState({ buttonClasses });
 	};
@@ -57,7 +59,9 @@ class FipButton extends React.PureComponent {
 
 		return (
 			<div className="rfipbtn">
-				<button className={this.state.buttonClasses} {...handlers}>Open Me</button>
+				<button className={this.state.buttonClasses} {...handlers}>
+					Open Me
+				</button>
 			</div>
 		);
 	}
