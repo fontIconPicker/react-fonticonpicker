@@ -59,6 +59,33 @@ export function convertToHex(number) {
 }
 
 /**
+ * Compare two single dimentional arrays and check if they are equal
+ * regardless of the order within the array.
+ *
+ * This is a pure function and doesn't change anything to the original copy
+ *
+ * @param {array} from Array to compare from
+ * @param {array} to Array to compare with
+ * @returns {bool} true if equal, false otherwise
+ */
+export function isArrayEqual(from, to) {
+	// If at least one of them isn't an array, then return false
+	if (!Array.isArray(from) || !Array.isArray(to)) {
+		return false;
+	}
+	// Take copy and sort
+	const fromCopy = [...from];
+	fromCopy.sort();
+	const toCopy = [...to];
+	toCopy.sort();
+	if (JSON.stringify(fromCopy) !== JSON.stringify(toCopy)) {
+		return false;
+	}
+	// All checks succeeded
+	return true;
+}
+
+/**
  * FuzzySearch Implementation
  *
  * Adopted from

@@ -6,24 +6,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class FipSearch extends React.PureComponent {
-	static propTypes = {
-		handleSearch: PropTypes.func.isRequired,
-		value: PropTypes.string.isRequired,
-	};
-
-	render() {
-		return (
-			<div className="rfipsearch">
-				<input
-					type="text"
-					className="rfipsearch__input"
-					value={this.props.value}
-					onChange={this.props.handleSearch}
-				/>
-			</div>
-		);
-	}
-}
+const FipSearch = props => (
+	<div className="rfipsearch">
+		<input
+			type="text"
+			className="rfipsearch__input"
+			value={props.value}
+			onChange={props.handleSearch}
+			placeholder={props.placeholder}
+		/>
+	</div>
+);
+FipSearch.propTypes = {
+	handleSearch: PropTypes.func.isRequired,
+	value: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired,
+};
 
 export default FipSearch;

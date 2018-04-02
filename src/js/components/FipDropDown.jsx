@@ -7,12 +7,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FipCategory from './FipCategory';
 import FipSearch from './FipSearch';
-import {
-	getPossibleCategories,
-	flattenPossiblyCategorizedSource,
-	fuzzySearch,
-} from '../helpers/iconHelpers';
 import FipIconContainer from './FipIconContainer';
+import { getPossibleCategories } from '../helpers/iconHelpers';
 
 class FipDropDown extends React.PureComponent {
 	static propTypes = {
@@ -20,8 +16,7 @@ class FipDropDown extends React.PureComponent {
 		value: PropTypes.oneOfType([
 			PropTypes.number,
 			PropTypes.string,
-			PropTypes.arrayOf(PropTypes.string),
-			PropTypes.arrayOf(PropTypes.number),
+			PropTypes.arrayOf(PropTypes.any),
 		]).isRequired,
 		currentCategory: PropTypes.number.isRequired,
 		currentPage: PropTypes.number.isRequired,
@@ -36,17 +31,18 @@ class FipDropDown extends React.PureComponent {
 				]),
 			),
 		]).isRequired,
+		/* eslint-disable */
 		search: PropTypes.oneOfType([
 			PropTypes.object,
 			PropTypes.arrayOf(PropTypes.string),
 		]),
+		/* eslint-enable */
 		showCategory: PropTypes.bool.isRequired,
 		showSearch: PropTypes.bool.isRequired,
 		iconsPerPage: PropTypes.number.isRequired,
-		allCatPlaceholder: PropTypes.string.isRequired,
-		renderUsing: PropTypes.string.isRequired,
-		convertHex: PropTypes.bool.isRequired,
-		renderFunc: PropTypes.func,
+		allCatPlaceholder: PropTypes.string.isRequired, // eslint-disable-line
+		searchPlaceholder: PropTypes.string.isRequired, // eslint-disable-line
+		renderIcon: PropTypes.func.isRequired,
 		handleChangeValue: PropTypes.func.isRequired,
 		handleChangeCategory: PropTypes.func.isRequired,
 		handleChangePage: PropTypes.func.isRequired,
@@ -55,96 +51,23 @@ class FipDropDown extends React.PureComponent {
 
 	static defaultProps = {
 		search: null,
-		renderFunc: null,
 	};
+
+	static getDerivedStateFromProps(nextProps) {
+		// Get categories and flattened source
+		let categories = getPossibleCategories(nextProps.icons);
+		if (categories !== null) {
+			categories = [nextProps.allCatPlaceholder, ...categories];
+		}
+		// assign to the state
+		// rest is handled by props
+		return { categories, searchString: nextProps.currentSearch };
+	}
 
 	constructor(props) {
 		super(props);
-		// Get categories and flattened source
-		let categories = getPossibleCategories(this.props.icons);
-		if (categories !== null) {
-			categories = [this.props.allCatPlaceholder, ...categories];
-		}
-		// assign to a property
-		this.categories = categories;
-		// Now check against the currently selected category and get flattened
-		// icons and search
-		const currentIconsSet = this.getCategoryFilteredState(
-			this.props.currentCategory,
-			'icons',
-		);
-
-		const currentSearchSet = this.getCategoryFilteredState(
-			this.props.currentCategory,
-			'search',
-		);
-
-		const {
-			iconSet: activeIcons,
-			searchSet: activeTitles,
-		} = this.getActiveIcons(
-			currentIconsSet,
-			currentSearchSet,
-			this.props.currentSearch,
-		);
-
-		// set state
-		this.state = {
-			currentCategory: this.props.currentCategory,
-			currentIconsSet,
-			currentSearchSet,
-			activeIcons,
-			activeTitles,
-			searchString: this.props.currentSearch,
-		};
+		this.state = {};
 	}
-
-	/**
-	 * Get icons or search set based on selected category
-	 *
-	 * @param {number} currentCategory current categories
-	 * @param {string} key the props key to use
-	 * @returns {array} filtered and flattened source
-	 */
-	getCategoryFilteredState(currentCategory, key) {
-		let category = null;
-		if (currentCategory !== 0) {
-			category = this.categories[currentCategory];
-		}
-		const currentSourceSet = flattenPossiblyCategorizedSource(
-			this.props[key],
-			category,
-		);
-		return currentSourceSet;
-	}
-
-	/**
-	 * Get the current set of icons, based on search
-	 *
-	 * @param {array} currentIconsSet icon set from where to filter
-	 * @returns {array} filtered list of icons to slice on
-	 */
-	getActiveIcons = (currentIconsSet, currentSearchSet, searchString) => {
-		const iconSet = [...currentIconsSet];
-		const searchSet = [...currentSearchSet];
-
-		if (searchString === '') {
-			return { iconSet, searchSet };
-		}
-		const nIconSet = [];
-		const nSearchSet = [];
-
-		iconSet.forEach((value, index) => {
-			if (fuzzySearch(searchString, currentSearchSet[index])) {
-				nIconSet.push(value);
-				nSearchSet.push(currentSearchSet[index]);
-			}
-		});
-		return {
-			iconSet: nIconSet,
-			searchSet: nSearchSet,
-		};
-	};
 
 	/**
 	 * Handle category change
@@ -152,55 +75,21 @@ class FipDropDown extends React.PureComponent {
 	 * Sets internal state and also calls the parent app.
 	 */
 	handleCategory = event => {
-		const currentCategory = parseInt(event.target.value, 10);
-		// Now check against the currently selected category and get flattened
-		// icons and search
-		const currentIconsSet = this.getCategoryFilteredState(
-			currentCategory,
-			'icons',
-		);
-		const currentSearchSet = this.getCategoryFilteredState(
-			currentCategory,
-			'search',
-		);
-		const {
-			iconSet: activeIcons,
-			searchSet: activeTitles,
-		} = this.getActiveIcons(
-			currentIconsSet,
-			currentSearchSet,
-			this.state.searchString,
-		);
-
-		// update state
-		this.setState({
-			currentIconsSet,
-			currentSearchSet,
-			activeIcons,
-			activeTitles,
-			currentCategory,
-		});
-
+		// Get the category
+		let currentCategory = parseInt(event.target.value, 10);
+		if (Number.isNaN(currentCategory)) {
+			currentCategory = 0;
+		}
 		// call the external handler
 		this.props.handleChangeCategory(currentCategory);
+
+		// Also change the pagenumber to 0
+		this.props.handleChangePage(0);
 	};
 
 	handleSearch = event => {
 		const currentSearch = event.target.value;
-		const {
-			iconSet: activeIcons,
-			searchSet: activeTitles,
-		} = this.getActiveIcons(
-			this.state.currentIconsSet,
-			this.state.currentSearchSet,
-			currentSearch,
-		);
-
-		this.setState({
-			searchString: currentSearch,
-			activeIcons,
-			activeTitles,
-		});
+		// Change the state of the parent
 		this.props.handleChangeSearch(currentSearch);
 	};
 
@@ -211,31 +100,33 @@ class FipDropDown extends React.PureComponent {
 					<FipSearch
 						handleSearch={this.handleSearch}
 						value={this.state.searchString}
+						placeholder={this.props.searchPlaceholder}
 					/>
 				) : null}
 
 				{this.props.showCategory &&
-				this.categories &&
-				this.categories.length ? (
+				this.state.categories &&
+				this.state.categories.length ? (
 					<FipCategory
 						handleCategory={this.handleCategory}
-						value={this.state.currentCategory}
-						categories={this.categories}
+						value={this.props.currentCategory}
+						categories={this.state.categories}
 					/>
 				) : null}
 
 				<FipIconContainer
+					categories={this.state.categories}
+					currentCategory={this.props.currentCategory}
 					isMulti={this.props.isMulti}
-					iconSet={this.state.activeIcons}
-					titleSet={this.state.activeTitles}
+					icons={this.props.icons}
+					search={this.props.search}
 					value={this.props.value}
-					onChange={this.props.handleChangeValue}
+					currentSearch={this.props.currentSearch}
+					handleChangeValue={this.props.handleChangeValue}
 					currentPage={this.props.currentPage}
 					iconsPerPage={this.props.iconsPerPage}
 					handleChangePage={this.props.handleChangePage}
-					renderUsing={this.props.renderUsing}
-					convertHex={this.props.convertHex}
-					renderFunc={this.props.renderFunc}
+					renderIcon={this.props.renderIcon}
 				/>
 			</div>
 		);

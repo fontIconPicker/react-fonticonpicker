@@ -10,7 +10,7 @@ import className from 'classnames';
 
 class FipDropDownPortal extends React.PureComponent {
 	static propTypes = {
-		appendRoot: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+		appendRoot: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), // eslint-disable-line
 		children: PropTypes.node.isRequired,
 		domRef: PropTypes.object.isRequired, // eslint-disable-line
 	};
@@ -19,27 +19,53 @@ class FipDropDownPortal extends React.PureComponent {
 		appendRoot: false,
 	};
 
-	constructor(props) {
-		super(props);
+	static getDerivedStateFromProps(nextProps, prevState) {
+		// The only thing we are interested is the appendRoot
+		if (nextProps.appendRoot !== prevState.appendRoot) {
+			const {
+				appendRoot,
+				portalClasses,
+			} = FipDropDownPortal.calculateAppendAndClass(nextProps.appendRoot);
+			return {
+				appendRoot,
+				portalClasses,
+			};
+		}
+		return null;
+	}
 
+	/**
+	 * Calculate append Node and Portal classes based on appendRoot settings
+	 *
+	 * @param {string} appendRoot self or a querySelector valid string
+	 * @return {object} Object with portalClasses and appendRoot
+	 */
+	static calculateAppendAndClass(appendRoot) {
 		// where to append the dropdown?
-		let appendRoot = 'self';
+		let rootNode = 'self';
 		const portalClasses = className('rfipdropdown', {
-			'rfipdropdown--portal': this.props.appendRoot !== false,
+			'rfipdropdown--portal': appendRoot !== false,
 		});
-		if (this.props.appendRoot !== false) {
+		if (appendRoot !== false) {
 			// fip assumes that the node is already in the DOM tree
 			// we definitely wan't to use something like body or another
 			// root level stuff to apply our style?
 			// let me know if a use case of detached dom arrives
-			appendRoot = document.querySelector(this.props.appendRoot);
+			rootNode = document.querySelector(appendRoot);
 		}
-
-		// set state where to attach
-		this.state = {
-			appendRoot,
+		return {
 			portalClasses,
+			appendRoot: rootNode,
 		};
+	}
+
+	constructor(props) {
+		super(props);
+
+		// currently set the state to empty
+		// because it will be rendered by the
+		// getDerivedStateFromProps lifecycle method
+		this.state = {};
 	}
 
 	render() {

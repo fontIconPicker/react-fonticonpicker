@@ -11,6 +11,7 @@ class FipCategory extends React.PureComponent {
 		value: PropTypes.number.isRequired,
 		categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 	};
+
 	render() {
 		return (
 			<div className="rfipcategory">
