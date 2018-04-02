@@ -89,6 +89,7 @@ class FipIconContainer extends React.PureComponent {
 			),
 			totalPage: Math.ceil(activeIcons.length / iconsPerPage),
 		};
+		// Don't check with the currentPage for viewPage, because it could be empty
 		return newState;
 	}
 
@@ -160,7 +161,7 @@ class FipIconContainer extends React.PureComponent {
 		// everything else will be props depedent so look into lifecycle
 		// getDerivedStateFromProps
 		this.state = {
-			viewPage: this.props.currentPage,
+			viewPage: this.props.currentPage + 1,
 		};
 	}
 

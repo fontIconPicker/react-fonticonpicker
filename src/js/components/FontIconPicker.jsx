@@ -68,6 +68,8 @@ class FontIconPicker extends React.PureComponent {
 		searchPlaceholder: 'Search Icons',
 	};
 
+	static displayName = 'FontIconPicker';
+
 	static getDerivedStateFromProps(nextProps) {
 		// Init the state
 		const newState = {};
