@@ -50,6 +50,7 @@ class FontIconPicker extends React.PureComponent {
 		appendTo: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 		allCatPlaceholder: PropTypes.string,
 		searchPlaceholder: PropTypes.string,
+		noIconPlaceholder: PropTypes.string,
 	};
 
 	static defaultProps = {
@@ -66,6 +67,7 @@ class FontIconPicker extends React.PureComponent {
 		appendTo: false,
 		allCatPlaceholder: 'Show from all',
 		searchPlaceholder: 'Search Icons',
+		noIconPlaceholder: 'No icons found',
 	};
 
 	static displayName = 'FontIconPicker';
@@ -313,6 +315,7 @@ class FontIconPicker extends React.PureComponent {
 			iconsPerPage: this.props.iconsPerPage,
 			allCatPlaceholder: this.props.allCatPlaceholder,
 			searchPlaceholder: this.props.searchPlaceholder,
+			noIconPlaceholder: this.props.noIconPlaceholder,
 			renderIcon: this.renderIcon,
 			handleChangeValue: this.handleChangeValue,
 			handleChangeCategory: this.handleChangeCategory,

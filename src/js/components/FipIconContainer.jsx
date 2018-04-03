@@ -43,6 +43,7 @@ class FipIconContainer extends React.PureComponent {
 		iconsPerPage: PropTypes.number.isRequired,
 		handleChangePage: PropTypes.func.isRequired,
 		renderIcon: PropTypes.func.isRequired,
+		noIconPlaceholder: PropTypes.string.isRequired,
 	};
 
 	static defaultProps = {
@@ -281,6 +282,8 @@ class FipIconContainer extends React.PureComponent {
 						value={this.state.viewPage}
 						onChange={this.handleChangePage}
 						className="rfipicons__cp"
+						type="tel"
+						min={1}
 					/>
 					<span className="rfipicons__sp">/</span>
 					<span className="rfipicons__tp">
@@ -314,12 +317,20 @@ class FipIconContainer extends React.PureComponent {
 						onClick={() => this.handleChangeValue(icon)}
 						onKeyDown={e => this.handleValueKeyboard(e, icon)}
 					>
-						{this.props.renderIcon(icon)}
+						<span className="rfipicons__ibox">
+							{this.props.renderIcon(icon)}
+						</span>
 					</span>
 				);
 			});
 		}
-		return <span className="rfipicons__icon--error">&times;</span>;
+		return (
+			<span className="rfipicons__icon--error">
+				<span className="rfipicons__ibox--error">
+					{this.props.noIconPlaceholder}
+				</span>
+			</span>
+		);
 	}
 
 	render() {

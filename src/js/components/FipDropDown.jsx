@@ -42,6 +42,7 @@ class FipDropDown extends React.PureComponent {
 		iconsPerPage: PropTypes.number.isRequired,
 		allCatPlaceholder: PropTypes.string.isRequired, // eslint-disable-line
 		searchPlaceholder: PropTypes.string.isRequired, // eslint-disable-line
+		noIconPlaceholder: PropTypes.string.isRequired, // eslint-disable-line
 		renderIcon: PropTypes.func.isRequired,
 		handleChangeValue: PropTypes.func.isRequired,
 		handleChangeCategory: PropTypes.func.isRequired,
@@ -127,6 +128,7 @@ class FipDropDown extends React.PureComponent {
 					iconsPerPage={this.props.iconsPerPage}
 					handleChangePage={this.props.handleChangePage}
 					renderIcon={this.props.renderIcon}
+					noIconPlaceholder={this.props.noIconPlaceholder}
 				/>
 			</div>
 		);
