@@ -51,7 +51,7 @@ class FipIconContainer extends React.PureComponent {
 		search: null,
 	};
 
-	static getDerivedStateFromProps(nextProps) {
+	static getDerivedStateFromProps(nextProps, prevState) {
 		// Create iconSet, searchSet
 		const iconSet = FipIconContainer.getCategoryFilteredState(
 			nextProps.currentCategory,
@@ -89,7 +89,12 @@ class FipIconContainer extends React.PureComponent {
 			),
 			totalPage: Math.ceil(activeIcons.length / iconsPerPage),
 		};
-		// Don't check with the currentPage for viewPage, because it could be empty
+
+		// Now check if viewPage is empty, then don't reset
+		// otherwise do reset
+		if (prevState.viewPage !== '') {
+			newState.viewPage = nextProps.currentPage + 1;
+		}
 		return newState;
 	}
 
@@ -224,40 +229,68 @@ class FipIconContainer extends React.PureComponent {
 		const left =
 			this.props.currentPage > 0 ? (
 				<span
+					className="rfipicons__left"
 					role="button"
 					tabIndex={0}
 					onKeyDown={event => this.handlePageKeyBoard(event, 'prev')}
 					onClick={event => this.handleChangePage(event, 'prev')}
 				>
-					&larr;
+					<span
+						role="presentation"
+						aria-hidden="true"
+						className="rfipicons__label"
+						aria-label="Left"
+					>
+						<svg
+							viewBox="0 0 1792 1792"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z" />
+						</svg>
+					</span>
 				</span>
 			) : null;
 		const right =
 			this.props.currentPage < this.state.totalPage - 1 ? (
 				<span
+					className="rfipicons__right"
 					role="button"
 					tabIndex={0}
 					onKeyDown={event => this.handlePageKeyBoard(event, 'next')}
 					onClick={event => this.handleChangePage(event, 'next')}
 				>
-					&rarr;
+					<span
+						role="presentation"
+						aria-hidden="true"
+						className="rfipicons__label"
+						aria-label="Right"
+					>
+						<svg
+							viewBox="0 0 1792 1792"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z" />
+						</svg>
+					</span>
 				</span>
 			) : null;
 		return (
 			<div className="rfipicons__pager">
-				<div className="rfipicons__pager__arrow--left">{left}</div>
-				<div className="rfipicons__pager__num">
+				<div className="rfipicons__num">
 					<input
 						value={this.state.viewPage}
 						onChange={this.handleChangePage}
-						className="rfipicons__pager__num__cp"
+						className="rfipicons__cp"
 					/>
-					<span className="rfipicons__pager__num__sp">/</span>
-					<span className="rfipicons__pager__num__to">
+					<span className="rfipicons__sp">/</span>
+					<span className="rfipicons__tp">
 						{this.state.totalPage}
 					</span>
 				</div>
-				<div className="rfipicons__pager__arrow--right">{right}</div>
+				<div className="rfipicons__arrow">
+					{left}
+					{right}
+				</div>
 			</div>
 		);
 	}
@@ -265,8 +298,8 @@ class FipIconContainer extends React.PureComponent {
 	renderIconView() {
 		if (this.state.totalPage > 0) {
 			return this.state.iconView.map((icon, index) => {
-				const iconClass = className('rfipicons__selector__icon', {
-					'rfipicons__selector__icon--selected':
+				const iconClass = className('rfipicons__icon', {
+					'rfipicons__icon--selected':
 						this.props.value === icon ||
 						(Array.isArray(this.props.value) &&
 							this.props.value.includes(icon)),
@@ -286,16 +319,13 @@ class FipIconContainer extends React.PureComponent {
 				);
 			});
 		}
-		return (
-			<span className="rfipicons__selector__icon--error">&times;</span>
-		);
+		return <span className="rfipicons__icon--error">&times;</span>;
 	}
 
 	render() {
 		return (
 			<div className="rfipicons">
 				{this.renderPager()}
-				<div className="rfipicons__current" />
 				<div className="rfipicons__selector">
 					{this.renderIconView()}
 				</div>

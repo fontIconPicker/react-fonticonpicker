@@ -272,14 +272,14 @@ class FontIconPicker extends React.PureComponent {
 	 * The reason we do this because, we would like preserve
 	 */
 	handleChangeCategory = newCategory => {
-		this.setState({ currentCategory: newCategory });
+		this.setState({ currentCategory: newCategory, currentPage: 0 });
 	};
 
 	/**
 	 * Handle change search string
 	 */
 	handleChangeSearch = newSearch => {
-		this.setState({ currentSearch: newSearch });
+		this.setState({ currentSearch: newSearch, currentPage: 0 });
 	};
 
 	renderIcon = icon => {
