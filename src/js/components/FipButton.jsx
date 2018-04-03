@@ -7,8 +7,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import AngleDown from '../../assets/angles/angle-down.svg';
+
 class FipButton extends React.PureComponent {
 	static propTypes = {
+		className: PropTypes.string.isRequired,
 		isOpen: PropTypes.bool.isRequired,
 		toggleDropDown: PropTypes.func.isRequired,
 		domRef: PropTypes.object.isRequired, // eslint-disable-line
@@ -22,6 +25,7 @@ class FipButton extends React.PureComponent {
 		]).isRequired,
 		renderIcon: PropTypes.func.isRequired,
 		handleDeleteValue: PropTypes.func.isRequired,
+		noSelectedPlaceholder: PropTypes.string.isRequired,
 	};
 
 	handleClick = () => {
@@ -47,15 +51,15 @@ class FipButton extends React.PureComponent {
 
 	renderIcon(icon) {
 		if (icon === '' || icon === null || icon === undefined) {
-			return null;
+			return this.renderEmptyIcon();
 		}
 		return (
-			<span className="rfipbtn__current__icon" key={icon}>
-				<span className="rfipbtn__current__icon__elm">
+			<span className="rfipbtn__icon" key={icon}>
+				<span className="rfipbtn__elm">
 					{this.props.renderIcon(icon)}
 				</span>
 				<span
-					className="rfipbtn__current__icon__del"
+					className="rfipbtn__del"
 					onClick={() => this.handleDelete(icon)}
 					onKeyDown={e => this.handleDeleteKeyboard(e, icon)}
 					tabIndex={0}
@@ -67,8 +71,17 @@ class FipButton extends React.PureComponent {
 		);
 	}
 
+	renderEmptyIcon = () => (
+		<span className="rfipbtn__icon--empty">
+			{this.props.noSelectedPlaceholder}
+		</span>
+	);
+
 	renderCurrentIcons() {
 		if (this.props.isMulti) {
+			if (!this.props.value.length) {
+				return this.renderEmptyIcon();
+			}
 			return this.props.value.map(icon => this.renderIcon(icon));
 		}
 		return this.renderIcon(this.props.value);
@@ -88,13 +101,18 @@ class FipButton extends React.PureComponent {
 			`rfipbtn__button--${this.props.isOpen ? 'open' : 'close'}`,
 		);
 
+		const elmClass = classNames(
+			this.props.className,
+			`rfipbtn--${this.props.isOpen ? 'open' : 'close'}`,
+		);
+
 		return (
-			<div className="rfipbtn" ref={this.props.domRef}>
+			<div className={elmClass} ref={this.props.domRef}>
 				<div className="rfipbtn__current">
 					{this.renderCurrentIcons()}
 				</div>
 				<div className={btnClass} {...handlers}>
-					{this.props.isOpen ? 'Close Me' : 'Open Me'}
+					<img src={AngleDown} alt="Open" />
 				</div>
 			</div>
 		);

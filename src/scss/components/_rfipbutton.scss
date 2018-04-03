@@ -1,0 +1,129 @@
+// Button
+.rfipbtn {
+	@include card(1);
+	width: 134px;
+	display: flex;
+	flex-flow: row nowrap;
+	min-height: 48px;
+	background-color: $btn-bg-color;
+	border-radius: 2px;
+
+	// open
+	&--open {
+		border-radius: 2px 2px 0 0;
+	}
+
+	// dropdown button
+	&__button {
+		width: 48px;
+		margin-left: auto;
+		display: flex;
+		align-items: center; /* x axis center */
+		justify-content: center; /* y axis center */
+		height: auto; /* auto height to fix the flex */
+		cursor: pointer;
+		border-left: 1px solid $btn-border-color;
+		background-color: $btn-bg-color;
+		transition: background-color 250ms, outline 250ms;
+		outline: 0 none transparent;
+
+		&:hover {
+			background-color: $btn-bg-hover-color;
+		}
+
+		&:active,
+		&:focus {
+			outline: 1px solid $btn-bg-hover-color;
+		}
+
+		img {
+			height: 32px;
+			width: 32px;
+			transition: transform 250ms;
+		}
+
+		// Open
+		&--open {
+			img {
+				transform: rotate(-180deg);
+			}
+		}
+	}
+
+	// current
+	&__current {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 86px;
+	}
+
+	// multi
+	&--multi {
+		width: 270px;
+
+		// current
+		.rfipbtn__current {
+			flex-flow: row wrap;
+			justify-content: flex-start;
+			flex-basis: 224px;
+			align-content: center;
+		}
+	}
+
+	// icon
+	&__icon {
+		margin: 4px;
+		padding: 0;
+		height: 28px;
+		width: 48px;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		border: 1px solid $icon-border-color;
+		border-radius: 2px;
+
+		// empty
+		&--empty {
+			color: $empty-icon-color;
+			font-size: 14px;
+			line-height: 16px;
+			margin-left: 8px;
+			text-align: center;
+			text-transform: lowercase;
+			font-style: italic;
+		}
+	}
+
+	// elm
+	&__elm {
+		display: flex;
+		height: 28px;
+		width: 28px;
+		align-items: center;
+		justify-content: center;
+	}
+
+	// del
+	&__del {
+		width: 18px;
+		display: flex;
+		height: 28px;
+		align-items: center;
+		justify-content: center;
+		background-color: $del-bg-color;
+		transition: background-color 250ms;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $del-bg-hover-color;
+		}
+
+		&:focus,
+		&:active {
+			outline: 1px solid $del-bg-hover-color;
+		}
+	}
+}

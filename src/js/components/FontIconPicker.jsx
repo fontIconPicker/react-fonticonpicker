@@ -51,6 +51,7 @@ class FontIconPicker extends React.PureComponent {
 		allCatPlaceholder: PropTypes.string,
 		searchPlaceholder: PropTypes.string,
 		noIconPlaceholder: PropTypes.string,
+		noSelectedPlaceholder: PropTypes.string,
 	};
 
 	static defaultProps = {
@@ -68,6 +69,7 @@ class FontIconPicker extends React.PureComponent {
 		allCatPlaceholder: 'Show from all',
 		searchPlaceholder: 'Search Icons',
 		noIconPlaceholder: 'No icons found',
+		noSelectedPlaceholder: 'Select icon',
 	};
 
 	static displayName = 'FontIconPicker';
@@ -77,7 +79,19 @@ class FontIconPicker extends React.PureComponent {
 		const newState = {};
 		// Listen for theme change
 		newState.elemClass = FontIconPicker.getDerivedClassName(
+			'rfip',
 			nextProps.theme,
+			nextProps.isMulti,
+		);
+		newState.btnClass = FontIconPicker.getDerivedClassName(
+			'rfipbtn',
+			nextProps.theme,
+			nextProps.isMulti,
+		);
+		newState.ddClass = FontIconPicker.getDerivedClassName(
+			'rfipdropdown',
+			nextProps.theme,
+			nextProps.isMulti,
 		);
 
 		// change the value if needed
@@ -106,17 +120,23 @@ class FontIconPicker extends React.PureComponent {
 	/**
 	 * Get dervied (BEM) classname for provided theme
 	 *
+	 * @param {string} base the base className
 	 * @param {string} theme Name of the theme
+	 * @param {boolean} isMulti Whether or not multiple
 	 * @return {string} Calculated theme
 	 */
-	static getDerivedClassName(theme) {
+	static getDerivedClassName(base, theme, isMulti) {
 		// the class (BEM)
 		return className(
 			// block
-			'rfip',
+			base,
 			// modifier
 			// 1. theme
-			`rfip--${theme}`,
+			`${base}--${theme}`,
+			{
+				// 2. multi
+				[`${base}--multi`]: isMulti,
+			},
 		);
 	}
 
@@ -156,6 +176,7 @@ class FontIconPicker extends React.PureComponent {
 		events.forEach(value => {
 			document.addEventListener(value, this.handleOuterClick, false);
 		});
+		document.addEventListener('keydown', this.handleEscapeKeyboard, false);
 	}
 
 	componentWillUnmount() {
@@ -163,6 +184,11 @@ class FontIconPicker extends React.PureComponent {
 		events.forEach(value => {
 			document.removeEventListener(value, this.handleOuterClick, false);
 		});
+		document.removeEventListener(
+			'keydown',
+			this.handleEscapeKeyboard,
+			false,
+		);
 	}
 
 	/**
@@ -183,6 +209,12 @@ class FontIconPicker extends React.PureComponent {
 		}
 		// close the dropdown
 		this.closeDropdown();
+	};
+
+	handleEscapeKeyboard = event => {
+		if (event.keyCode === 27) {
+			this.closeDropdown();
+		}
 	};
 
 	/**
@@ -303,6 +335,7 @@ class FontIconPicker extends React.PureComponent {
 		// extract props for FipDropDown and
 		// store in an object to spread later
 		const dropDownProps = {
+			className: this.state.ddClass,
 			currentCategory: this.state.currentCategory,
 			currentPage: this.state.currentPage,
 			currentSearch: this.state.currentSearch,
@@ -325,6 +358,7 @@ class FontIconPicker extends React.PureComponent {
 		return (
 			<div className={this.state.elemClass}>
 				<FipButton
+					className={this.state.btnClass}
 					isOpen={this.state.isOpen}
 					toggleDropDown={this.handleToggle}
 					domRef={this.fipButtonRef}
@@ -332,6 +366,7 @@ class FontIconPicker extends React.PureComponent {
 					value={this.state.value}
 					renderIcon={this.renderIcon}
 					handleDeleteValue={this.handleDeleteValue}
+					noSelectedPlaceholder={this.props.noSelectedPlaceholder}
 				/>
 				{this.state.isOpen ? (
 					<FipDropDownPortal
