@@ -1,5 +1,7 @@
 // Base
-@import 'base/pallet';
+@import 'base/palette';
+@import 'base/variables';
+@import 'base/mixin';
 @import 'base/reset';
 
 // Components
@@ -10,4 +12,3 @@
 @import 'components/rfipdropdown';
 @import 'components/rfipicons';
 @import 'components/rfipsearch';
-

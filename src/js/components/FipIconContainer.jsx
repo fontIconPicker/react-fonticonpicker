@@ -11,6 +11,9 @@ import {
 	fuzzySearch,
 } from '../helpers/iconHelpers';
 
+import AngleLeft from '../../assets/angles/angle-left.svg';
+import AngleRight from '../../assets/angles/angle-right.svg';
+
 class FipIconContainer extends React.PureComponent {
 	static propTypes = {
 		categories: PropTypes.arrayOf(PropTypes.string),
@@ -207,7 +210,6 @@ class FipIconContainer extends React.PureComponent {
 	};
 
 	handlePageKeyBoard = (event, force) => {
-		event.preventDefault();
 		if (event.keyCode === 13 || event.keyCode === 32) {
 			this.handleChangePage({}, force);
 		}
@@ -238,16 +240,10 @@ class FipIconContainer extends React.PureComponent {
 				>
 					<span
 						role="presentation"
-						aria-hidden="true"
 						className="rfipicons__label"
 						aria-label="Left"
 					>
-						<svg
-							viewBox="0 0 1792 1792"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path d="M1203 544q0 13-10 23l-393 393 393 393q10 10 10 23t-10 23l-50 50q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l50 50q10 10 10 23z" />
-						</svg>
+						<img src={AngleLeft} alt="Left" />
 					</span>
 				</span>
 			) : null;
@@ -262,16 +258,10 @@ class FipIconContainer extends React.PureComponent {
 				>
 					<span
 						role="presentation"
-						aria-hidden="true"
 						className="rfipicons__label"
 						aria-label="Right"
 					>
-						<svg
-							viewBox="0 0 1792 1792"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path d="M1171 960q0 13-10 23l-466 466q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l393-393-393-393q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l466 466q10 10 10 23z" />
-						</svg>
+						<img src={AngleRight} alt="Right" />
 					</span>
 				</span>
 			) : null;
@@ -312,12 +302,14 @@ class FipIconContainer extends React.PureComponent {
 						className={iconClass}
 						key={icon}
 						title={this.state.titleView[index]}
-						tabIndex={0}
-						role="button"
-						onClick={() => this.handleChangeValue(icon)}
-						onKeyDown={e => this.handleValueKeyboard(e, icon)}
 					>
-						<span className="rfipicons__ibox">
+						<span
+							className="rfipicons__ibox"
+							tabIndex={0}
+							role="button"
+							onClick={() => this.handleChangeValue(icon)}
+							onKeyDown={e => this.handleValueKeyboard(e, icon)}
+						>
 							{this.props.renderIcon(icon)}
 						</span>
 					</span>

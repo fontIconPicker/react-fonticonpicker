@@ -1,9 +1,10 @@
 // Dropdown
 .rfipdropdown {
-	width: 272px;
+	@include card(5);
+	width: 352px;
 	max-width: 100%;
-	color: #333;
-	background-color: #fff;
+	color: $color-text;
+	background-color: $color-background;
 
 	// Selector box
 	&__selector {

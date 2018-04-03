@@ -7,5 +7,6 @@
 		display: block;
 		height: 32px;
 		line-height: 32px;
+		@include input($elem-border-color, $elem-border-focus-color);
 	}
 }

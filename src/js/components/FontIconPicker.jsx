@@ -55,7 +55,7 @@ class FontIconPicker extends React.PureComponent {
 
 	static defaultProps = {
 		search: null,
-		iconsPerPage: 25,
+		iconsPerPage: 20,
 		theme: 'default',
 		showCategory: true,
 		showSearch: true,

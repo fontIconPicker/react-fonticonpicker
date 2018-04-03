@@ -1,3 +1,8 @@
+/// Gives a card depth effect.
+/// @param {Number} $depth - depth level (between 1 and 5)
+/// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+/// @requires {function} top-shadow
+/// @requires {function} bottom-shadow
 @mixin card($depth) {
 	@if $depth < 1 {
 		box-shadow: none;
@@ -27,4 +32,17 @@
 	$color: rgba(black, nth(0.24 0.23 0.23 0.22 0.22, $depth));
 
 	@return 0 $primary-offset $blur $color;
+}
+
+/// Input type element
+@mixin input($elem-border-color, $elem-border-focus-color) {
+	border: 0 none;
+	border-bottom: 1px solid $elem-border-color;
+	transition: box-shadow 250ms, border 250ms;
+	&:focus,
+	&:active {
+		border-bottom-color: $elem-border-focus-color;
+		box-shadow: 0 1px 0 0 $elem-border-focus-color;
+		outline: 0 none;
+	}
 }

@@ -17,7 +17,7 @@ React Component to show a picker element to pick font-icons & svg
 @link https://github.com/fontIconPicker/react-fonticonpicker
 @license MIT
 
-Copyright (c) ${(new Date()).getFullYear()} Swashata Ghosh <swashata@wpquark.com>
+Copyright (c) ${new Date().getFullYear()} Swashata Ghosh <swashata@wpquark.com>
 
 This software is released under the MIT License.
 https://opensource.org/licenses/MIT
@@ -33,7 +33,6 @@ const extractSass = new ExtractTextPlugin({
 	filename: 'style.css',
 });
 
-
 module.exports = {
 	entry: path.join(__dirname, 'src/docs/index.jsx'),
 	output: {
@@ -45,48 +44,55 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				use: [ 'babel-loader' ],
+				use: ['babel-loader'],
 				exclude: /node_modules/,
 			},
 			{
 				test: /\.css$/,
 				use: extractSass.extract({
 					fallback: 'style-loader',
-					use:[ {
-						loader: 'css-loader',
-						options: {
-							importLoaders: 1,
-							sourceMap: true,
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								importLoaders: 1,
+								sourceMap: true,
+							},
 						},
-					}, {
-						loader: 'postcss-loader',
-						options: {
-							sourceMap: true,
+						{
+							loader: 'postcss-loader',
+							options: {
+								sourceMap: true,
+							},
 						},
-					} ],
+					],
 				}),
 			},
 			{
 				test: /\.scss$/,
 				use: extractSass.extract({
 					fallback: 'style-loader',
-					use: [ {
-						loader: 'css-loader',
-						options: {
-							importLoaders: 1,
-							sourceMap: true,
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								importLoaders: 1,
+								sourceMap: true,
+							},
 						},
-					}, {
-						loader: 'postcss-loader',
-						options: {
-							sourceMap: true,
+						{
+							loader: 'postcss-loader',
+							options: {
+								sourceMap: true,
+							},
 						},
-					}, {
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true,
+						{
+							loader: 'sass-loader',
+							options: {
+								sourceMap: true,
+							},
 						},
-					} ],
+					],
 				}),
 			},
 			{
@@ -96,6 +102,7 @@ module.exports = {
 						loader: 'file-loader',
 						options: {
 							name: 'asset-[hash].[ext]',
+							outputPath: 'assets/',
 						},
 					},
 				],
@@ -103,7 +110,7 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new CleanWebpackPlugin([ 'docs' ]),
+		new CleanWebpackPlugin(['docs']),
 		new FaviconsWebpackPlugin({
 			logo: path.join(__dirname, 'src/docs/picker.png'),
 			prefix: 'favicons/',
@@ -121,7 +128,7 @@ module.exports = {
 		extractSass,
 	],
 	resolve: {
-		extensions: [ '.js', '.jsx' ],
+		extensions: ['.js', '.jsx'],
 	},
 	mode: 'production',
 };
