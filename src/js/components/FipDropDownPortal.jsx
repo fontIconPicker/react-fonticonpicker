@@ -119,42 +119,26 @@ class FipDropDownPortal extends React.PureComponent {
 		const popupWidth = this.props.domRef.current.offsetWidth;
 		const windowWidth = window.innerWidth;
 		const { left: popupOffsetLeft } = getOffset(this.props.domRef.current);
-		const containerOffset =
-			this.state.appendRoot === 'self'
-				? getOffset(this.props.btnRef.current)
-				: getOffset(this.state.appendRoot);
+		// We need to calculate if the popup is going to overflow the window
+		if (popupOffsetLeft + popupWidth > windowWidth - 20) {
+			const btnOffset = getOffset(this.props.btnRef.current);
+			const rootOffset =
+				this.state.appendRoot === 'self'
+					? getOffset(this.props.domRef.current)
+					: getOffset(this.state.appendRoot);
+			let preferredLeft =
+				btnOffset.left +
+				this.props.btnRef.current.offsetWidth -
+				(popupWidth + rootOffset.left);
 
-		// If appearing from left overflows window
-		if (
-			popupOffsetLeft + popupWidth >
-			windowWidth - 20 /* 20px adjustment for better appearance */
-		) {
-			// First we try to position with right aligned
-			let preferredLeft;
-			if (this.state.appendRoot === 'self') {
-				preferredLeft =
-					this.props.btnRef.current.offsetWidth - popupWidth;
-			} else {
-				const pickerOffsetRight =
-					getOffset(this.props.btnRef.current).left +
-					this.props.btnRef.current.offsetWidth;
-				preferredLeft = Math.floor(
-					pickerOffsetRight - popupWidth - 1,
-				); /** 1px adjustment for sub-pixels */
+			console.log(preferredLeft, rootOffset.left);
+			if (preferredLeft + rootOffset.left < 0) {
+				preferredLeft = 10 - rootOffset.left;
 			}
-			// If preferredLeft would put the popup out of window from left
-			// then don't do it
-			if (preferredLeft < 0 && this.state.appendRoot !== 'self') {
-				this.props.domRef.current.style.left = `${windowWidth -
-					20 -
-					popupWidth -
-					containerOffset.left}px`;
-			} else {
-				// Put it in the preferred position
-				this.props.domRef.current.style.left = `${preferredLeft}px`;
-			}
-		} else if (this.state.appendRoot === 'self') {
-			this.props.domRef.current.style.left = '0px';
+			console.log(preferredLeft);
+
+			// Now set the goddamn left value
+			this.props.domRef.current.style.left = `${preferredLeft}px`;
 		}
 	};
 
