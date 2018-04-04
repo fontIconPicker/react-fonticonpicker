@@ -39,7 +39,8 @@ class FipButton extends React.PureComponent {
 		}
 	};
 
-	handleDelete = icon => {
+	handleDelete = (event, icon) => {
+		event.stopPropagation();
 		this.props.handleDeleteValue(icon);
 	};
 
@@ -60,7 +61,7 @@ class FipButton extends React.PureComponent {
 				</span>
 				<span
 					className="rfipbtn__del"
-					onClick={() => this.handleDelete(icon)}
+					onClick={e => this.handleDelete(e, icon)}
 					onKeyDown={e => this.handleDeleteKeyboard(e, icon)}
 					tabIndex={0}
 					role="button"
@@ -107,11 +108,11 @@ class FipButton extends React.PureComponent {
 		);
 
 		return (
-			<div className={elmClass} ref={this.props.domRef}>
+			<div className={elmClass} ref={this.props.domRef} {...handlers}>
 				<div className="rfipbtn__current">
 					{this.renderCurrentIcons()}
 				</div>
-				<div className={btnClass} {...handlers}>
+				<div className={btnClass}>
 					<img src={AngleDown} alt="Open" />
 				</div>
 			</div>

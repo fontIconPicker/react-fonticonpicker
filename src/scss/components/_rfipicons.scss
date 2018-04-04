@@ -55,8 +55,9 @@
 		height: 24px;
 		position: relative;
 		background-color: $pager-bg-color;
-		transition: background-color 250ms, outline 250ms;
-		outline: 1px none transparent;
+		transition: background-color 250ms, border 250ms;
+		border: 1px solid $pager-bg-color;
+		outline: 0 none;
 		border-radius: 2px;
 		&:hover {
 			background-color: $pager-bg-hover-color;
@@ -64,14 +65,14 @@
 		&:focus,
 		&:active {
 			background-color: $pager-bg-hover-color;
-			outline: 1px solid $pager-bg-hover-color;
+			border: 1px solid $pager-bg-hover-color;
 		}
 	}
 
 	// Label
 	&__label {
-		height: 24px;
-		width: 24px;
+		height: 22px;
+		width: 22px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -98,22 +99,24 @@
 		height: 100%;
 		width: 100%;
 		background-color: $ibox-bg-color;
-		transition: background-color 250ms, outline 250ms;
-		outline: 1px none transparent;
+		transition: background-color 250ms, border 250ms;
+		border: 1px solid $ibox-bg-color;
 		border-radius: 2px;
+		outline: 0 none;
 		* {
 			transform: scale(1);
 			transition: transform 250ms;
 		}
 		&:hover {
 			background-color: $ibox-bg-hover-color;
+			border: 1px solid $ibox-bg-hover-color;
 			* {
-				transform: scale(1.4);
+				transform: scale(1.8);
 			}
 		}
 		&:focus,
 		&:active {
-			outline: 1px solid $ibox-bg-hover-color;
+			border: 1px solid $ibox-bg-hover-color;
 		}
 	}
 

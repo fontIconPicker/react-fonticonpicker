@@ -86,6 +86,18 @@ export function isArrayEqual(from, to) {
 }
 
 /**
+ * Calculate offset w.r.t window
+ * @param {HTMLElement} elem HTMLElement or Node for which offset is calculated
+ */
+export function getOffset(elem) {
+	const rect = elem.getBoundingClientRect();
+	const scrollLeft =
+		window.pageXOffset || document.documentElement.scrollLeft;
+	const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+}
+
+/**
  * FuzzySearch Implementation
  *
  * Adopted from

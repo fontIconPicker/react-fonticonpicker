@@ -7,12 +7,14 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import className from 'classnames';
+import { getOffset } from '../helpers/iconHelpers';
 
 class FipDropDownPortal extends React.PureComponent {
 	static propTypes = {
 		appendRoot: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]), // eslint-disable-line
 		children: PropTypes.node.isRequired,
 		domRef: PropTypes.object.isRequired, // eslint-disable-line
+		btnRef: PropTypes.object.isRequired, // eslint-disable-line
 	};
 
 	static defaultProps = {
@@ -67,6 +69,94 @@ class FipDropDownPortal extends React.PureComponent {
 		// getDerivedStateFromProps lifecycle method
 		this.state = {};
 	}
+
+	componentDidMount() {
+		window.addEventListener('resize', this.syncPortalPosition);
+		this.syncPortalPosition();
+	}
+
+	componentDidUpdate() {
+		this.syncPortalPosition();
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.syncPortalPosition);
+	}
+
+	syncPortalPosition = () => {
+		// if mounting not to self, then position the portal
+		if (this.state.appendRoot !== 'self') {
+			// setTimeout(() => this.positionPortal(), 10);
+			this.positionPortal();
+		}
+
+		// Fix window overflow
+		this.fixWindowOverflow();
+	};
+
+	positionPortal() {
+		// Temporarily hide the popup to make calculations work
+		const { display } = this.props.domRef.current.style;
+		this.props.domRef.current.style.display = 'none';
+
+		// Calculate offset of DOM node
+		const { current: btn } = this.props.btnRef;
+		const btnOffset = getOffset(btn);
+
+		const parentOffset = getOffset(this.state.appendRoot);
+		const btnHeight = btn.offsetHeight;
+
+		// Set the style
+		this.props.domRef.current.style.left = `${btnOffset.left -
+			parentOffset.left}px`;
+		this.props.domRef.current.style.top = `${btnOffset.top + btnHeight}px`;
+
+		// Restore the style
+		this.props.domRef.current.style.display = display;
+	}
+
+	fixWindowOverflow = () => {
+		const popupWidth = this.props.domRef.current.offsetWidth;
+		const windowWidth = window.innerWidth;
+		const { left: popupOffsetLeft } = getOffset(this.props.domRef.current);
+		const containerOffset =
+			this.state.appendRoot === 'self'
+				? getOffset(this.props.btnRef.current)
+				: getOffset(this.state.appendRoot);
+
+		// If appearing from left overflows window
+		if (
+			popupOffsetLeft + popupWidth >
+			windowWidth - 20 /* 20px adjustment for better appearance */
+		) {
+			// First we try to position with right aligned
+			let preferredLeft;
+			if (this.state.appendRoot === 'self') {
+				preferredLeft =
+					this.props.btnRef.current.offsetWidth - popupWidth;
+			} else {
+				const pickerOffsetRight =
+					getOffset(this.props.btnRef.current).left +
+					this.props.btnRef.current.offsetWidth;
+				preferredLeft = Math.floor(
+					pickerOffsetRight - popupWidth - 1,
+				); /** 1px adjustment for sub-pixels */
+			}
+			// If preferredLeft would put the popup out of window from left
+			// then don't do it
+			if (preferredLeft < 0 && this.state.appendRoot !== 'self') {
+				this.props.domRef.current.style.left = `${windowWidth -
+					20 -
+					popupWidth -
+					containerOffset.left}px`;
+			} else {
+				// Put it in the preferred position
+				this.props.domRef.current.style.left = `${preferredLeft}px`;
+			}
+		} else if (this.state.appendRoot === 'self') {
+			this.props.domRef.current.style.left = '0px';
+		}
+	};
 
 	render() {
 		const fipDropDownNode = (

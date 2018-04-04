@@ -1,12 +1,13 @@
-@import "../../../node_modules/normalize.css/normalize.css";
+@import '../../../node_modules/normalize.css/normalize.css';
 
 body {
 	background-color: #eee;
 }
 
 #app {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	min-height: 100vh;
+	padding: 16px 32px;
+	> div {
+		margin-bottom: 16px;
+	}
 }

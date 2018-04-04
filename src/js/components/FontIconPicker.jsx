@@ -6,6 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import className from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import FipButton from './FipButton';
 import FipDropDown from './FipDropDown';
 import FipDropDownPortal from './FipDropDownPortal';
@@ -169,6 +170,9 @@ class FontIconPicker extends React.PureComponent {
 			isOpen: false,
 			currentSearch: '',
 		};
+
+		// internel state for handling animation
+		this.fipPortalComputedStyle = null;
 	}
 
 	componentDidMount() {
@@ -316,6 +320,54 @@ class FontIconPicker extends React.PureComponent {
 		this.setState({ currentSearch: newSearch, currentPage: 0 });
 	};
 
+	/**
+	 * Reset portal styles to normal
+	 */
+	resetPortalStyle = selectorNode => {
+		['maxHeight', 'paddingTop', 'paddingBottom'].forEach(key => {
+			selectorNode.style[key] = null; // eslint-disable-line
+		});
+	};
+
+	handlePortalEnter = node => {
+		const selectorNode = node.childNodes[0];
+		this.resetPortalStyle(selectorNode);
+		const computedStyle = getComputedStyle(selectorNode);
+		this.fipPortalComputedStyle = {
+			height: computedStyle.height,
+			paddingTop: computedStyle.paddingTop,
+			paddingBottom: computedStyle.paddingBottom,
+		};
+		['maxHeight', 'paddingTop', 'paddingBottom'].forEach(key => {
+			selectorNode.style[key] = '0px';
+		});
+	};
+	handlePortalEntering = node => {
+		const selectorNode = node.childNodes[0];
+		selectorNode.style.maxHeight = this.fipPortalComputedStyle.height;
+		selectorNode.style.paddingTop = this.fipPortalComputedStyle.paddingTop;
+		selectorNode.style.paddingBottom = this.fipPortalComputedStyle.paddingBottom;
+	};
+	handlePortalEntered = node => {
+		// reset style
+		const selectorNode = node.childNodes[0];
+		this.resetPortalStyle(selectorNode);
+		// focus on search
+		selectorNode.querySelector('.rfipsearch__input').focus();
+	};
+	handlePortalExit = node => {
+		const selectorNode = node.childNodes[0];
+		this.resetPortalStyle(selectorNode);
+		const { height } = getComputedStyle(selectorNode);
+		selectorNode.style.maxHeight = height;
+	};
+	handlePortalExiting = node => {
+		const selectorNode = node.childNodes[0];
+		selectorNode.style.maxHeight = '0px';
+		selectorNode.style.paddingTop = '0px';
+		selectorNode.style.paddingBottom = '0px';
+	};
+
 	renderIcon = icon => {
 		if (typeof this.props.renderFunc === 'function') {
 			return this.props.renderFunc(icon);
@@ -356,7 +408,7 @@ class FontIconPicker extends React.PureComponent {
 			handleChangeSearch: this.handleChangeSearch,
 		};
 		return (
-			<div className={this.state.elemClass}>
+			<div className={this.state.elemClass} ref={this.fipRef}>
 				<FipButton
 					className={this.state.btnClass}
 					isOpen={this.state.isOpen}
@@ -368,14 +420,25 @@ class FontIconPicker extends React.PureComponent {
 					handleDeleteValue={this.handleDeleteValue}
 					noSelectedPlaceholder={this.props.noSelectedPlaceholder}
 				/>
-				{this.state.isOpen ? (
+				<CSSTransition
+					classNames="fipappear"
+					timeout={250}
+					in={this.state.isOpen}
+					unmountOnExit
+					onEnter={this.handlePortalEnter}
+					onEntering={this.handlePortalEntering}
+					onEntered={this.handlePortalEntered}
+					onExit={this.handlePortalExit}
+					onExiting={this.handlePortalExiting}
+				>
 					<FipDropDownPortal
 						appendRoot={this.props.appendTo}
 						domRef={this.fipDropDownRef}
+						btnRef={this.fipButtonRef}
 					>
 						<FipDropDown {...dropDownProps} />
 					</FipDropDownPortal>
-				) : null}
+				</CSSTransition>
 			</div>
 		);
 	}

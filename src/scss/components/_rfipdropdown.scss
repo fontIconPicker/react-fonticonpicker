@@ -2,13 +2,27 @@
 .rfipdropdown {
 	@include card(5);
 	width: 352px;
-	max-width: 100%;
+	position: absolute;
+	left: 0;
+	margin-top: -1px;
+	z-index: 100000001;
 	color: $color-text;
 	background-color: $color-background;
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 1px 4px 4px;
+	border: 1px solid $btn-border-color;
 
 	// Selector box
 	&__selector {
+		overflow: hidden;
 		padding: 16px;
+	}
+
+	// For animation
+	&.fipappear-enter-active,
+	&.fipappear-exit-active {
+		.rfipdropdown__selector {
+			transition: max-height 250ms ease-out, padding 250ms ease-out;
+			padding: 16px;
+		}
 	}
 }
