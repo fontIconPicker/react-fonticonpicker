@@ -131,11 +131,9 @@ class FipDropDownPortal extends React.PureComponent {
 				this.props.btnRef.current.offsetWidth -
 				(popupWidth + rootOffset.left);
 
-			console.log(preferredLeft, rootOffset.left);
 			if (preferredLeft + rootOffset.left < 0) {
 				preferredLeft = 10 - rootOffset.left;
 			}
-			console.log(preferredLeft);
 
 			// Now set the goddamn left value
 			this.props.domRef.current.style.left = `${preferredLeft}px`;
