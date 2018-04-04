@@ -278,7 +278,7 @@ class FontIconPicker extends React.PureComponent {
 		} else {
 			newValue = value;
 		}
-		// this.setState({ value: newValue });
+		this.setState({ value: newValue });
 		this.props.onChange(newValue);
 	};
 
@@ -387,7 +387,6 @@ class FontIconPicker extends React.PureComponent {
 		// extract props for FipDropDown and
 		// store in an object to spread later
 		const dropDownProps = {
-			className: this.state.ddClass,
 			currentCategory: this.state.currentCategory,
 			currentPage: this.state.currentPage,
 			currentSearch: this.state.currentSearch,
@@ -435,6 +434,7 @@ class FontIconPicker extends React.PureComponent {
 						appendRoot={this.props.appendTo}
 						domRef={this.fipDropDownRef}
 						btnRef={this.fipButtonRef}
+						className={this.state.ddClass}
 					>
 						<FipDropDown {...dropDownProps} />
 					</FipDropDownPortal>

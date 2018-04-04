@@ -1,0 +1,127 @@
+// Button
+.rfipbtn--#{$theme} {
+	background-color: $btn-bg-color;
+	border: 1px solid $btn-border-color;
+
+	&:active,
+	&:focus {
+		@include card(1);
+		border: 1px solid $btn-bg-hover-color;
+	}
+
+	// dropdown button
+	.rfipbtn {
+		&__button {
+			border: 0 none transparent;
+			border-left: 1px solid $btn-border-color;
+			background-color: $btn-bg-dd-color;
+
+			&:hover {
+				background-color: $btn-bg-hover-color;
+			}
+
+			&:active {
+				box-shadow: inset 0 0 10px 0 $btn-bg-active-color;
+			}
+		}
+
+		// icon
+		&__icon {
+			border: 1px solid $icon-border-color;
+			color: $icon-text;
+
+			// empty
+			&--empty {
+				color: $empty-icon-color;
+			}
+		}
+
+		// del
+		&__del {
+			background-color: $del-bg-color;
+
+			&:hover {
+				background-color: $del-bg-hover-color;
+			}
+
+			&:focus,
+			&:active {
+				outline: 1px solid $del-bg-hover-color;
+			}
+		}
+	}
+}
+
+.rfipdropdown--#{$theme} {
+	@include card(5);
+	color: $text;
+
+	input,
+	select {
+		color: $text;
+	}
+
+	background-color: $color-background;
+	border: 1px solid $btn-border-color;
+	// Category item
+	.rfipcategory {
+		select {
+			background-color: $color-background;
+			@include input($elem-border-color, $elem-border-focus-color);
+		}
+	}
+
+	// Icons box
+	.rfipicons {
+		// current page
+		&__cp {
+			@include input($elem-border-color, $elem-border-focus-color);
+		}
+
+		&__left,
+		&__right {
+			background-color: $pager-bg-color;
+			border: 1px solid $pager-bg-color;
+			&:hover {
+				background-color: $pager-bg-hover-color;
+			}
+			&:focus,
+			&:active {
+				background-color: $pager-bg-hover-color;
+				border: 1px solid $pager-bg-hover-color;
+			}
+		}
+
+		// Individual icon box
+		&__ibox {
+			background-color: $ibox-bg-color;
+			border: 1px solid $ibox-bg-color;
+			color: $icon-text;
+			&:hover {
+				background-color: $ibox-bg-hover-color;
+				border: 1px solid $ibox-bg-hover-color;
+			}
+			&:focus,
+			&:active {
+				border: 1px solid $ibox-bg-hover-color;
+			}
+		}
+
+		// Invidual icons
+		&__icon {
+			// selected
+			&--selected {
+				.rfipicons__ibox {
+					background-color: $ibox-bg-selected-color;
+				}
+			}
+		}
+	}
+
+	// Search
+	.rfipsearch {
+		input {
+			@include input($elem-border-color, $elem-border-focus-color);
+		}
+	}
+}

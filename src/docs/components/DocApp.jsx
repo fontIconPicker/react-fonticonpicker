@@ -18,10 +18,7 @@ class DocApp extends React.PureComponent {
 		return (
 			<React.Fragment>
 				<div>
-					<h2>
-						<i className="icomoon-dice" /> Append to Body & Single{' '}
-						<i className="icomoon-quill" />
-					</h2>
+					<h2>Append to Body & Single</h2>
 					<React.StrictMode>
 						<FontIconPicker
 							icons={iconDefs.icomoonIcons}
@@ -32,6 +29,7 @@ class DocApp extends React.PureComponent {
 							appendTo="body"
 							value={this.state.value1}
 							isMulti={false}
+							theme="bluegrey"
 						/>
 					</React.StrictMode>
 					<p>
@@ -44,10 +42,7 @@ class DocApp extends React.PureComponent {
 					</p>
 				</div>
 				<div>
-					<h2>
-						<i className="icomoon-dice" /> Append to Body & Multi{' '}
-						<i className="icomoon-quill" />
-					</h2>
+					<h2>Append to Body & Multi</h2>
 					<React.StrictMode>
 						<FontIconPicker
 							icons={iconDefs.icomoonIcons}
@@ -58,6 +53,7 @@ class DocApp extends React.PureComponent {
 							appendTo="body"
 							value={this.state.value2}
 							isMulti
+							theme="bluegrey"
 						/>
 					</React.StrictMode>
 					<p>
@@ -71,10 +67,7 @@ class DocApp extends React.PureComponent {
 					</p>
 				</div>
 				<div>
-					<h2>
-						<i className="icomoon-dice" /> Append to Self & Single{' '}
-						<i className="icomoon-quill" />
-					</h2>
+					<h2>Append to Self & Single</h2>
 					<React.StrictMode>
 						<FontIconPicker
 							icons={iconDefs.icomoonIcons}
@@ -96,10 +89,7 @@ class DocApp extends React.PureComponent {
 					</p>
 				</div>
 				<div>
-					<h2>
-						<i className="icomoon-dice" /> Append to Self & Multi{' '}
-						<i className="icomoon-quill" />
-					</h2>
+					<h2>Append to Self & Multi</h2>
 					<React.StrictMode>
 						<FontIconPicker
 							icons={iconDefs.icomoonIcons}
@@ -120,6 +110,33 @@ class DocApp extends React.PureComponent {
 							/>
 						))}
 					</p>
+				</div>
+				<div>
+					<h2>Themes</h2>
+					{[
+						'bluegrey',
+						'blue',
+						'brown',
+						'cyan',
+						'deeporange',
+						'default',
+						'indigo',
+						'lightblue',
+						'pink',
+						'purple',
+						'red',
+						'teal',
+					].map(theme => (
+						<FontIconPicker
+							icons={iconDefs.fontelloIcons}
+							value={[]}
+							onChange={v => console.log(v)}
+							isMulti
+							theme={theme}
+							renderUsing="class"
+							noSelectedPlaceholder={`${theme} theme`}
+						/>
+					))}
 				</div>
 			</React.Fragment>
 		);

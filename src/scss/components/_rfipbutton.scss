@@ -4,19 +4,11 @@
 	display: flex;
 	flex-flow: row nowrap;
 	min-height: 50px;
-	background-color: $btn-bg-color;
 	border-radius: 2px;
 	cursor: pointer;
 	transition: box-shadow 250ms, border-color 250ms;
-	border: 1px solid $btn-border-color;
 	outline: 0 none;
 	user-select: none;
-
-	&:active,
-	&:focus {
-		@include card(1);
-		border: 1px solid $btn-bg-hover-color;
-	}
 
 	// open
 	&--open {
@@ -31,19 +23,7 @@
 		align-items: center; /* x axis center */
 		justify-content: center; /* y axis center */
 		height: auto; /* auto height to fix the flex */
-
-		border: 0 none transparent;
-		border-left: 1px solid $btn-border-color;
-		background-color: $btn-bg-color;
 		transition: background 250ms, box-shadow 250ms;
-
-		&:hover {
-			background-color: $btn-bg-hover-color;
-		}
-
-		&:active {
-			box-shadow: inset 0 0 10px 0 $btn-bg-active-color;
-		}
 
 		img {
 			height: 32px;
@@ -91,12 +71,10 @@
 		flex-flow: row nowrap;
 		align-items: center;
 		justify-content: space-between;
-		border: 1px solid $icon-border-color;
 		border-radius: 2px;
 
 		// empty
 		&--empty {
-			color: $empty-icon-color;
 			font-size: 14px;
 			line-height: 16px;
 			margin-left: 8px;
@@ -122,17 +100,7 @@
 		height: 28px;
 		align-items: center;
 		justify-content: center;
-		background-color: $del-bg-color;
 		transition: background-color 250ms;
 		cursor: pointer;
-
-		&:hover {
-			background-color: $del-bg-hover-color;
-		}
-
-		&:focus,
-		&:active {
-			outline: 1px solid $del-bg-hover-color;
-		}
 	}
 }

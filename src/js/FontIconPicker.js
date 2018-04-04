@@ -5,6 +5,19 @@
 // Just a wrapper for main entry
 import FontIconPicker from './components/FontIconPicker';
 // Import the styles
-import '../scss/style.scss';
+import '../scss/base.scss';
+import '../scss/blue-grey-theme.scss';
+import '../scss/blue-theme.scss';
+import '../scss/brown-theme.scss';
+import '../scss/cyan-theme.scss';
+import '../scss/deep-orange-theme.scss';
+import '../scss/default-theme.scss';
+import '../scss/green-theme.scss';
+import '../scss/indigo-theme.scss';
+import '../scss/light-blue-theme.scss';
+import '../scss/pink-theme.scss';
+import '../scss/purple-theme.scss';
+import '../scss/red-theme.scss';
+import '../scss/teal-theme.scss';
 
 export default FontIconPicker;

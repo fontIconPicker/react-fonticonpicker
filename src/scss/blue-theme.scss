@@ -1,0 +1,10 @@
+$theme: blue;
+$scheme: Blue;
+$bg: White;
+// base
+@import 'base/palette';
+@import 'base/variables';
+@import 'base/mixin';
+
+// theme
+@import 'themes/template';

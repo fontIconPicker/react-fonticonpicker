@@ -30,7 +30,7 @@ const addBanner = new webpack.BannerPlugin({
 	include: /\.(js|jsx|css)$/,
 });
 const extractSass = new ExtractTextPlugin({
-	filename: 'style.css',
+	filename: 'style-[name].css',
 });
 
 module.exports = {

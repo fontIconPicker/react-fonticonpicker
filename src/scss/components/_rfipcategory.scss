@@ -8,9 +8,6 @@
 		height: 32px;
 		line-height: 32px;
 		border-radius: 0;
-		background-color: $color-background;
-		border: 0 none;
-		border-bottom: 1px solid $elem-border-color;
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none; /* remove default arrow */
@@ -18,11 +15,5 @@
 			center right;
 		background-size: 18px 18px;
 		transition: border 250ms, box-shadow 250ms;
-		&:active,
-		&:focus {
-			border-bottom: 1px solid $elem-border-focus-color;
-			box-shadow: 0 1px 0 0 $elem-border-color;
-			outline: 0 none;
-		}
 	}
 }
