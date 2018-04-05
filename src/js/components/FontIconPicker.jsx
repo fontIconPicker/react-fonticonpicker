@@ -290,7 +290,7 @@ class FontIconPicker extends React.PureComponent {
 			// assign the empty value
 			newValue = null;
 		}
-		// this.setState({ value: newValue });
+		this.setState({ value: newValue });
 		this.props.onChange(newValue);
 	};
 

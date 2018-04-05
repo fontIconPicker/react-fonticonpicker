@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // eslint-disable-line
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin'); // eslint-disable-line
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin'); // eslint-disable-line
 
 module.exports = {
 	entry: path.join(__dirname, 'src/docs'),
@@ -67,6 +68,12 @@ module.exports = {
 		new FaviconsWebpackPlugin(path.join(__dirname, 'src/docs/picker.png')),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src/docs/index.html'),
+			svgoConfig: {
+				removeHiddenElems: false,
+			},
+		}),
+		new HtmlWebpackInlineSVGPlugin({
+			runPreEmit: true,
 		}),
 	],
 	resolve: {

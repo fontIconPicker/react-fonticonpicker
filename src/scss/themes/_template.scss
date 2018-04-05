@@ -99,12 +99,6 @@
 			background-color: $ibox-bg-color;
 			border: 1px solid $ibox-bg-color;
 			color: $icon-text;
-			font-size: 24px;
-			img,
-			svg {
-				height: 24px;
-				width: auto;
-			}
 			&:hover {
 				background-color: $ibox-bg-hover-color;
 				border: 1px solid $ibox-bg-hover-color;
@@ -112,6 +106,9 @@
 			&:focus,
 			&:active {
 				border: 1px solid $ibox-bg-hover-color;
+			}
+			&--error {
+				color: $error-icon-color;
 			}
 		}
 

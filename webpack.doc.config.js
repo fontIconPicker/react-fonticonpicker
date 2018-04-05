@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // eslint-disable-line
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin'); // eslint-disable-line
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin'); // eslint-disable-line
 const webpack = require('webpack'); // eslint-disable-line
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line
 const pkg = require('./package.json');
@@ -124,6 +125,12 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src/docs/index.html'),
+			svgoConfig: {
+				removeHiddenElems: false,
+			},
+		}),
+		new HtmlWebpackInlineSVGPlugin({
+			runPreEmit: true,
 		}),
 		extractSass,
 	],

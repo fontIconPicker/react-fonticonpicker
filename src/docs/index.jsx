@@ -6,8 +6,9 @@ import { render } from 'react-dom';
 import DocApp from './components/DocApp';
 
 // import styles
-import './fonts/icomoon/style.css';
-import './fonts/fontello/css/fontello.css';
+import './assets/icomoon/style.css';
+import './assets/superhero/style.css';
+import './assets/fontello/css/fontello.css';
 import './scss/style.scss';
 
 render(<DocApp />, document.getElementById('app'));

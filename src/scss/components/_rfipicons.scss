@@ -91,14 +91,26 @@
 		transition: background-color 250ms, border 250ms;
 		border-radius: 2px;
 		outline: 0 none;
-		* {
+		font-size: 24px;
+		img,
+		svg {
+			max-height: 24px;
+			width: auto;
+		}
+		> * {
 			transform: scale(1);
 			transition: transform 250ms;
+			transform-origin: center;
 		}
 		&:hover {
-			* {
+			> * {
 				transform: scale(1.8);
 			}
+		}
+		// Error
+		&--error {
+			text-transform: lowercase;
+			font-style: italic;
 		}
 	}
 

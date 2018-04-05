@@ -62,7 +62,7 @@ class FipIconContainer extends React.PureComponent {
 		const searchSet = FipIconContainer.getCategoryFilteredState(
 			nextProps.currentCategory,
 			nextProps.categories,
-			nextProps.search,
+			nextProps.search === null ? nextProps.icons : nextProps.search,
 		);
 
 		// Now get the active icons and titles

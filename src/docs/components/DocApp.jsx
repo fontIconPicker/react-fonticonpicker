@@ -10,10 +10,18 @@ class DocApp extends React.PureComponent {
 		value3: 57595,
 		value4: [57475, 57476, 57477, 57539, 57662, 57404, 57405, 57408],
 	};
+
 	handleChange = (key, value) => {
 		const newValue = Array.isArray(value) ? [...value] : value;
 		this.setState({ [key]: newValue });
 	};
+
+	renderSVG = svg => (
+		<svg>
+			<use xlinkHref={`#${svg}`} />
+		</svg>
+	);
+
 	render() {
 		return (
 			<React.Fragment>
@@ -112,6 +120,25 @@ class DocApp extends React.PureComponent {
 					</p>
 				</div>
 				<div>
+					<h2>Implied Search</h2>
+					<FontIconPicker
+						icons={iconDefs.fontelloIcons}
+						value={['icon-th', 'icon-video']}
+						onChange={val => console.log(val)}
+						renderUsing="class"
+					/>
+				</div>
+				<div>
+					<h2>SVG with Custom Rendered</h2>
+					<FontIconPicker
+						icons={iconDefs.svgs}
+						value={['004-green_lantern', '066-daredevil_glasses']}
+						onChange={val => console.log(val)}
+						renderFunc={this.renderSVG}
+						theme="indigo"
+					/>
+				</div>
+				<div>
 					<h2>Themes</h2>
 					{[
 						'bluegrey',
@@ -129,7 +156,8 @@ class DocApp extends React.PureComponent {
 						'teal',
 					].map(theme => (
 						<FontIconPicker
-							icons={iconDefs.fontelloIcons}
+							icons={iconDefs.superHeroIcons}
+							search={iconDefs.superHeroSearch}
 							value={[]}
 							onChange={v => console.log(v)}
 							isMulti
