@@ -7,6 +7,8 @@
 
 # React FontIconPicker Component
 
+[![codecov](https://codecov.io/gh/fontIconPicker/react-fonticonpicker/branch/master/graph/badge.svg)](https://codecov.io/gh/fontIconPicker/react-fonticonpicker) [![Build Status](https://travis-ci.org/fontIconPicker/react-fonticonpicker.svg?branch=master)](https://travis-ci.org/fontIconPicker/react-fonticonpicker)
+
 A react version of [fontIconPicker](https://fonticonpicker.github.io). This is
 rewritten and is not a wrapper around jQuery version.
 

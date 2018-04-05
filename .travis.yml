@@ -6,9 +6,11 @@ cache:
     - "~/.npm"
     - node_modules
 install:
+  - npm install -g codecov
   - npm install
 script:
   - npm test
+  - codecov
 before_deploy:
   - npm run build
   - zip -r fonticonpicker.react.zip dist/*

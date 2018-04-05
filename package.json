@@ -10,7 +10,8 @@
     "test": "eslint src/js/** src/docs/components/** src/docs/helpers/** && stylelint src/scss/** && jest",
     "start": "webpack-dev-server --hot --config webpack.dev.config.js --open",
     "docs": "webpack --config webpack.doc.config.js",
-    "build": "webpack --config webpack.config.js && node scripts/cleanupDist.js"
+    "build": "webpack --config webpack.config.js && node scripts/cleanupDist.js",
+    "prepare": "webpack --config webpack.config.js && node scripts/cleanupDist.js"
   },
   "repository": {
     "type": "git",
