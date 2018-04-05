@@ -136,8 +136,8 @@ class FipIconContainer extends React.PureComponent {
 	 */
 	static getCategoryFilteredState(currentCategory, categories, source) {
 		let category = null;
-		if (currentCategory !== 0) {
-			category = categories[currentCategory];
+		if (currentCategory !== 0 && Array.isArray(categories)) {
+			category = categories[currentCategory] || null;
 		}
 		const currentSourceSet = flattenPossiblyCategorizedSource(
 			source,

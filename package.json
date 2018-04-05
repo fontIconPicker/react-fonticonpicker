@@ -1,5 +1,5 @@
 {
-  "name": "react-fonticonpicker",
+  "name": "@fonticonpicker/react-fonticonpicker",
   "version": "0.0.1",
   "description": "A react component to show a picker element to select font icons or SVG.",
   "main": "dist/react-fonticonpicker.js",
@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "jest",
+    "test": "eslint src/js/** src/docs/components/** src/docs/helpers/** && stylelint src/scss/** && jest",
     "start": "webpack-dev-server --hot --config webpack.dev.config.js --open",
     "docs": "webpack --config webpack.doc.config.js",
     "build": "webpack --config webpack.config.js && node scripts/cleanupDist.js"
@@ -86,5 +86,8 @@
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }

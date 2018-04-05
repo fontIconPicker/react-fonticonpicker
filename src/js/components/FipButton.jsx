@@ -11,7 +11,7 @@ class FipButton extends React.PureComponent {
 	static propTypes = {
 		className: PropTypes.string.isRequired,
 		isOpen: PropTypes.bool.isRequired,
-		toggleDropDown: PropTypes.func.isRequired,
+		onClick: PropTypes.func.isRequired,
 		domRef: PropTypes.object.isRequired, // eslint-disable-line
 		isMulti: PropTypes.bool.isRequired,
 		value: PropTypes.oneOfType([
@@ -27,13 +27,13 @@ class FipButton extends React.PureComponent {
 	};
 
 	handleClick = () => {
-		this.props.toggleDropDown();
+		this.props.onClick();
 	};
 
 	handleKeyDown = event => {
 		// Toggle on enter or keyspace
 		if (event.keyCode === 32 || event.keyCode === 13) {
-			this.props.toggleDropDown();
+			this.props.onClick();
 		}
 	};
 
@@ -100,10 +100,7 @@ class FipButton extends React.PureComponent {
 			`rfipbtn__button--${this.props.isOpen ? 'open' : 'close'}`,
 		);
 
-		const elmClass = classNames(
-			this.props.className,
-			`rfipbtn--${this.props.isOpen ? 'open' : 'close'}`,
-		);
+		const elmClass = classNames(this.props.className);
 
 		return (
 			<div className={elmClass} ref={this.props.domRef} {...handlers}>

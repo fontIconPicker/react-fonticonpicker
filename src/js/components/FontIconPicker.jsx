@@ -75,7 +75,7 @@ class FontIconPicker extends React.PureComponent {
 
 	static displayName = 'FontIconPicker';
 
-	static getDerivedStateFromProps(nextProps) {
+	static getDerivedStateFromProps(nextProps, prevState) {
 		// Init the state
 		const newState = {};
 		// Listen for theme change
@@ -83,16 +83,19 @@ class FontIconPicker extends React.PureComponent {
 			'rfip',
 			nextProps.theme,
 			nextProps.isMulti,
+			prevState.isOpen,
 		);
 		newState.btnClass = FontIconPicker.getDerivedClassName(
 			'rfipbtn',
 			nextProps.theme,
 			nextProps.isMulti,
+			prevState.isOpen,
 		);
 		newState.ddClass = FontIconPicker.getDerivedClassName(
 			'rfipdropdown',
 			nextProps.theme,
 			nextProps.isMulti,
+			prevState.isOpen,
 		);
 
 		// change the value if needed
@@ -126,7 +129,7 @@ class FontIconPicker extends React.PureComponent {
 	 * @param {boolean} isMulti Whether or not multiple
 	 * @return {string} Calculated theme
 	 */
-	static getDerivedClassName(base, theme, isMulti) {
+	static getDerivedClassName(base, theme, isMulti, isOpen) {
 		// the class (BEM)
 		return className(
 			// block
@@ -138,6 +141,8 @@ class FontIconPicker extends React.PureComponent {
 				// 2. multi
 				[`${base}--multi`]: isMulti,
 			},
+			// 3. Open
+			`${base}--${isOpen ? 'open' : 'close'}`,
 		);
 	}
 
@@ -150,7 +155,7 @@ class FontIconPicker extends React.PureComponent {
 			} else {
 				newValue = [...value];
 			}
-		} else if (value === null) {
+		} else if (typeof value !== 'number' && typeof value !== 'string') {
 			newValue = defaultStringValue;
 		}
 		return newValue;
@@ -181,6 +186,8 @@ class FontIconPicker extends React.PureComponent {
 			document.addEventListener(value, this.handleOuterClick, false);
 		});
 		document.addEventListener('keydown', this.handleEscapeKeyboard, false);
+		// Update the value for the parent
+		this.props.onChange(this.state.value);
 	}
 
 	componentWillUnmount() {
@@ -229,22 +236,44 @@ class FontIconPicker extends React.PureComponent {
 	handleToggle = () => {
 		// create a copy of the state being modified
 		// with the toggled value
-		const isOpen = !this.state.isOpen;
-		this.setState({ isOpen });
-	};
-
-	/**
-	 * Open the dropdown by setting the state
-	 */
-	openDropdown = () => {
-		this.setState({ isOpen: true });
+		this.setState(prevState =>
+			this.handleDropDown(!prevState.isOpen, false),
+		);
 	};
 
 	/**
 	 * Close the dropdown by setting the state
 	 */
 	closeDropdown = () => {
-		this.setState({ isOpen: false });
+		this.handleDropDown(false);
+	};
+
+	handleDropDown = (isOpen, set = true) => {
+		// Init the state
+		const newState = { isOpen };
+		// Listen for theme change
+		newState.elemClass = FontIconPicker.getDerivedClassName(
+			'rfip',
+			this.props.theme,
+			this.props.isMulti,
+			isOpen,
+		);
+		newState.btnClass = FontIconPicker.getDerivedClassName(
+			'rfipbtn',
+			this.props.theme,
+			this.props.isMulti,
+			isOpen,
+		);
+		newState.ddClass = FontIconPicker.getDerivedClassName(
+			'rfipdropdown',
+			this.props.theme,
+			this.props.isMulti,
+			isOpen,
+		);
+		if (set) {
+			this.setState(newState);
+		}
+		return newState;
 	};
 
 	/**
@@ -288,7 +317,10 @@ class FontIconPicker extends React.PureComponent {
 			newValue = this.state.value.filter(item => item !== value);
 		} else {
 			// assign the empty value
-			newValue = null;
+			newValue = FontIconPicker.getDerivedValue(
+				newValue,
+				this.props.isMulti,
+			);
 		}
 		this.setState({ value: newValue });
 		this.props.onChange(newValue);
@@ -411,7 +443,7 @@ class FontIconPicker extends React.PureComponent {
 				<FipButton
 					className={this.state.btnClass}
 					isOpen={this.state.isOpen}
-					toggleDropDown={this.handleToggle}
+					onClick={this.handleToggle}
 					domRef={this.fipButtonRef}
 					isMulti={this.props.isMulti}
 					value={this.state.value}
@@ -421,7 +453,7 @@ class FontIconPicker extends React.PureComponent {
 				/>
 				<CSSTransition
 					classNames="fipappear"
-					timeout={250}
+					timeout={300}
 					in={this.state.isOpen}
 					unmountOnExit
 					onEnter={this.handlePortalEnter}

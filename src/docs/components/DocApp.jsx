@@ -124,7 +124,7 @@ class DocApp extends React.PureComponent {
 					<FontIconPicker
 						icons={iconDefs.fontelloIcons}
 						value={['icon-th', 'icon-video']}
-						onChange={val => console.log(val)}
+						onChange={val => val}
 						renderUsing="class"
 					/>
 				</div>
@@ -133,7 +133,7 @@ class DocApp extends React.PureComponent {
 					<FontIconPicker
 						icons={iconDefs.svgs}
 						value={['004-green_lantern', '066-daredevil_glasses']}
-						onChange={val => console.log(val)}
+						onChange={val => val}
 						renderFunc={this.renderSVG}
 						theme="indigo"
 					/>
@@ -159,7 +159,7 @@ class DocApp extends React.PureComponent {
 							icons={iconDefs.superHeroIcons}
 							search={iconDefs.superHeroSearch}
 							value={[]}
-							onChange={v => console.log(v)}
+							onChange={v => v}
 							isMulti
 							theme={theme}
 							renderUsing="class"

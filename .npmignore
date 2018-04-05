@@ -1,0 +1,10 @@
+__tests__/
+.vscode/
+coverage/
+docs/
+scripts/
+.*
+jest.config.js
+postcss.config.js
+stylelint.config.js
+webpack.*
