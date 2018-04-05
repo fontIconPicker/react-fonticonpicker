@@ -4,6 +4,8 @@ import { render } from 'react-dom';
 
 // import local dependencies
 import DocApp from './components/DocApp';
+import '../js/ThemeBase';
+import '../js/ThemeMaterial';
 
 // import styles
 import './assets/icomoon/style.css';

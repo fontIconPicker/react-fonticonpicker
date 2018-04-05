@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://FontIconPicker/./src/scss/style.scss"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,KACC,eAAkB,CADnB,UAGE,eAAmB","file":"react-fonticonpicker.css","sourcesContent":["body {\n\tbackground: yellow;\n\t#app {\n\t\tbackground: magenta;\n\t}\n}\n"],"sourceRoot":""}

@@ -10,7 +10,7 @@
     "test": "jest",
     "start": "webpack-dev-server --hot --config webpack.dev.config.js --open",
     "docs": "webpack --config webpack.doc.config.js",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js && node scripts/cleanupDist.js"
   },
   "repository": {
     "type": "git",
