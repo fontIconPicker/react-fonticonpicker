@@ -1,5 +1,5 @@
 describe('Jest Works', () => {
-	test('and it works', () => {
+	test('And it works', () => {
 		const a = 1;
 		expect(a).toBe(1);
 	});
