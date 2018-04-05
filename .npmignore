@@ -3,6 +3,7 @@ __tests__/
 coverage/
 docs/
 scripts/
+src/
 .*
 jest.config.js
 postcss.config.js
