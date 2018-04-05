@@ -119,6 +119,7 @@ class DocApp extends React.PureComponent {
 						'brown',
 						'cyan',
 						'deeporange',
+						'deeppurple',
 						'default',
 						'indigo',
 						'lightblue',

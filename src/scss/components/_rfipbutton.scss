@@ -25,15 +25,14 @@
 		height: auto; /* auto height to fix the flex */
 		transition: background 250ms, box-shadow 250ms;
 
-		img {
-			height: 32px;
-			width: 32px;
+		i {
+			font-size: 32px;
 			transition: transform 250ms;
 		}
 
 		// Open
 		&--open {
-			img {
+			i {
 				transform: rotate(-180deg);
 			}
 		}
@@ -46,24 +45,25 @@
 		align-items: center;
 		justify-content: center;
 		flex: 0 0 86px;
+		padding: 2px;
 	}
 
 	// multi
 	&--multi {
-		width: 270px;
+		width: 258px;
 
 		// current
 		.rfipbtn__current {
 			flex-flow: row wrap;
 			justify-content: flex-start;
-			flex-basis: 224px;
+			flex-basis: 212px;
 			align-content: center;
 		}
 	}
 
 	// icon
 	&__icon {
-		margin: 4px;
+		margin: 2px;
 		padding: 0;
 		height: 28px;
 		width: 48px;
@@ -91,6 +91,12 @@
 		width: 28px;
 		align-items: center;
 		justify-content: center;
+		font-size: 18px;
+		img,
+		svg {
+			height: 18px;
+			width: auto;
+		}
 	}
 
 	// del

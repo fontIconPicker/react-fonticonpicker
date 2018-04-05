@@ -7,8 +7,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import AngleDown from '../../assets/angles/angle-down.svg';
-
 class FipButton extends React.PureComponent {
 	static propTypes = {
 		className: PropTypes.string.isRequired,
@@ -113,7 +111,11 @@ class FipButton extends React.PureComponent {
 					{this.renderCurrentIcons()}
 				</div>
 				<div className={btnClass}>
-					<img src={AngleDown} alt="Open" />
+					<i
+						className="fipicon-angle-down"
+						role="presentation"
+						aria-label="Open"
+					/>
 				</div>
 			</div>
 		);

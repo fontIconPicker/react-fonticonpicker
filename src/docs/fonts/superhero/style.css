@@ -1,0 +1,325 @@
+@font-face {
+  font-family: 'superhero';
+  src:
+    url('fonts/superhero.ttf?q6zqxm') format('truetype'),
+    url('fonts/superhero.woff?q6zqxm') format('woff'),
+    url('fonts/superhero.svg?q6zqxm#superhero') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="superhero-"], [class*=" superhero-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'superhero' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.superhero-batman:before {
+  content: "\e900";
+}
+.superhero-robin:before {
+  content: "\e901";
+}
+.superhero-spiderman:before {
+  content: "\e902";
+}
+.superhero-green-lantern:before {
+  content: "\e903";
+}
+.superhero-hawkeye:before {
+  content: "\e904";
+}
+.superhero-captain-america:before {
+  content: "\e905";
+}
+.superhero-thor:before {
+  content: "\e906";
+}
+.superhero-loki:before {
+  content: "\e907";
+}
+.superhero-green-arrow:before {
+  content: "\e908";
+}
+.superhero-hulk:before {
+  content: "\e909";
+}
+.superhero-superman:before {
+  content: "\e90a";
+}
+.superhero-daredevil:before {
+  content: "\e90b";
+}
+.superhero-wolverine:before {
+  content: "\e90c";
+}
+.superhero-wonder-woman:before {
+  content: "\e90d";
+}
+.superhero-catwoman:before {
+  content: "\e90e";
+}
+.superhero-flash:before {
+  content: "\e90f";
+}
+.superhero-punisher:before {
+  content: "\e910";
+}
+.superhero-ironman:before {
+  content: "\e911";
+}
+.superhero-bpdr:before {
+  content: "\e912";
+}
+.superhero-joker:before {
+  content: "\e913";
+}
+.superhero-two-face-coin:before {
+  content: "\e914";
+}
+.superhero-two-face:before {
+  content: "\e915";
+}
+.superhero-silver-surfer:before {
+  content: "\e916";
+}
+.superhero-magneto:before {
+  content: "\e917";
+}
+.superhero-xavier:before {
+  content: "\e918";
+}
+.superhero-thing:before {
+  content: "\e919";
+}
+.superhero-human-torch:before {
+  content: "\e91a";
+}
+.superhero-mr-fantastic:before {
+  content: "\e91b";
+}
+.superhero-infinity-gauntlet:before {
+  content: "\e91c";
+}
+.superhero-dr-manhattan:before {
+  content: "\e91d";
+}
+.superhero-rorschach:before {
+  content: "\e91e";
+}
+.superhero-venom:before {
+  content: "\e91f";
+}
+.superhero-the-riddler:before {
+  content: "\e920";
+}
+.superhero-aquaman:before {
+  content: "\e921";
+}
+.superhero-spawn:before {
+  content: "\e922";
+}
+.superhero-ghost-rider:before {
+  content: "\e923";
+}
+.superhero-rocketeer:before {
+  content: "\e924";
+}
+.superhero-the-atom:before {
+  content: "\e925";
+}
+.superhero-nick-fury:before {
+  content: "\e926";
+}
+.superhero-cyclops:before {
+  content: "\e927";
+}
+.superhero-judge-dredd:before {
+  content: "\e928";
+}
+.superhero-deadpool:before {
+  content: "\e929";
+}
+.superhero-dr-spectrum:before {
+  content: "\e92a";
+}
+.superhero-solar:before {
+  content: "\e92b";
+}
+.superhero-black-widow:before {
+  content: "\e92c";
+}
+.superhero-iron-fist:before {
+  content: "\e92d";
+}
+.superhero-poison-ivy:before {
+  content: "\e92e";
+}
+.superhero-dr-doom:before {
+  content: "\e92f";
+}
+.superhero-tmnt:before {
+  content: "\e930";
+}
+.superhero-the-spirit:before {
+  content: "\e931";
+}
+.superhero-dr-octopus:before {
+  content: "\e932";
+}
+.superhero-red-skull:before {
+  content: "\e933";
+}
+.superhero-gambit:before {
+  content: "\e934";
+}
+.superhero-scarecrow:before {
+  content: "\e935";
+}
+.superhero-deathstroke:before {
+  content: "\e936";
+}
+.superhero-brainiac:before {
+  content: "\e937";
+}
+.superhero-moon-knight:before {
+  content: "\e938";
+}
+.superhero-karnak:before {
+  content: "\e939";
+}
+.superhero-black-adam:before {
+  content: "\e93a";
+}
+.superhero-penguin:before {
+  content: "\e93b";
+}
+.superhero-shredder:before {
+  content: "\e93c";
+}
+.superhero-hawkeye2:before {
+  content: "\e93d";
+}
+.superhero-superman-hair:before {
+  content: "\e93e";
+}
+.superhero-bane:before {
+  content: "\e93f";
+}
+.superhero-adamantium-shield:before {
+  content: "\e940";
+}
+.superhero-daredevil-glasses:before {
+  content: "\e941";
+}
+.superhero-mutagen:before {
+  content: "\e942";
+}
+.superhero-hellboy:before {
+  content: "\e943";
+}
+.superhero-penguins-umbrella:before {
+  content: "\e944";
+}
+.superhero-starlords-element-gun:before {
+  content: "\e945";
+}
+.superhero-hemans-power-sword:before {
+  content: "\e946";
+}
+.superhero-lukes-1st-lightsaber:before {
+  content: "\e947";
+}
+.superhero-lukes-2nd-lightsaber:before {
+  content: "\e948";
+}
+.superhero-daredevils-billy-cub:before {
+  content: "\e949";
+}
+.superhero-green-goblins-pumpkin:before {
+  content: "\e94a";
+}
+.superhero-kryptonita:before {
+  content: "\e94b";
+}
+.superhero-elektras-sais:before {
+  content: "\e94c";
+}
+.superhero-bow-and-arrow:before {
+  content: "\e94d";
+}
+.superhero-jokers-gun:before {
+  content: "\e94e";
+}
+.superhero-jokers-buzzer:before {
+  content: "\e94f";
+}
+.superhero-leonardos-katana:before {
+  content: "\e950";
+}
+.superhero-michelangelos-nunchakus:before {
+  content: "\e951";
+}
+.superhero-donatellos-bo-staff:before {
+  content: "\e952";
+}
+.superhero-raphaels-sais:before {
+  content: "\e953";
+}
+.superhero-freeze-ray-gun:before {
+  content: "\e954";
+}
+.superhero-new-freeze-ray-gun:before {
+  content: "\e955";
+}
+.superhero-adamantium-claws:before {
+  content: "\e956";
+}
+.superhero-mjolnir:before {
+  content: "\e957";
+}
+.superhero-ghost-riders-hellfire-chain:before {
+  content: "\e958";
+}
+.superhero-dr-stranges-eye-of-agamotto:before {
+  content: "\e959";
+}
+.superhero-gl-power-ring:before {
+  content: "\e95a";
+}
+.superhero-the-phantoms-ring:before {
+  content: "\e95b";
+}
+.superhero-batarang:before {
+  content: "\e95c";
+}
+.superhero-batmans-utility-belt:before {
+  content: "\e95d";
+}
+.superhero-dr-fate:before {
+  content: "\e95e";
+}
+.superhero-x-men-logo:before {
+  content: "\e95f";
+}
+.superhero-fantastic-4:before {
+  content: "\e960";
+}
+.superhero-avengers:before {
+  content: "\e961";
+}
+.superhero-spiderman-spider:before {
+  content: "\e962";
+}
+.superhero-spiderman-web:before {
+  content: "\e963";
+}

@@ -11,9 +11,6 @@ import {
 	fuzzySearch,
 } from '../helpers/iconHelpers';
 
-import AngleLeft from '../../assets/angles/angle-left.svg';
-import AngleRight from '../../assets/angles/angle-right.svg';
-
 class FipIconContainer extends React.PureComponent {
 	static propTypes = {
 		categories: PropTypes.arrayOf(PropTypes.string),
@@ -243,7 +240,7 @@ class FipIconContainer extends React.PureComponent {
 						className="rfipicons__label"
 						aria-label="Left"
 					>
-						<img src={AngleLeft} alt="Left" />
+						<i className="fipicon-angle-left" />
 					</span>
 				</span>
 			) : null;
@@ -261,7 +258,7 @@ class FipIconContainer extends React.PureComponent {
 						className="rfipicons__label"
 						aria-label="Right"
 					>
-						<img src={AngleRight} alt="Right" />
+						<i className="fipicon-angle-right" />
 					</span>
 				</span>
 			) : null;

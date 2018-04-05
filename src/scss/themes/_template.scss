@@ -15,6 +15,7 @@
 			border: 0 none transparent;
 			border-left: 1px solid $btn-border-color;
 			background-color: $btn-bg-dd-color;
+			color: $icon-text;
 
 			&:hover {
 				background-color: $btn-bg-hover-color;
@@ -82,12 +83,13 @@
 		&__right {
 			background-color: $pager-bg-color;
 			border: 1px solid $pager-bg-color;
+			color: $icon-text;
 			&:hover {
 				background-color: $pager-bg-hover-color;
+				border: 1px solid $pager-bg-hover-color;
 			}
 			&:focus,
 			&:active {
-				background-color: $pager-bg-hover-color;
 				border: 1px solid $pager-bg-hover-color;
 			}
 		}
@@ -97,6 +99,12 @@
 			background-color: $ibox-bg-color;
 			border: 1px solid $ibox-bg-color;
 			color: $icon-text;
+			font-size: 24px;
+			img,
+			svg {
+				height: 24px;
+				width: auto;
+			}
 			&:hover {
 				background-color: $ibox-bg-hover-color;
 				border: 1px solid $ibox-bg-hover-color;

@@ -30,6 +30,11 @@ class FipCategory extends React.PureComponent {
 						</option>
 					))}
 				</select>
+				<i
+					className="fipicon-angle-down"
+					role="presentation"
+					aria-label="Open"
+				/>
 			</div>
 		);
 	}

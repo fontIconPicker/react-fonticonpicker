@@ -2,6 +2,7 @@
 .rfipcategory {
 	width: 100%;
 	margin: 0 0 8px;
+	position: relative;
 	select {
 		width: 100%;
 		display: block;
@@ -11,9 +12,15 @@
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none; /* remove default arrow */
-		background: url('../assets/angles/angle-down.svg') no-repeat scroll
-			center right;
-		background-size: 18px 18px;
 		transition: border 250ms, box-shadow 250ms;
+		background-color: transparent;
+	}
+	i {
+		position: absolute;
+		right: 10px;
+		top: 0;
+		font-size: 16px;
+		line-height: 32px;
+		z-index: -1;
 	}
 }
