@@ -7,8 +7,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import FontIconPicker from '../../src/js/FontIconPicker';
-import FipButton from '../../src/js/components/FipButton';
-import FipDropDownPortal from '../../src/js/components/FipDropDownPortal';
 import * as iconDefs from '../../src/docs/helpers/iconDefs';
 
 // Check internal value conversion

@@ -9,6 +9,8 @@ import className from 'classnames';
 import {
 	flattenPossiblyCategorizedSource,
 	fuzzySearch,
+	getSourceType,
+	InvalidSourceException,
 } from '../helpers/iconHelpers';
 
 class FipIconContainer extends React.PureComponent {
@@ -136,6 +138,18 @@ class FipIconContainer extends React.PureComponent {
 	 */
 	static getCategoryFilteredState(currentCategory, categories, source) {
 		let category = null;
+		// First check for sourceType
+		const sourceType = getSourceType(source);
+		if (Array.isArray(categories)) {
+			if (sourceType !== 'object') {
+				throw new InvalidSourceException(sourceType, 'object');
+			}
+		} else if (sourceType !== 'array') {
+			// do check if source if of type array
+			throw new InvalidSourceException(sourceType, 'array');
+		}
+
+		// Now get the category key
 		if (currentCategory !== 0 && Array.isArray(categories)) {
 			category = categories[currentCategory] || null;
 		}

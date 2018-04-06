@@ -127,6 +127,7 @@ class FontIconPicker extends React.PureComponent {
 	 * @param {string} base the base className
 	 * @param {string} theme Name of the theme
 	 * @param {boolean} isMulti Whether or not multiple
+	 * @param {boolean} isOpen Whether or not dropdown is open
 	 * @return {string} Calculated theme
 	 */
 	static getDerivedClassName(base, theme, isMulti, isOpen) {

@@ -98,6 +98,41 @@ export function getOffset(elem) {
 }
 
 /**
+ * Get the type of any source, with distinguish between array and object
+ * In JS, array is an object too and so is null, so we check for null
+ * and Array.isArray explicitly
+ * @param {any} source The source element
+ */
+export function getSourceType(source) {
+	if (source === null) {
+		return 'null';
+	}
+	if (typeof source === 'object' && !Array.isArray(source)) {
+		return 'object';
+	}
+	if (Array.isArray(source)) {
+		return 'array';
+	}
+	return typeof source;
+}
+
+/**
+ * Throw an exception when source type is not valid
+ * @param {string} givenType given source type
+ * @param {string} requiredType required source type
+ */
+export function InvalidSourceException(givenType, requiredType) {
+	this.givenType = givenType;
+	this.requiredType = requiredType;
+	this.message = `Expected of type: ${this.requiredType}, found: ${
+		this.givenType
+	}`;
+	this.toString = function toString() {
+		return `Invalid Source Exception: ${this.message}`;
+	};
+}
+
+/**
  * FuzzySearch Implementation
  *
  * Adopted from

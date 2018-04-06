@@ -27,19 +27,15 @@ class DocApp extends React.PureComponent {
 			<React.Fragment>
 				<div>
 					<h2>Append to Body & Single</h2>
-					<React.StrictMode>
-						<FontIconPicker
-							icons={iconDefs.icomoonIcons}
-							search={iconDefs.icomoonIconsSearch}
-							onChange={value =>
-								this.handleChange('value1', value)
-							}
-							appendTo="body"
-							value={this.state.value1}
-							isMulti={false}
-							theme="bluegrey"
-						/>
-					</React.StrictMode>
+					<FontIconPicker
+						icons={iconDefs.icomoonIcons}
+						search={iconDefs.icomoonIconsSearch}
+						onChange={value => this.handleChange('value1', value)}
+						appendTo="body"
+						value={this.state.value1}
+						isMulti={false}
+						theme="bluegrey"
+					/>
 					<p>
 						Current value:{' '}
 						<i
@@ -51,19 +47,15 @@ class DocApp extends React.PureComponent {
 				</div>
 				<div>
 					<h2>Append to Body & Multi</h2>
-					<React.StrictMode>
-						<FontIconPicker
-							icons={iconDefs.icomoonIcons}
-							search={iconDefs.icomoonIconsSearch}
-							onChange={value =>
-								this.handleChange('value2', value)
-							}
-							appendTo="body"
-							value={this.state.value2}
-							isMulti
-							theme="bluegrey"
-						/>
-					</React.StrictMode>
+					<FontIconPicker
+						icons={iconDefs.icomoonIcons}
+						search={iconDefs.icomoonIconsSearch}
+						onChange={value => this.handleChange('value2', value)}
+						appendTo="body"
+						value={this.state.value2}
+						isMulti
+						theme="bluegrey"
+					/>
 					<p>
 						Current values:{' '}
 						{this.state.value2.map(value => (
@@ -76,17 +68,13 @@ class DocApp extends React.PureComponent {
 				</div>
 				<div>
 					<h2>Append to Self & Single</h2>
-					<React.StrictMode>
-						<FontIconPicker
-							icons={iconDefs.icomoonIcons}
-							search={iconDefs.icomoonIconsSearch}
-							value={this.state.value3}
-							onChange={value =>
-								this.handleChange('value3', value)
-							}
-							isMulti={false}
-						/>
-					</React.StrictMode>
+					<FontIconPicker
+						icons={iconDefs.icomoonIcons}
+						search={iconDefs.icomoonIconsSearch}
+						value={this.state.value3}
+						onChange={value => this.handleChange('value3', value)}
+						isMulti={false}
+					/>
 					<p>
 						Current value:{' '}
 						<i
@@ -98,17 +86,13 @@ class DocApp extends React.PureComponent {
 				</div>
 				<div>
 					<h2>Append to Self & Multi</h2>
-					<React.StrictMode>
-						<FontIconPicker
-							icons={iconDefs.icomoonIcons}
-							search={iconDefs.icomoonIconsSearch}
-							value={this.state.value4}
-							onChange={value =>
-								this.handleChange('value4', value)
-							}
-							isMulti
-						/>
-					</React.StrictMode>
+					<FontIconPicker
+						icons={iconDefs.icomoonIcons}
+						search={iconDefs.icomoonIconsSearch}
+						value={this.state.value4}
+						onChange={value => this.handleChange('value4', value)}
+						isMulti
+					/>
 					<p>
 						Current value<strong>s</strong>:{' '}
 						{this.state.value4.map(value => (
@@ -156,6 +140,7 @@ class DocApp extends React.PureComponent {
 						'teal',
 					].map(theme => (
 						<FontIconPicker
+							key={theme}
 							icons={iconDefs.superHeroIcons}
 							search={iconDefs.superHeroSearch}
 							value={[]}
