@@ -316,10 +316,14 @@ describe('FipIconContainer Component', () => {
 						.find('.rfipicons__left')
 						.simulate('keydown', { keyCode: 32 });
 					expect(wrapper.state('viewPage')).toBe(1);
+					wrapper
+						.find('.rfipicons__right')
+						.simulate('keydown', { keyCode: 65 });
+					expect(wrapper.state('viewPage')).not.toBe(2);
 				});
 			});
 		});
-		describe('For Page Input', () => {
+		describe('Page Input', () => {
 			const cb = jest.fn();
 			const props = {
 				...propsForMulti,
@@ -368,6 +372,55 @@ describe('FipIconContainer Component', () => {
 				expect(cb).toHaveBeenLastCalledWith(0);
 				expect(wrapper.state('viewPage')).toBe('');
 			});
+		});
+	});
+
+	describe('Icon Selector', () => {
+		const cb = jest.fn();
+		const props = {
+			...propsForNoCategory,
+			handleChangeValue: cb,
+			iconsPerPage: iconDefs.icomoonIcons['Other Icons'].length,
+		};
+		const wrapper = shallow(<FipIconContainer {...props} />);
+		test('calls handleChangeValue', () => {
+			wrapper
+				.find('.rfipicons__ibox')
+				.at(0)
+				.simulate('click');
+			expect(cb).toHaveBeenCalledTimes(1);
+		});
+		test('responds on click', () => {
+			wrapper
+				.find('.rfipicons__ibox')
+				.at(11)
+				.simulate('click');
+			expect(cb).toHaveBeenLastCalledWith(
+				iconDefs.icomoonIcons['Other Icons'][11],
+			);
+		});
+		test('responds keydown', () => {
+			wrapper
+				.find('.rfipicons__ibox')
+				.at(12)
+				.simulate('keydown', { keyCode: 13 });
+			expect(cb).toHaveBeenLastCalledWith(
+				iconDefs.icomoonIcons['Other Icons'][12],
+			);
+			wrapper
+				.find('.rfipicons__ibox')
+				.at(14)
+				.simulate('keydown', { keyCode: 32 });
+			expect(cb).toHaveBeenLastCalledWith(
+				iconDefs.icomoonIcons['Other Icons'][14],
+			);
+			const newCB = jest.fn();
+			wrapper.setProps({ handleChangeValue: newCB });
+			wrapper
+				.find('.rfipicons__ibox')
+				.at(13)
+				.simulate('keydown', { keyCode: 65 });
+			expect(newCB).not.toHaveBeenCalled();
 		});
 	});
 });

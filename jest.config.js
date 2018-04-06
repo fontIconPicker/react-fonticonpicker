@@ -7,4 +7,5 @@ module.exports = {
 	collectCoverage: true,
 	setupTestFrameworkScriptFile: './scripts/enzymeSetup.js',
 	testPathIgnorePatterns: ['/node_modules/', '.eslintrc'],
+	snapshotSerializers: ['enzyme-to-json/serializer'],
 };

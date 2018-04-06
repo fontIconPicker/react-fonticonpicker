@@ -22,19 +22,16 @@ class FipDropDownPortal extends React.PureComponent {
 		appendRoot: false,
 	};
 
-	static getDerivedStateFromProps(nextProps, prevState) {
+	static getDerivedStateFromProps(nextProps) {
 		// The only thing we are interested is the appendRoot
-		if (nextProps.appendRoot !== prevState.appendRoot) {
-			const {
-				appendRoot,
-				portalClasses,
-			} = FipDropDownPortal.calculateAppendAndClass(nextProps.appendRoot);
-			return {
-				appendRoot,
-				portalClasses,
-			};
-		}
-		return null;
+		const {
+			appendRoot,
+			portalClasses,
+		} = FipDropDownPortal.calculateAppendAndClass(nextProps.appendRoot);
+		return {
+			appendRoot,
+			portalClasses,
+		};
 	}
 
 	/**
