@@ -89,6 +89,7 @@ export function isArrayEqual(from, to) {
  * Calculate offset w.r.t window
  * @param {HTMLElement} elem HTMLElement or Node for which offset is calculated
  */
+/* istanbul ignore next */
 export function getOffset(elem) {
 	const rect = elem.getBoundingClientRect();
 	const scrollLeft =
@@ -147,6 +148,7 @@ export function InvalidSourceException(givenType, requiredType) {
  * @param {string} haystack
  */
 /* eslint-disable */
+/* istanbul ignore next */
 export function fuzzySearch(needle, haystack) {
 	needle = needle.toLowerCase();
 	haystack = haystack.toLowerCase();
