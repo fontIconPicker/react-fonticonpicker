@@ -4,6 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disa
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // eslint-disable-line
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin'); // eslint-disable-line
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin'); // eslint-disable-line
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // eslint-disable-line
+
 const webpack = require('webpack'); // eslint-disable-line
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line
 const pkg = require('./package.json');
@@ -108,6 +110,10 @@ module.exports = {
 					},
 				],
 			},
+			{
+				test: /\.(md)$/,
+				use: 'raw-loader',
+			},
 		],
 	},
 	plugins: [
@@ -133,6 +139,12 @@ module.exports = {
 			runPreEmit: true,
 		}),
 		extractSass,
+		new CopyWebpackPlugin([
+			{
+				from: './src/docs/404.html',
+				to: './404.html',
+			},
+		]),
 	],
 	resolve: {
 		extensions: ['.js', '.jsx'],

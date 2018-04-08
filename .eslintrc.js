@@ -22,6 +22,7 @@ module.exports = {
         "react/no-unused-prop-types": 1,
         "react/no-unused-state": 1,
         "no-unused-vars": 1,
-        "prettier/prettier": ["error"]
+        "prettier/prettier": ["error"],
+        "import/no-extraneous-dependencies": 1,
     }
 };
