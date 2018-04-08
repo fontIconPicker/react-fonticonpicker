@@ -13,11 +13,11 @@
 		-moz-appearance: none;
 		appearance: none; /* remove default arrow */
 		transition: border 250ms, box-shadow 250ms;
-		background-color: transparent;
+		background-color: transparent !important;
 	}
 	i {
 		position: absolute;
-		right: 10px;
+		right: 2px;
 		top: 0;
 		font-size: 16px;
 		line-height: 32px;

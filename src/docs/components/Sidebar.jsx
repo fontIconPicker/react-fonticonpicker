@@ -11,7 +11,7 @@ import routes from '../helpers/routes';
 
 class Sidebar extends React.Component {
 	state = {
-		isOpen: true,
+		isOpen: false,
 	};
 
 	handleToggle = e => {
@@ -26,24 +26,29 @@ class Sidebar extends React.Component {
 		const menuClass = className('hamburger', 'hamburger--elastic', {
 			'is-active': this.state.isOpen,
 		});
+		const navClass = className('site-nav', {
+			'is-open': this.state.isOpen,
+		});
 		return (
 			<div className="sidebar">
-				<nav>
-					<button
-						className={menuClass}
-						type="button"
-						onClick={this.handleToggle}
-					>
-						<span className="hamburger-box">
-							<span className="hamburger-inner" />
-						</span>
-					</button>
+				<button
+					className={menuClass}
+					type="button"
+					onClick={this.handleToggle}
+				>
+					<span className="hamburger-box">
+						<span className="hamburger-inner" />
+					</span>
+				</button>
+				<nav className={navClass}>
 					<ul className="nav-main">
 						{routes.map(item => (
 							<li key={item.component} className="asd">
 								<NavLink
 									to={item.path}
 									activeClassName="active"
+									exact
+									strict
 								>
 									{item.menu}
 								</NavLink>

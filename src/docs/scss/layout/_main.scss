@@ -1,0 +1,132 @@
+// Copyright (c) 2018 Swashata Ghosh <swashata@wpquark.com>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+// Header
+.site-title {
+	padding: 16px;
+	background-color: palette(Grey, 200);
+	color: palette(Grey, 900);
+	h1 {
+		margin: 0;
+		font-size: 32px;
+		text-transform: lowercase;
+		font-style: italic;
+	}
+	svg {
+		height: 48px;
+		width: 48px;
+		margin-right: 16px;
+		position: relative;
+		bottom: -11px;
+		margin-top: -17px;
+	}
+}
+
+// Nav Toggle
+.hamburger {
+	position: absolute;
+	top: 6px;
+	right: 10px;
+}
+
+// Main
+.site-main {
+	display: flex;
+	flex: 0 0 100%;
+	flex-flow: row wrap;
+}
+
+// Navigation
+.sidebar {
+	width: 100%;
+	background-color: palette(Grey, 100);
+	.site-nav {
+		position: relative;
+
+		ul {
+			width: 100%;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			border-top: 1px solid palette(Grey, 300);
+			border-bottom: 1px solid palette(Grey, 300);
+			max-height: 0;
+			transition: max-height 250ms;
+			overflow: hidden;
+
+			li {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				a {
+					display: block;
+					padding: 8px 16px;
+					border-bottom: 1px solid palette(Grey, 300);
+					color: palette(Grey, 800);
+					background-color: palette(Grey, 100);
+					transition: background-color 250ms;
+					&.active,
+					&:hover {
+						background-color: palette(Grey, 200);
+					}
+				}
+				&:last-child {
+					a {
+						border-bottom: 0 none;
+					}
+				}
+			}
+		}
+
+		&.is-open ul {
+			max-height: 400px;
+		}
+	}
+}
+
+// App
+.app-main {
+	padding-top: 16px;
+}
+
+// Footer
+.site-footer {
+	height: 70px;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+@media screen and (min-width: 720px) {
+	// Navigation
+	.sidebar {
+		width: 220px;
+		height: calc(100vh - 70px);
+		overflow-y: auto;
+		.hamburger {
+			display: none;
+		}
+		.site-nav {
+			margin: 0;
+
+			ul {
+				max-height: none;
+			}
+		}
+	}
+
+	// Main
+	.app-main {
+		width: calc(100% - 225px);
+		overflow-y: auto;
+		height: calc(100vh - 70px);
+	}
+
+	// Article
+	.site-article {
+		min-height: calc(100vh - 140px);
+	}
+}

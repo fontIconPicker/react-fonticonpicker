@@ -1,14 +1,7 @@
 @import '../../../node_modules/normalize.css/normalize.css';
 @import '../../../node_modules/hamburgers/_sass/hamburgers/hamburgers';
+@import '../../scss/base/palette';
 
-body {
-	background-color: #eee;
-}
+@import 'layout/main';
 
-#app {
-	min-height: 100vh;
-	padding: 16px 32px;
-	> div {
-		margin-bottom: 16px;
-	}
-}
+@import 'pages/introduction';

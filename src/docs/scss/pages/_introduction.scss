@@ -1,0 +1,22 @@
+// Copyright (c) 2018 Swashata Ghosh <swashata@wpquark.com>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+.fip-intro {
+	.fonticonpicker-logo {
+		height: 256px;
+		width: 256px;
+	}
+	.fip-name {
+		font-size: 52px;
+		background: -webkit-linear-gradient(
+			45deg,
+			#5456a3,
+			#309647,
+			#f38f31,
+			#d22432
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}

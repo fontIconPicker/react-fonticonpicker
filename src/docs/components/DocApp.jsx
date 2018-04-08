@@ -6,24 +6,22 @@ import React from 'react';
 import { BrowserRouter, Route } from "react-router-dom"; // eslint-disable-line
 
 import Routes from './Routes';
+import Logo from '../assets/fip.svg';
 
 const DocApp = () => (
 	<React.Fragment>
-		<header>
-			<h1 className="site-title">
-				<img
-					src="../assets/fip.svg"
-					alt="FontIconPicker"
-					inline="true"
-					id="site-logo"
-				/>
-				<span className="title-text">FontIconPicker</span>
+		<header className="site-title">
+			<h1>
+				<svg className="fonticonpicker-logo">
+					<use
+						xlinkHref="#fonticonpicker-logo"
+						xmlnsXlink="http://www.w3.org/1999/xlink"
+					/>
+				</svg>
+				<span className="title-text">React font icon picker</span>
 			</h1>
 		</header>
 		<Routes />
-		<footer>
-			<p>Copyright Swashata Ghosh.</p>
-		</footer>
 	</React.Fragment>
 );
 

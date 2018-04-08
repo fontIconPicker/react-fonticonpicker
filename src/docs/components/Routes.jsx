@@ -31,26 +31,29 @@ const components = {
 
 const Routes = () => (
 	<BrowserRouter basename={routeBase}>
-		<main>
-			<aside className="site-nav">
-				<Sidebar />
-			</aside>
-			<article className="site-article">
-				<Switch>
-					{routes.map(route => {
-						const RouteComponent = components[route.component];
-						return (
-							<Route
-								path={route.path}
-								exact
-								component={RouteComponent}
-							/>
-						);
-					})}
-					<Route component={FourOFour} />
-				</Switch>
-			</article>
-		</main>
+		<div className="site-main">
+			<Sidebar />
+			<main className="container-fluid app-main">
+				<article className="site-article">
+					<Switch>
+						{routes.map(route => {
+							const RouteComponent = components[route.component];
+							return (
+								<Route
+									path={route.path}
+									exact
+									component={RouteComponent}
+								/>
+							);
+						})}
+						<Route component={FourOFour} />
+					</Switch>
+				</article>
+				<footer className="site-footer">
+					<p>Copyright Swashata Ghosh.</p>
+				</footer>
+			</main>
+		</div>
 	</BrowserRouter>
 );
 
