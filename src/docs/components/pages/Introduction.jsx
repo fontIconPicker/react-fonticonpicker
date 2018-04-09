@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown"; // eslint-disable-line
 import FontIconPicker from '../../../js/FontIconPicker';
 import intro from '../../guides/introduction.md';
 import * as iconDefs from '../../helpers/iconDefs';
+import codeRenderer from '../CodeBlock';
 
 class Introduction extends React.Component {
 	state = {
@@ -52,7 +53,13 @@ class Introduction extends React.Component {
 						/>
 					</div>
 				</div>
-				<ReactMarkdown source={intro} />
+				<ReactMarkdown
+					source={intro}
+					escapeHtml
+					renderers={{
+						code: codeRenderer,
+					}}
+				/>
 			</div>
 		);
 	}

@@ -40,6 +40,7 @@ const Routes = () => (
 							const RouteComponent = components[route.component];
 							return (
 								<Route
+									key={route.path}
 									path={route.path}
 									exact
 									component={RouteComponent}
