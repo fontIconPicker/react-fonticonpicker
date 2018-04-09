@@ -40,6 +40,21 @@ describe('Clicking Button', () => {
 		wrapper.find(FipButton).simulate('click');
 		expect(wrapper.render().find('.rfipdropdown')).toHaveLength(1);
 	});
+
+	test('unmounts portal on double click', () => {
+		const cb = () => null;
+		const wrapper = shallow(
+			<FontIconPicker
+				icons={iconDefs.icomoonIcons.Devices}
+				onChange={cb}
+			/>,
+		);
+		expect(wrapper.render().find('.rfipdropdown')).toHaveLength(0);
+		wrapper.find(FipButton).simulate('click');
+		expect(wrapper.render().find('.rfipdropdown')).toHaveLength(1);
+		wrapper.find(FipButton).simulate('click');
+		expect(wrapper.render().find('.rfipdropdown')).toHaveLength(0);
+	});
 });
 
 // Check delete on dropdown button

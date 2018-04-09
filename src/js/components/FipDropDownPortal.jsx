@@ -76,7 +76,7 @@ class FipDropDownPortal extends React.PureComponent {
 	componentDidUpdate() {
 		this.syncPortalPosition();
 	}
-
+	/* istanbul ignore next */
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.syncPortalPosition);
 	}
@@ -113,7 +113,7 @@ class FipDropDownPortal extends React.PureComponent {
 		this.props.domRef.current.style.display = display;
 	}
 
-	fixWindowOverflow = () => {
+	fixWindowOverflow = /* istanbul ignore next */ () => {
 		const popupWidth = this.props.domRef.current.offsetWidth;
 		const windowWidth = window.innerWidth;
 		const { left: popupOffsetLeft } = getOffset(this.props.domRef.current);

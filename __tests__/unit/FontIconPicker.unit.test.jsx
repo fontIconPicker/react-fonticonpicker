@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import FontIconPicker from '../../src/js/components/FontIconPicker';
 import * as iconDefs from '../../src/docs/helpers/iconDefs';
@@ -24,6 +24,7 @@ describe('FontIconPicker Component', () => {
 		onChange: onChangeCBSingle,
 		value: valOne,
 		isMulti: false,
+		renderUsing: 'class',
 	};
 	describe('On Single Picker Mode', () => {
 		test('calls onChange on handleChangeValue', () => {

@@ -180,7 +180,7 @@ class FontIconPicker extends React.PureComponent {
 		// internel state for handling animation
 		this.fipPortalComputedStyle = null;
 	}
-
+	/* istanbul ignore next */
 	componentDidMount() {
 		const events = ['mousedown', 'touchend'];
 		events.forEach(value => {
@@ -190,7 +190,7 @@ class FontIconPicker extends React.PureComponent {
 		// Update the value for the parent
 		this.props.onChange(this.state.value);
 	}
-
+	/* istanbul ignore next */
 	componentWillUnmount() {
 		const events = ['mousedown', 'touchend'];
 		events.forEach(value => {
@@ -208,26 +208,25 @@ class FontIconPicker extends React.PureComponent {
 	 * It checks if event came from outside
 	 * If so, then close the dropdown
 	 */
-	handleOuterClick = event => {
+	handleOuterClick = /* istanbul ignore next */ event => {
 		const { target } = event;
 		// is it inner?
-		if (
-			this.fipButtonRef.current.contains(target) ||
-			(this.fipDropDownRef.current &&
-				this.fipDropDownRef.current.contains(target))
-		) {
+		if (this.isClickWithin(target)) {
 			// then don't do anything
 			return;
 		}
 		// close the dropdown
 		this.closeDropdown();
 	};
-
-	handleEscapeKeyboard = event => {
+	handleEscapeKeyboard = /* istanbul ignore next */ event => {
 		if (event.keyCode === 27) {
 			this.closeDropdown();
 		}
 	};
+	isClickWithin = /* istanbul ignore next */ target =>
+		this.fipButtonRef.current.contains(target) ||
+		(this.fipDropDownRef.current &&
+			this.fipDropDownRef.current.contains(target));
 
 	/**
 	 * Handle the dropdown open thingy.
@@ -245,7 +244,7 @@ class FontIconPicker extends React.PureComponent {
 	/**
 	 * Close the dropdown by setting the state
 	 */
-	closeDropdown = () => {
+	closeDropdown = /* istanbul ignore next */ () => {
 		this.handleDropDown(false);
 	};
 
@@ -362,7 +361,7 @@ class FontIconPicker extends React.PureComponent {
 		});
 	};
 
-	handlePortalEnter = node => {
+	handlePortalEnter = /* istanbul ignore next */ node => {
 		const selectorNode = node.childNodes[0];
 		this.resetPortalStyle(selectorNode);
 		const computedStyle = getComputedStyle(selectorNode);
@@ -375,26 +374,26 @@ class FontIconPicker extends React.PureComponent {
 			selectorNode.style[key] = '0px';
 		});
 	};
-	handlePortalEntering = node => {
+	handlePortalEntering = /* istanbul ignore next */ node => {
 		const selectorNode = node.childNodes[0];
 		selectorNode.style.maxHeight = this.fipPortalComputedStyle.height;
 		selectorNode.style.paddingTop = this.fipPortalComputedStyle.paddingTop;
 		selectorNode.style.paddingBottom = this.fipPortalComputedStyle.paddingBottom;
 	};
-	handlePortalEntered = node => {
+	handlePortalEntered = /* istanbul ignore next */ node => {
 		// reset style
 		const selectorNode = node.childNodes[0];
 		this.resetPortalStyle(selectorNode);
 		// focus on search
 		selectorNode.querySelector('.rfipsearch__input').focus();
 	};
-	handlePortalExit = node => {
+	handlePortalExit = /* istanbul ignore next */ node => {
 		const selectorNode = node.childNodes[0];
 		this.resetPortalStyle(selectorNode);
 		const { height } = getComputedStyle(selectorNode);
 		selectorNode.style.maxHeight = height;
 	};
-	handlePortalExiting = node => {
+	handlePortalExiting = /* istanbul ignore next */ node => {
 		const selectorNode = node.childNodes[0];
 		selectorNode.style.maxHeight = '0px';
 		selectorNode.style.paddingTop = '0px';
