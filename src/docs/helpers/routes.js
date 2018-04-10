@@ -7,26 +7,37 @@ const routes = [
 		path: '/',
 		component: 'Introduction',
 		menu: 'Introduction',
+		exact: true,
 	},
 	{
 		path: '/installation/',
 		component: 'Installation',
 		menu: 'Installation',
+		exact: true,
 	},
 	{
-		path: '/basic-usage/',
+		link: '/basic-usage/',
+		path: '/basic-usage/:partId?',
 		component: 'BasicUsage',
-		menu: 'Basic Usage',
+		menu: 'Usage Guide',
 	},
 	{
 		path: '/examples/',
 		component: 'Examples',
 		menu: 'Live Examples',
+		exact: true,
+	},
+	{
+		path: '/themes/',
+		component: 'Themes',
+		menu: 'Built-in Themes',
+		exact: true,
 	},
 	{
 		path: '/props/',
 		component: 'Props',
 		menu: 'Available Props',
+		exact: true,
 	},
 ];
 

@@ -13,6 +13,22 @@ class Sidebar extends React.Component {
 	state = {
 		isOpen: false,
 	};
+	componentDidMount() {
+		document.addEventListener('click', this.handleOuterClick);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOuterClick);
+	}
+
+	btnRef = React.createRef();
+
+	handleOuterClick = e => {
+		if (this.btnRef.current.contains(e.target)) {
+			return;
+		}
+		this.setState({ isOpen: false });
+	};
 
 	handleToggle = e => {
 		e.preventDefault();
@@ -30,7 +46,7 @@ class Sidebar extends React.Component {
 			'is-open': this.state.isOpen,
 		});
 		return (
-			<div className="sidebar">
+			<div className="sidebar" ref={this.btnRef}>
 				<button
 					className={menuClass}
 					type="button"
@@ -45,9 +61,9 @@ class Sidebar extends React.Component {
 						{routes.map(item => (
 							<li key={item.component} className="asd">
 								<NavLink
-									to={item.path}
+									to={item.link || item.path}
 									activeClassName="active"
-									exact
+									exact={item.exact || false}
 									strict
 								>
 									{item.menu}

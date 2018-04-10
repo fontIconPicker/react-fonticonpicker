@@ -10,13 +10,14 @@ import presets from 'react-motion/lib/spring';
 
 import Sidebar from './Sidebar';
 import routes from '../helpers/routes';
-
+import ScrollToTop from './ScrollToTop';
 import FourOFour from './pages/404';
 import BasicUsage from './pages/BasicUsage';
 import Examples from './pages/Examples';
 import Installation from './pages/Installation';
 import Introduction from './pages/Introduction';
 import Props from './pages/Props';
+import Themes from './pages/Themes';
 
 let routeBase = '/react-fonticonpicker';
 if (process.env.NODE_ENV === 'development') {
@@ -29,6 +30,7 @@ const components = {
 	Installation,
 	Introduction,
 	Props,
+	Themes,
 };
 
 // we need to map the `scale` prop we define below
@@ -66,33 +68,36 @@ const bounceTransition = {
 
 const Routes = () => (
 	<BrowserRouter basename={routeBase}>
-		<div className="site-main">
-			<Sidebar />
-			<main className="container-fluid app-main">
-				<article className="site-article">
-					<AnimatedSwitch
-						atEnter={bounceTransition.atEnter}
-						atLeave={bounceTransition.atLeave}
-						atActive={bounceTransition.atActive}
-						mapStyles={mapStyles}
-						className="route-wrapper"
-					>
-						{routes.map(route => {
-							const RouteComponent = components[route.component];
-							return (
-								<Route
-									key={route.path}
-									path={route.path}
-									exact
-									component={RouteComponent}
-								/>
-							);
-						})}
-						<Route component={FourOFour} />
-					</AnimatedSwitch>
-				</article>
-			</main>
-		</div>
+		<ScrollToTop>
+			<div className="site-main">
+				<Sidebar />
+				<main className="container-fluid app-main">
+					<article className="site-article">
+						<AnimatedSwitch
+							atEnter={bounceTransition.atEnter}
+							atLeave={bounceTransition.atLeave}
+							atActive={bounceTransition.atActive}
+							mapStyles={mapStyles}
+							className="route-wrapper"
+						>
+							{routes.map(route => {
+								const RouteComponent =
+									components[route.component];
+								return (
+									<Route
+										key={route.path}
+										path={route.path}
+										exact={route.exact || false}
+										component={RouteComponent}
+									/>
+								);
+							})}
+							<Route component={FourOFour} />
+						</AnimatedSwitch>
+					</article>
+				</main>
+			</div>
+		</ScrollToTop>
 	</BrowserRouter>
 );
 

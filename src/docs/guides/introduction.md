@@ -1,5 +1,3 @@
-> This is currently a **work in progress**. Please stay tuned.
-
 React FontIconPicker is a [React Component](https://reactjs.org/docs/react-component.html)
 for displaying an interface to pick fonts or SVG out of a collection. It has
 built in support for:
@@ -32,56 +30,53 @@ npm install classnames prop-types react-transition-group @fonticonpicker/react-f
 3. Import FontIconPicker.
 
 ```js
-import FontIconPicker from '@fonticonpicker/react-fonticonpicker
+import FontIconPicker from '@fonticonpicker/react-fonticonpicker;
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
 ```
 
 4. Initialize with source and optionally search.
 
 ```js
-import React from 'react';
-
+import React, { Component } from 'react';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
-import '../node_modules/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
-import '../node_modules/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
+import logo from './logo.svg';
+import './App.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
 
-import * as iconDefs from './helpers/iconDefs';
-
-class App extends React.Component {
-	state = {
-		vFontAwesome: ['fab fa-accessible-icon', 'fas fa-rss'],
-		vIcoMoon: 57571,
-	};
-
-	handleFontAwesome = values => {
-		this.setState({ vFontAwesome: values });
-	};
-
-	handleIcoMoon = value => {
-		this.setState({ vIcoMoon: value });
-	};
-
-	render() {
-		return (
-			<div className="intro-fips">
-				<FontIconPicker
-					onChange={this.handleFontAwesome}
-					renderUsing="class"
-					icons={iconDefs.fontAwesome}
-					value={this.state.vFontAwesome}
-					theme="bluegrey"
-				/>
-				<FontIconPicker
-					onChange={this.handleIcoMoon}
-					icons={iconDefs.icomoonIcons}
-					search={iconDefs.icomoonIconsSearch}
-					value={this.state.vIcoMoon}
-					theme="teal"
-					isMulti={false}
-				/>
-			</div>
-		);
-	}
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 'fipicon-angle-left',
+    };
+  }
+  handleChange = (value) => {
+    this.setState({ value });
+  }
+  render() {
+    const props = {
+      icons: ['fipicon-angle-left', 'fipicon-angle-right', 'fipicon-angle-up', 'fipicon-angle-down'],
+      theme: 'bluegrey',
+      renderUsing: 'class',
+      value: this.state.value,
+      onChange: this.handleChange,
+      isMulti: false,
+    };
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <FontIconPicker {...props} />
+      </div>
+    );
+  }
 }
+
+export default App;
 ```
 
 The example above assumed you are using [create-react-app](https://github.com/facebook/create-react-app). The source of `iconDefs` can be

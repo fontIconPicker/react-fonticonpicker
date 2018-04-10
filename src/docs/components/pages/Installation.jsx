@@ -9,13 +9,15 @@ import installation from '../../guides/installation.md';
 import codeRenderer from '../CodeBlock';
 
 const Installation = () => (
-	<ReactMarkdown
-		source={installation}
-		escapeHtml
-		renderers={{
-			code: codeRenderer,
-		}}
-	/>
+	<div className="fip-install">
+		<ReactMarkdown
+			source={installation}
+			escapeHtml
+			renderers={{
+				code: codeRenderer,
+			}}
+		/>
+	</div>
 );
 
 export default Installation;

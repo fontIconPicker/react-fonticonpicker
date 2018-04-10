@@ -29,8 +29,8 @@ If you are using [webpack](https://webpack.js.org) with style loader, then you
 can easily do something like
 
 ```js
-import './node_modules/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
-import './node_modules/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
 ```
 
 pointing to the relative path of `node_modules` directory.

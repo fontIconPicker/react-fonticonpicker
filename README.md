@@ -77,8 +77,8 @@ import React, { Component } from 'react';
 import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 import logo from './logo.svg';
 import './App.css';
-import '../node_modules/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
-import '../node_modules/@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
+import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
 
 class App extends Component {
   constructor(props) {
@@ -131,7 +131,7 @@ the [documentation](https://fonticonpicker.github.io/react-fonticonpicker/).
 | showCategory| `bool` | no | `true` |
 | showSearch | `bool` | no | `true` |
 | value | `array` or `string` | no | null |
-| isMulti | `bool` | no | `true` |
+| isMulti | `bool` | no | `false` |
 | renderUsing | `string` | no | `'class'` |
 | convertHex | `bool` | no | `true` |
 | renderFunc | `func` | no | null |

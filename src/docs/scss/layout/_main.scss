@@ -162,10 +162,23 @@
 // Animation
 .route-wrapper {
 	position: relative;
+	@media screen and (min-width: 720px) {
+		max-width: 980px;
+		margin: 0 0 0 32px;
+	}
+	> div {
+		position: absolute;
+		width: 100%;
+		transform-origin: center center;
+		padding-bottom: 16px;
+	}
 }
 
-.route-wrapper > div {
-	position: absolute;
-	max-width: 100%;
-	transform-origin: center center;
+.usage-wrapper {
+	position: relative;
+	> div {
+		position: absolute;
+		width: 100%;
+		transform-origin: center center;
+	}
 }

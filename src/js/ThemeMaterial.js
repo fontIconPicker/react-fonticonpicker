@@ -13,6 +13,7 @@ import '../scss/default-theme.scss';
 import '../scss/green-theme.scss';
 import '../scss/indigo-theme.scss';
 import '../scss/light-blue-theme.scss';
+import '../scss/orange-theme.scss';
 import '../scss/pink-theme.scss';
 import '../scss/purple-theme.scss';
 import '../scss/red-theme.scss';

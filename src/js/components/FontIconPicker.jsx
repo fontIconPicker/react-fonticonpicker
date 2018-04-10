@@ -62,7 +62,7 @@ class FontIconPicker extends React.PureComponent {
 		showCategory: true,
 		showSearch: true,
 		value: null,
-		isMulti: true,
+		isMulti: false,
 		renderUsing: 'class',
 		convertHex: true,
 		renderFunc: null,
@@ -385,7 +385,14 @@ class FontIconPicker extends React.PureComponent {
 		const selectorNode = node.childNodes[0];
 		this.resetPortalStyle(selectorNode);
 		// focus on search
-		selectorNode.querySelector('.rfipsearch__input').focus();
+		// but only if not on mobile devices and search is shown
+		if (
+			this.props.showSearch &&
+			typeof window.orientation === 'undefined' &&
+			navigator.userAgent.indexOf('IEMobile') === -1
+		) {
+			selectorNode.querySelector('.rfipsearch__input').focus();
+		}
 	};
 	handlePortalExit = /* istanbul ignore next */ node => {
 		const selectorNode = node.childNodes[0];

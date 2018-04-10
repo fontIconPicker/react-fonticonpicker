@@ -26,7 +26,7 @@ const DocApp = () => (
 			<p className="copyright">
 				&copy; <a href="https://swashata.me">Swashata Ghosh</a> -{' '}
 				{new Date().getFullYear()} -{' '}
-				<a href="https://opensource.org/licenses/MIT">MIT</a>
+				<a href="https://opensource.org/licenses/MIT">MIT License</a>
 			</p>
 			<p className="social">
 				<a className="link github" href="https://github.com/swashata">

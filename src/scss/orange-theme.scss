@@ -1,0 +1,14 @@
+// Copyright (c) 2018 Swashata Ghosh <swashata@wpquark.com>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+$theme: orange;
+$scheme: Orange;
+$bg: White;
+// base
+@import 'base/palette';
+@import 'base/variables';
+@import 'base/mixin';
+
+// theme
+@import 'themes/template';

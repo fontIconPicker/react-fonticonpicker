@@ -42,6 +42,7 @@ class Introduction extends React.Component {
 							icons={iconDefs.fontAwesome}
 							value={this.state.vFontAwesome}
 							theme="bluegrey"
+							isMulti
 						/>
 						<FontIconPicker
 							onChange={this.handleIcoMoon}
@@ -50,6 +51,7 @@ class Introduction extends React.Component {
 							value={this.state.vIcoMoon}
 							theme="teal"
 							isMulti={false}
+							renderUsing="data-icomoon"
 						/>
 					</div>
 				</div>
