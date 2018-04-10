@@ -21,7 +21,8 @@
     "react",
     "react-component",
     "fonticonpicker",
-    "svgpicker"
+    "svgpicker",
+    "iconpicker"
   ],
   "author": "Swashata Ghosh <swashata4u@gmail.com> (https://swashata.me)",
   "license": "MIT",
