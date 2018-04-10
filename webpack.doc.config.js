@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); // eslint-disable-li
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin'); // eslint-disable-line
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin'); // eslint-disable-line
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // eslint-disable-line
-
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack'); // eslint-disable-line
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // eslint-disable-line
 const pkg = require('./package.json');
@@ -40,7 +40,7 @@ module.exports = {
 	entry: path.join(__dirname, 'src/docs/index.jsx'),
 	output: {
 		path: path.join(__dirname, 'docs'),
-		filename: 'bundle.js',
+		filename: 'bundle-[name].js',
 		publicPath: 'https://fonticonpicker.github.io/react-fonticonpicker/',
 	},
 	devtool: 'source-map',
@@ -146,9 +146,40 @@ module.exports = {
 				to: './404.html',
 			},
 		]),
+		new BundleAnalyzerPlugin({
+			analyzerMode: 'static',
+		}),
 	],
 	resolve: {
 		extensions: ['.js', '.jsx'],
+	},
+	optimization: {
+		splitChunks: {
+			chunks: 'async',
+			minSize: 30000,
+			minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: '~',
+			name: true,
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					chunks: 'all',
+				},
+				library: {
+					test: /[\\/]src\/js[\\/]/,
+					name: 'library',
+					chunks: 'all',
+				},
+				docs: {
+					test: /[\\/]src\/docs[\\/]/,
+					name: 'docs',
+					chunks: 'all',
+				},
+			},
+		},
 	},
 	mode: 'production',
 };
