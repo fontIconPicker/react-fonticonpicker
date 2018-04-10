@@ -7,7 +7,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import FipButton from '../../src/js/components/FipButton';
-import * as iconDefs from '../../src/docs/helpers/iconDefs';
 
 describe('FipButton Component', () => {
 	const handleDeleteValueCB = jest.fn();

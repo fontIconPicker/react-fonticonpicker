@@ -59,6 +59,7 @@ describe('Icon & Search Source', () => {
 				handleChangePage: jest.fn(),
 				renderIcon: jest.fn(),
 				noIconPlaceholder: '',
+				onChange: jest.fn(),
 			};
 			const wrapper = shallow(<FipIconContainer {...props} />);
 			expect(wrapper.state('iconView')).toEqual(icons);

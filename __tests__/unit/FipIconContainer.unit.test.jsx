@@ -27,6 +27,7 @@ const propsForMulti = {
 	handleChangePage: jest.fn(),
 	renderIcon: jest.fn(),
 	handleChangeValue: jest.fn(),
+	renderUsing: 'data-icomoon',
 };
 const propsForSingle = {
 	...propsForMulti,

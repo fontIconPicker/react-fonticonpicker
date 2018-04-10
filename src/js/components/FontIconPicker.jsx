@@ -63,7 +63,7 @@ class FontIconPicker extends React.PureComponent {
 		showSearch: true,
 		value: null,
 		isMulti: true,
-		renderUsing: 'data-icomoon',
+		renderUsing: 'class',
 		convertHex: true,
 		renderFunc: null,
 		appendTo: false,

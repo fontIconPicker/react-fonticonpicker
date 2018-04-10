@@ -32,6 +32,7 @@ describe('FipDropDown Component', () => {
 		handleChangeCategory: handleChangeCategoryCB,
 		handleChangePage: handleChangePageCB,
 		handleChangeSearch: handleChangeSearchCB,
+		renderUsing: 'data-icomoon',
 	};
 	const wrapper = shallow(<FipDropDown {...props} />);
 	test('calls handleChangeCategory & handleChangePageCB on category update', () => {

@@ -106,6 +106,7 @@ const propsDefault = {
 	search: iconSearch,
 	theme: 'bluegrey',
 	onChange: changeMock,
+	renderUsing: 'data-icomoon',
 };
 describe('Single Picker', () => {
 	const propsMulti = {

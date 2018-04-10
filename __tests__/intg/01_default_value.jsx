@@ -21,6 +21,7 @@ describe('Default value', () => {
 					value={null}
 					onChange={cb}
 					isMulti={false}
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -36,6 +37,7 @@ describe('Default value', () => {
 					value={null}
 					onChange={cb}
 					isMulti
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -55,6 +57,7 @@ describe('Default value', () => {
 					value={['foo', 'bar']}
 					onChange={cb}
 					isMulti={false}
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -70,6 +73,7 @@ describe('Default value', () => {
 					value="foo"
 					onChange={cb}
 					isMulti
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -88,6 +92,7 @@ describe('Default value', () => {
 					value={iconDefs.icomoonIcons['Other Icons'][0]}
 					onChange={cb}
 					isMulti={false}
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -101,6 +106,7 @@ describe('Default value', () => {
 					value={iconDefs.icomoonIcons['Other Icons'][0]}
 					onChange={cb}
 					isMulti
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -118,6 +124,7 @@ describe('Default value', () => {
 					value={value}
 					onChange={cb}
 					isMulti={false}
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value
@@ -133,6 +140,7 @@ describe('Default value', () => {
 					value={value}
 					onChange={cb}
 					isMulti
+					renderUsing="data-icomoon"
 				/>,
 			);
 			// Check the initial value

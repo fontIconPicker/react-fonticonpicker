@@ -34,6 +34,7 @@ describe('Clicking Button', () => {
 			<FontIconPicker
 				icons={iconDefs.icomoonIcons.Devices}
 				onChange={cb}
+				renderUsing="data-icomoon"
 			/>,
 		);
 		expect(wrapper.render().find('.rfipdropdown')).toHaveLength(0);
@@ -47,6 +48,7 @@ describe('Clicking Button', () => {
 			<FontIconPicker
 				icons={iconDefs.icomoonIcons.Devices}
 				onChange={cb}
+				renderUsing="data-icomoon"
 			/>,
 		);
 		expect(wrapper.render().find('.rfipdropdown')).toHaveLength(0);
