@@ -35,6 +35,45 @@ class Introduction extends React.Component {
 						/>
 					</svg>
 					<h2 className="fip-name">React FontIconPicker</h2>
+					<p className="badges">
+						<a href="https://codecov.io/gh/fontIconPicker/react-fonticonpicker">
+							<img
+								src="https://codecov.io/gh/fontIconPicker/react-fonticonpicker/branch/master/graph/badge.svg"
+								alt="codecov"
+							/>
+						</a>{' '}
+						<a href="https://travis-ci.org/fontIconPicker/react-fonticonpicker">
+							<img
+								src="https://travis-ci.org/fontIconPicker/react-fonticonpicker.svg?branch=master"
+								alt="Build Status"
+							/>
+						</a>{' '}
+						<a href="https://github.com/facebook/jest">
+							<img
+								src="https://facebook.github.io/jest/img/jest-badge.svg"
+								alt="jest"
+							/>
+						</a>{' '}
+						<a href="https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker">
+							<img
+								src="https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker.svg"
+								alt="npm version"
+								height="18"
+							/>
+						</a>{' '}
+						<a href="https://david-dm.org/fontIconPicker/react-fonticonpicker?type=peer">
+							<img
+								src="https://david-dm.org/fontIconPicker/react-fonticonpicker/peer-status.svg"
+								alt="peerDependencies Status"
+							/>
+						</a>{' '}
+						<a href="https://github.com/fontIconPicker/react-fonticonpicker/blob/master/LICENSE">
+							<img
+								src="https://img.shields.io/github/license/fontIconPicker/react-fonticonpicker.svg"
+								alt="GitHub license"
+							/>
+						</a>
+					</p>
 					<div className="intro-fips">
 						<FontIconPicker
 							onChange={this.handleFontAwesome}

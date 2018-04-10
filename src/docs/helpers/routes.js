@@ -39,6 +39,12 @@ const routes = [
 		menu: 'Available Props',
 		exact: true,
 	},
+	{
+		path: '/meta/',
+		component: 'Meta',
+		menu: 'Contrib & Credit',
+		exact: true,
+	},
 ];
 
 export default routes;

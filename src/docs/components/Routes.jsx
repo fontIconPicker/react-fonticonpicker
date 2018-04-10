@@ -18,6 +18,7 @@ import Installation from './pages/Installation';
 import Introduction from './pages/Introduction';
 import Props from './pages/Props';
 import Themes from './pages/Themes';
+import Meta from './pages/Meta';
 
 let routeBase = '/react-fonticonpicker';
 if (process.env.NODE_ENV === 'development') {
@@ -31,6 +32,7 @@ const components = {
 	Introduction,
 	Props,
 	Themes,
+	Meta,
 };
 
 // we need to map the `scale` prop we define below

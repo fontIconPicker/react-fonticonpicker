@@ -5,7 +5,7 @@
  https://opensource.org/licenses/MIT
 -->
 
-# React FontIconPicker Component [![codecov](https://codecov.io/gh/fontIconPicker/react-fonticonpicker/branch/master/graph/badge.svg)](https://codecov.io/gh/fontIconPicker/react-fonticonpicker) [![Build Status](https://travis-ci.org/fontIconPicker/react-fonticonpicker.svg?branch=master)](https://travis-ci.org/fontIconPicker/react-fonticonpicker) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
+# React FontIconPicker Component [![codecov](https://codecov.io/gh/fontIconPicker/react-fonticonpicker/branch/master/graph/badge.svg)](https://codecov.io/gh/fontIconPicker/react-fonticonpicker) [![Build Status](https://travis-ci.org/fontIconPicker/react-fonticonpicker.svg?branch=master)](https://travis-ci.org/fontIconPicker/react-fonticonpicker) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest) [![npm version](https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker.svg)](https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker) [![peerDependencies Status](https://david-dm.org/fontIconPicker/react-fonticonpicker/peer-status.svg)](https://david-dm.org/fontIconPicker/react-fonticonpicker?type=peer) [![GitHub license](https://img.shields.io/github/license/fontIconPicker/react-fonticonpicker.svg)](https://github.com/fontIconPicker/react-fonticonpicker/blob/master/LICENSE)
 
 [![FontIconPicker](fonticonpicker.png)](fonticonpicker.png)
 
@@ -146,10 +146,10 @@ the [documentation](https://fonticonpicker.github.io/react-fonticonpicker/).
 
 Development & Build is done with the help of [webpack](https://webpack.js.org/).
 
-First git clone the repo on your machine.
+First fork and git clone the repo on your machine.
 
 ```bash
-git clone git@github.com:fontIconPicker/react-fonticonpicker.git
+git clone git@github.com:<username>/react-fonticonpicker.git
 ```
 
 Now install all the dependencies. Make sure you have [nodejs](https://nodejs.org/en/)
@@ -186,8 +186,8 @@ Other npm commands at disposal:
 
 ## Credits
 
-React FontIconPicker has been developed by [Swashata](https://swashata.me). The
-original idea came from [jQuery FontIconPicker](https://github.com/fontIconPicker/fontIconPicker)
+React FontIconPicker has been developed by [Swashata](https://swashata.me) mainly for in use with [eForm](https://eform.live).
+The original idea came from [jQuery FontIconPicker](https://github.com/fontIconPicker/fontIconPicker)
 by [Alessandro Benoit](http://codeb.it).
 
 None of these would have been possible without the cool [Wes Bos 🔥](https://wesbos.com/)
