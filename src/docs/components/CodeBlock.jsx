@@ -4,10 +4,12 @@ import Lowlight from 'react-lowlight';
 import js from 'highlight.js/lib/languages/javascript';
 import html from 'highlight.js/lib/languages/xml';
 import bash from 'highlight.js/lib/languages/bash';
+import scss from 'highlight.js/lib/languages/scss';
 
 Lowlight.registerLanguage('js', js);
 Lowlight.registerLanguage('html', html);
 Lowlight.registerLanguage('bash', bash);
+Lowlight.registerLanguage('scss', scss);
 
 const CodeBlock = props => (
 	<Lowlight

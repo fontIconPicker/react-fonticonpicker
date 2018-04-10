@@ -10,6 +10,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'build'),
 		filename: 'bundle.js',
+		publicPath: '/',
 	},
 	module: {
 		rules: [
@@ -87,6 +88,7 @@ module.exports = {
 		contentBase: path.join(__dirname, 'build'),
 		port: 7770,
 		overlay: true,
+		historyApiFallback: true,
 	},
 	mode: 'development',
 };

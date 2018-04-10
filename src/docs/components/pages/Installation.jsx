@@ -4,7 +4,18 @@
 // https://opensource.org/licenses/MIT
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import installation from '../../guides/installation.md';
+import codeRenderer from '../CodeBlock';
 
-const Installation = () => <h2>Installation</h2>;
+const Installation = () => (
+	<ReactMarkdown
+		source={installation}
+		escapeHtml
+		renderers={{
+			code: codeRenderer,
+		}}
+	/>
+);
 
 export default Installation;

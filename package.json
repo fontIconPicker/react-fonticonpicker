@@ -84,6 +84,7 @@
     "react-lowlight": "^2.0.0",
     "react-markdown": "^3.3.0",
     "react-router-dom": "^4.2.2",
+    "react-router-transition": "^1.2.1",
     "react-transition-group": "^2.3.0",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",

@@ -84,5 +84,5 @@ class App extends React.Component {
 }
 ```
 
-The example above assumed you are using [create-react-app](https://github.com/facebook/create-react-app). You can check the guides for
-more information.
+The example above assumed you are using [create-react-app](https://github.com/facebook/create-react-app). The source of `iconDefs` can be
+found [here](https://github.com/fontIconPicker/react-fonticonpicker/blob/master/src/docs/helpers/iconDefs.js). You can check the guides for more information.

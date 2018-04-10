@@ -41,6 +41,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'docs'),
 		filename: 'bundle.js',
+		publicPath: 'https://fonticonpicker.github.io/react-fonticonpicker/',
 	},
 	devtool: 'source-map',
 	module: {

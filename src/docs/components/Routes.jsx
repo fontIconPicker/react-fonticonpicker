@@ -5,6 +5,8 @@
 
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { AnimatedSwitch, spring } from 'react-router-transition';
+import presets from 'react-motion/lib/spring';
 
 import Sidebar from './Sidebar';
 import routes from '../helpers/routes';
@@ -29,13 +31,52 @@ const components = {
 	Props,
 };
 
+// we need to map the `scale` prop we define below
+// to the transform style property
+function mapStyles(styles) {
+	return {
+		opacity: styles.opacity,
+		transform: `translateX(${styles.translateX}px)`,
+	};
+}
+
+// wrap the `spring` helper to use a bouncy config
+function bounce(val) {
+	return spring(val, presets.gentle);
+}
+
+// child matches will...
+const bounceTransition = {
+	// start in a transparent, upscaled state
+	atEnter: {
+		opacity: 0,
+		translateX: 250,
+	},
+	// leave in a transparent, downscaled state
+	atLeave: {
+		opacity: bounce(0),
+		translateX: bounce(-250),
+	},
+	// and rest at an opaque, normally-scaled state
+	atActive: {
+		opacity: bounce(1),
+		translateX: bounce(0),
+	},
+};
+
 const Routes = () => (
 	<BrowserRouter basename={routeBase}>
 		<div className="site-main">
 			<Sidebar />
 			<main className="container-fluid app-main">
 				<article className="site-article">
-					<Switch>
+					<AnimatedSwitch
+						atEnter={bounceTransition.atEnter}
+						atLeave={bounceTransition.atLeave}
+						atActive={bounceTransition.atActive}
+						mapStyles={mapStyles}
+						className="route-wrapper"
+					>
 						{routes.map(route => {
 							const RouteComponent = components[route.component];
 							return (
@@ -48,11 +89,8 @@ const Routes = () => (
 							);
 						})}
 						<Route component={FourOFour} />
-					</Switch>
+					</AnimatedSwitch>
 				</article>
-				<footer className="site-footer">
-					<p>Copyright Swashata Ghosh.</p>
-				</footer>
 			</main>
 		</div>
 	</BrowserRouter>
