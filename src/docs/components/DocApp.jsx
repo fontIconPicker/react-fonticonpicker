@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom"; // eslint-disable-line
 
 import Routes from './Routes';
 import Logo from '../assets/fip.svg';
+import pkg from '../../../package.json';
 
 const DocApp = () => (
 	<React.Fragment>
@@ -18,7 +19,9 @@ const DocApp = () => (
 						xmlnsXlink="http://www.w3.org/1999/xlink"
 					/>
 				</svg>
-				<span className="title-text">fonticonpicker</span>
+				<span className="title-text">
+					fonticonpicker<sup>v{pkg.version}</sup>
+				</span>
 			</h1>
 		</header>
 		<Routes />

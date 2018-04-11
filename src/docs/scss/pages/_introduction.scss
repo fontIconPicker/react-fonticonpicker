@@ -7,7 +7,8 @@
 		height: 256px;
 		width: 256px;
 	}
-	.fip-name {
+	.fip-name,
+	.fip-name sup {
 		font-size: 52px;
 		background: -webkit-linear-gradient(
 			45deg,
@@ -18,5 +19,12 @@
 		);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		font-family: 'Operator Mono SSm', 'Operator Mono Book', Consolas, Monaco,
+			'Andale Mono', 'Ubuntu Mono', monospace;
+		font-style: italic;
+	}
+	.fip-name sup {
+		font-size: 24px;
+		top: -1.5em;
 	}
 }
