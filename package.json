@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "eslint src/js/** src/docs/components/** src/docs/helpers/** && stylelint src/scss/** && jest",
-    "start": "webpack-dev-server --hot --config webpack.dev.config.js --open",
+    "start": "webpack-dev-server --hot --config webpack.dev.config.js --host 0.0.0.0 --open",
     "docs": "webpack --config webpack.doc.config.js",
     "build": "webpack --config webpack.config.js && node scripts/cleanupDist.js",
     "prepare": "webpack --config webpack.config.js && node scripts/cleanupDist.js"
