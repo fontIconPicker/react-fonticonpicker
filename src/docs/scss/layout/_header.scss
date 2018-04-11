@@ -1,0 +1,35 @@
+// Copyright (c) 2018 Swashata Ghosh <swashata@wpquark.com>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+// Header
+.site-title {
+	padding: 8px 90px 8px 8px;
+	background-color: palette(Grey, 200);
+	color: palette(Grey, 900);
+	border-bottom: 1px solid palette(Grey, 300);
+	h1 {
+		margin: 0;
+		font-size: 24px;
+		text-transform: lowercase;
+		font-style: italic;
+		display: flex;
+		align-items: center;
+	}
+	svg {
+		height: 32px;
+		width: 32px;
+		margin-right: 16px;
+	}
+
+	@media screen and (min-width: 640px) {
+		padding: 16px 90px 16px 16px;
+		h1 {
+			font-size: 32px;
+		}
+		svg {
+			height: 48px;
+			width: 48px;
+		}
+	}
+}

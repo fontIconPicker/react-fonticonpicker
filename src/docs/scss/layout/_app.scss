@@ -1,0 +1,46 @@
+// Copyright (c) 2018 Swashata Ghosh <swashata@wpquark.com>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+// Main
+.site-main {
+	display: flex;
+	flex: 1 0 100%;
+	flex-flow: row wrap;
+}
+
+// App
+.app-main {
+	padding-top: 16px;
+	overflow: hidden;
+	@media screen and (min-width: 720px) {
+		min-height: calc(100vh - 114px);
+		width: calc(100% - 225px);
+	}
+}
+
+// Animation
+.route-wrapper {
+	position: relative;
+	@media screen and (min-width: 720px) {
+		max-width: 980px;
+		margin: 0 0 0 32px;
+	}
+	> div {
+		position: relative;
+		width: 100%;
+		transform-origin: center center;
+		padding-bottom: 16px;
+		top: 0;
+	}
+}
+
+.usage-wrapper {
+	position: relative;
+	> div {
+		position: relative;
+		width: 100%;
+		transform-origin: center center;
+		top: 0;
+	}
+}

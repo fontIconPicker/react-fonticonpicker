@@ -24,7 +24,7 @@ class ScrollToTop extends React.Component {
 			// and current pathname and previous pathname does not share something common
 			cpParts[1] !== ppParts[1]
 		) {
-			document.querySelector('.app-main').scroll(0, 0);
+			window.scrollTo(0, 0);
 		}
 	}
 

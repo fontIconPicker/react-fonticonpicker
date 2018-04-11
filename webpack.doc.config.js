@@ -145,6 +145,10 @@ module.exports = {
 				from: './src/docs/404.html',
 				to: './404.html',
 			},
+			{
+				from: './fonticonpicker.png',
+				to: './fonticonpicker.png',
+			},
 		]),
 		new BundleAnalyzerPlugin({
 			analyzerMode: 'static',

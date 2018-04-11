@@ -17,6 +17,7 @@ import fipsmp from '../../guides/usage-parts/3-fipsmp.md';
 import fipar from '../../guides/usage-parts/4-fipar.md';
 import fipcr from '../../guides/usage-parts/5-fipcr.md';
 import codeRenderer from '../CodeBlock';
+import { fadeInUp } from '../../helpers/routeTransition';
 
 const noop = () => {};
 
@@ -184,39 +185,6 @@ const links = {
 	},
 };
 
-// we need to map the `scale` prop we define below
-// to the transform style property
-function mapStyles(styles) {
-	return {
-		opacity: styles.opacity,
-		transform: `translateY(${styles.translateY}px)`,
-	};
-}
-
-// wrap the `spring` helper to use a bouncy config
-function bounce(val) {
-	return spring(val, presets.gentle);
-}
-
-// child matches will...
-const bounceTransition = {
-	// start in a transparent, upscaled state
-	atEnter: {
-		opacity: 0,
-		translateY: 50,
-	},
-	// leave in a transparent, downscaled state
-	atLeave: {
-		opacity: bounce(0),
-		translateY: bounce(-50),
-	},
-	// and rest at an opaque, normally-scaled state
-	atActive: {
-		opacity: bounce(1),
-		translateY: bounce(0),
-	},
-};
-
 const BasicUsage = () => (
 	<div className="fip-usage">
 		<ReactMarkdown
@@ -244,10 +212,10 @@ const BasicUsage = () => (
 		</nav>
 		<hr />
 		<AnimatedSwitch
-			atEnter={bounceTransition.atEnter}
-			atLeave={bounceTransition.atLeave}
-			atActive={bounceTransition.atActive}
-			mapStyles={mapStyles}
+			atEnter={fadeInUp.atEnter}
+			atLeave={fadeInUp.atLeave}
+			atActive={fadeInUp.atActive}
+			mapStyles={fadeInUp.mapStyles}
 			className="usage-wrapper"
 		>
 			{Object.keys(links).map(key => (

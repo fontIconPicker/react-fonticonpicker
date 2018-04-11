@@ -1,0 +1,49 @@
+// Copyright (c) 2018 Swashata Ghosh <swashata@wpquark.com>
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+// Footer
+.site-footer {
+	background-color: palette(Grey, 100);
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: space-between;
+	align-items: center;
+	width: 100%;
+	p {
+		margin: 0;
+		padding: 8px 16px;
+	}
+	.social {
+		.link {
+			font-size: 18px;
+			text-decoration: none;
+			margin: 0 8px;
+			color: palette(Grey, 400);
+			transition: color 250ms;
+
+			&.github:hover {
+				color: #4078c0;
+			}
+			&.twitter:hover {
+				color: #1da1f2;
+			}
+			&.blog:hover {
+				color: #d54e21;
+			}
+			&.wpquark:hover {
+				color: #03a9f4;
+			}
+		}
+	}
+
+	@media screen and (min-width: 640px) {
+		.copyright {
+			margin-right: auto;
+		}
+		.social {
+			margin-left: auto;
+		}
+	}
+}

@@ -19,6 +19,7 @@ import Introduction from './pages/Introduction';
 import Props from './pages/Props';
 import Themes from './pages/Themes';
 import Meta from './pages/Meta';
+import { fadeInLeft } from '../helpers/routeTransition';
 
 let routeBase = '/react-fonticonpicker';
 if (process.env.NODE_ENV === 'development') {
@@ -35,39 +36,6 @@ const components = {
 	Meta,
 };
 
-// we need to map the `scale` prop we define below
-// to the transform style property
-function mapStyles(styles) {
-	return {
-		opacity: styles.opacity,
-		transform: `translateX(${styles.translateX}px)`,
-	};
-}
-
-// wrap the `spring` helper to use a bouncy config
-function bounce(val) {
-	return spring(val, presets.gentle);
-}
-
-// child matches will...
-const bounceTransition = {
-	// start in a transparent, upscaled state
-	atEnter: {
-		opacity: 0,
-		translateX: 250,
-	},
-	// leave in a transparent, downscaled state
-	atLeave: {
-		opacity: bounce(0),
-		translateX: bounce(-250),
-	},
-	// and rest at an opaque, normally-scaled state
-	atActive: {
-		opacity: bounce(1),
-		translateX: bounce(0),
-	},
-};
-
 const Routes = () => (
 	<BrowserRouter basename={routeBase}>
 		<ScrollToTop>
@@ -76,10 +44,10 @@ const Routes = () => (
 				<main className="container-fluid app-main">
 					<article className="site-article">
 						<AnimatedSwitch
-							atEnter={bounceTransition.atEnter}
-							atLeave={bounceTransition.atLeave}
-							atActive={bounceTransition.atActive}
-							mapStyles={mapStyles}
+							atEnter={fadeInLeft.atEnter}
+							atLeave={fadeInLeft.atLeave}
+							atActive={fadeInLeft.atActive}
+							mapStyles={fadeInLeft.mapStyles}
 							className="route-wrapper"
 						>
 							{routes.map(route => {
