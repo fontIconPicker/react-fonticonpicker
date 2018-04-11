@@ -134,6 +134,23 @@ export function InvalidSourceException(givenType, requiredType) {
 }
 
 /**
+ * Implementation of debounce function
+ *
+ * {@link https://medium.com/a-developers-perspective/throttling-and-debouncing-in-javascript-b01cad5c8edf}
+ * @param {Function} func callback function
+ * @param {int} delay delay in milliseconds
+ */
+export const debounce = (func, delay) => {
+	let inDebounce;
+	return function debounceFunc() {
+		const context = this;
+		const args = arguments; // eslint-disable-line
+		clearTimeout(inDebounce);
+		inDebounce = setTimeout(() => func.apply(context, args), delay);
+	};
+};
+
+/**
  * FuzzySearch Implementation
  *
  * Adopted from

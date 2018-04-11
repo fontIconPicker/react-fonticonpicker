@@ -7,7 +7,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import className from 'classnames';
-import { getOffset } from '../helpers/iconHelpers';
+import { getOffset, debounce } from '../helpers/iconHelpers';
 
 class FipDropDownPortal extends React.PureComponent {
 	static propTypes = {
@@ -66,10 +66,17 @@ class FipDropDownPortal extends React.PureComponent {
 		// because it will be rendered by the
 		// getDerivedStateFromProps lifecycle method
 		this.state = {};
+
+		// A debounced function for resize and scroll
+		this.debouncedSyncPortalPosition = debounce(
+			this.syncPortalPosition,
+			250,
+		);
 	}
 
 	componentDidMount() {
-		window.addEventListener('resize', this.syncPortalPosition);
+		window.addEventListener('resize', this.debouncedSyncPortalPosition);
+		window.addEventListener('scroll', this.debouncedSyncPortalPosition);
 		this.syncPortalPosition();
 	}
 
@@ -78,15 +85,13 @@ class FipDropDownPortal extends React.PureComponent {
 	}
 	/* istanbul ignore next */
 	componentWillUnmount() {
-		window.removeEventListener('resize', this.syncPortalPosition);
+		window.removeEventListener('resize', this.debouncedSyncPortalPosition);
+		window.removeEventListener('scroll', this.debouncedSyncPortalPosition);
 	}
 
 	syncPortalPosition = () => {
-		// if mounting not to self, then position the portal
-		if (this.state.appendRoot !== 'self') {
-			// setTimeout(() => this.positionPortal(), 10);
-			this.positionPortal();
-		}
+		// reset the portal
+		this.resetPortalPosition();
 
 		// Fix window overflow
 		this.fixWindowOverflow();
@@ -113,17 +118,40 @@ class FipDropDownPortal extends React.PureComponent {
 		this.props.domRef.current.style.display = display;
 	}
 
+	resetPortalPosition() {
+		const { current: dropDown } = this.props.domRef;
+		if (this.state.appendRoot === 'self') {
+			// The top would be none
+			dropDown.style.top = '';
+		} else {
+			this.positionPortal();
+		}
+	}
+
 	fixWindowOverflow = /* istanbul ignore next */ () => {
 		const popupWidth = this.props.domRef.current.offsetWidth;
-		const windowWidth = window.innerWidth;
-		const { left: popupOffsetLeft } = getOffset(this.props.domRef.current);
+		const popupHeight = this.props.domRef.current.offsetHeight;
+		const { innerWidth: windowWidth, pageYOffset } = window;
+		const { clientHeight } = document.documentElement;
+
+		const { left: popupOffsetLeft, top: popupOffsetTop } = getOffset(
+			this.props.domRef.current,
+		);
+		const rootElm =
+			this.state.appendRoot === 'self'
+				? this.props.domRef.current
+				: this.state.appendRoot;
+		const rootOffset = getOffset(rootElm);
+		const { current: btn } = this.props.btnRef;
+		const { current: dropDown } = this.props.domRef;
+		const btnOffset = getOffset(btn);
+		const btnStyles = getComputedStyle(btn);
+		const btnBorder =
+			(parseInt(btnStyles.borderTop, 10) || 0) +
+			(parseInt(btnStyles.borderBottom, 10) || 0);
+
 		// We need to calculate if the popup is going to overflow the window
 		if (popupOffsetLeft + popupWidth > windowWidth - 20) {
-			const btnOffset = getOffset(this.props.btnRef.current);
-			const rootOffset =
-				this.state.appendRoot === 'self'
-					? getOffset(this.props.domRef.current)
-					: getOffset(this.state.appendRoot);
 			let preferredLeft =
 				btnOffset.left +
 				this.props.btnRef.current.offsetWidth -
@@ -134,7 +162,26 @@ class FipDropDownPortal extends React.PureComponent {
 			}
 
 			// Now set the goddamn left value
-			this.props.domRef.current.style.left = `${preferredLeft}px`;
+			dropDown.style.left = `${preferredLeft}px`;
+		}
+		// We need to calculate if opened popup is too low
+		if (
+			// the height of popup + popoffset top > view port height
+			popupHeight + popupOffsetTop - pageYOffset > clientHeight &&
+			// If we are to position on top of button, then make sure page view can handle
+			// so button offset top - popup height > 0
+			btnOffset.top - popupHeight > 0
+		) {
+			// Now we position the popup on top of the button
+			if (this.state.appendRoot === 'self') {
+				// When appending to self, position should be relative to the
+				// button height and popup height
+				dropDown.style.top = `-${popupHeight - btnBorder}px`;
+			} else {
+				dropDown.style.top = `${btnOffset.top +
+					btnBorder -
+					popupHeight}px`; // 2px for border
+			}
 		}
 	};
 

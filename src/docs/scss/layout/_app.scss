@@ -13,8 +13,9 @@
 .app-main {
 	padding-top: 16px;
 	overflow: hidden;
+	padding-bottom: 64px;
 	@media screen and (min-width: 720px) {
-		min-height: calc(100vh - 114px);
+		min-height: calc(100vh - 124px);
 		width: calc(100% - 225px);
 	}
 }

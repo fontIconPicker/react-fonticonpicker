@@ -122,3 +122,29 @@ describe('InvalidSourceException', () => {
 		);
 	});
 });
+
+describe('debounce', () => {
+	let mutate = false;
+	const mutator = () => {
+		mutate = true;
+	};
+
+	const watcher = () =>
+		new Promise(resolve => {
+			setTimeout(() => {
+				resolve();
+			}, 200);
+		});
+
+	test('works properly', () => {
+		iconHelpers.debounce(() => mutator(), 100)();
+		iconHelpers.debounce(() => mutator(), 100)();
+		iconHelpers.debounce(() => mutator(), 100)();
+
+		expect(mutate).toBe(false);
+
+		return watcher().then(() => {
+			expect(mutate).toBe(true);
+		});
+	});
+});
