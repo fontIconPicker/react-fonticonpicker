@@ -182,7 +182,7 @@ class FontIconPicker extends React.PureComponent {
 	}
 	/* istanbul ignore next */
 	componentDidMount() {
-		const events = ['mousedown', 'touchend'];
+		const events = ['click'];
 		events.forEach(value => {
 			document.addEventListener(value, this.handleOuterClick, false);
 		});
@@ -192,7 +192,7 @@ class FontIconPicker extends React.PureComponent {
 	}
 	/* istanbul ignore next */
 	componentWillUnmount() {
-		const events = ['mousedown', 'touchend'];
+		const events = ['click'];
 		events.forEach(value => {
 			document.removeEventListener(value, this.handleOuterClick, false);
 		});
