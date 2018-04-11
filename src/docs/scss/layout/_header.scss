@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 // Header
 .site-title {
-	padding: 8px 90px 8px 8px;
+	padding: 8px 80px 8px 8px;
 	background-color: palette(Grey, 200);
 	color: palette(Grey, 900);
 	border-bottom: 1px solid palette(Grey, 300);
@@ -19,6 +19,20 @@
 			font-size: 8px;
 			top: -1.5em;
 		}
+
+		.fip-github {
+			margin-left: auto;
+			color: palette(Grey, 400);
+			text-decoration: none;
+			transition: color 250ms;
+			display: none;
+			&:hover {
+				color: palette(Grey, 600);
+			}
+			@media screen and (min-width: 332px) {
+				display: block;
+			}
+		}
 	}
 	svg {
 		height: 32px;
@@ -27,7 +41,7 @@
 	}
 
 	@media screen and (min-width: 640px) {
-		padding: 16px 90px 16px 16px;
+		padding: 16px 80px 16px 16px;
 		h1 {
 			font-size: 32px;
 			sup {
@@ -39,5 +53,8 @@
 			height: 48px;
 			width: 48px;
 		}
+	}
+	@media screen and (min-width: 720px) {
+		padding: 16px 32px 16px 16px;
 	}
 }

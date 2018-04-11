@@ -22,6 +22,12 @@ const DocApp = () => (
 				<span className="title-text">
 					fonticonpicker<sup>v{pkg.version}</sup>
 				</span>
+				<a
+					className="fip-github"
+					href="https://github.com/fontIconPicker/react-fonticonpicker"
+				>
+					<i className="fab fa-github-alt" />
+				</a>
 			</h1>
 		</header>
 		<Routes />

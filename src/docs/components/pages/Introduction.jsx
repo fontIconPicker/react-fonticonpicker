@@ -9,7 +9,6 @@ import FontIconPicker from '../../../js/FontIconPicker';
 import intro from '../../guides/introduction.md';
 import * as iconDefs from '../../helpers/iconDefs';
 import codeRenderer from '../CodeBlock';
-import pkg from '../../../../package.json';
 
 class Introduction extends React.Component {
 	state = {
@@ -35,9 +34,7 @@ class Introduction extends React.Component {
 							xmlnsXlink="http://www.w3.org/1999/xlink"
 						/>
 					</svg>
-					<h2 className="fip-name">
-						React FontIconPicker<sup>v{pkg.version}</sup>
-					</h2>
+					<h2 className="fip-name">React FontIconPicker</h2>
 					<p className="badges">
 						<a href="https://codecov.io/gh/fontIconPicker/react-fonticonpicker">
 							<img

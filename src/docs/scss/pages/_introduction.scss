@@ -4,12 +4,15 @@
 // https://opensource.org/licenses/MIT
 .fip-intro {
 	.fonticonpicker-logo {
-		height: 256px;
-		width: 256px;
+		height: 128px;
+		width: 128px;
+		@media screen and (min-width: 420px) {
+			height: 256px;
+			width: 256px;
+		}
 	}
-	.fip-name,
-	.fip-name sup {
-		font-size: 52px;
+	.fip-name {
+		font-size: 24px;
 		background: -webkit-linear-gradient(
 			45deg,
 			#5456a3,
@@ -22,9 +25,11 @@
 		font-family: 'Operator Mono SSm', 'Operator Mono Book', Consolas, Monaco,
 			'Andale Mono', 'Ubuntu Mono', monospace;
 		font-style: italic;
-	}
-	.fip-name sup {
-		font-size: 24px;
-		top: -1.5em;
+		@media screen and (min-width: 420px) {
+			font-size: 36px;
+		}
+		@media screen and (min-width: 720px) {
+			font-size: 52px;
+		}
 	}
 }

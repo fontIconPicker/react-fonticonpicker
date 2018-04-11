@@ -5,7 +5,11 @@
  https://opensource.org/licenses/MIT
 -->
 
-# React FontIconPicker Component [![codecov](https://codecov.io/gh/fontIconPicker/react-fonticonpicker/branch/master/graph/badge.svg)](https://codecov.io/gh/fontIconPicker/react-fonticonpicker) [![Build Status](https://travis-ci.org/fontIconPicker/react-fonticonpicker.svg?branch=master)](https://travis-ci.org/fontIconPicker/react-fonticonpicker) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest) [![npm version](https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker.svg)](https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker) [![peerDependencies Status](https://david-dm.org/fontIconPicker/react-fonticonpicker/peer-status.svg)](https://david-dm.org/fontIconPicker/react-fonticonpicker?type=peer) [![GitHub license](https://img.shields.io/github/license/fontIconPicker/react-fonticonpicker.svg)](https://github.com/fontIconPicker/react-fonticonpicker/blob/master/LICENSE)
+# React FontIconPicker Component
+
+[![codecov](https://codecov.io/gh/fontIconPicker/react-fonticonpicker/branch/master/graph/badge.svg)](https://codecov.io/gh/fontIconPicker/react-fonticonpicker) [![Build Status](https://travis-ci.org/fontIconPicker/react-fonticonpicker.svg?branch=master)](https://travis-ci.org/fontIconPicker/react-fonticonpicker) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest) [![npm version](https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker.svg)](https://badge.fury.io/js/%40fonticonpicker%2Freact-fonticonpicker) [![peerDependencies Status](https://david-dm.org/fontIconPicker/react-fonticonpicker/peer-status.svg)](https://david-dm.org/fontIconPicker/react-fonticonpicker?type=peer) [![GitHub license](https://img.shields.io/github/license/fontIconPicker/react-fonticonpicker.svg)](https://github.com/fontIconPicker/react-fonticonpicker/blob/master/LICENSE)
+
+-------------------------
 
 [![FontIconPicker](fonticonpicker.png)](fonticonpicker.png)
 
@@ -19,7 +23,9 @@ more fonts. In bare-bone it looks like this.
 
 ### NPM or YARN
 
-NPM is the preferred way of installation. From your project do
+NPM is the preferred way of installation. You can find it from [here](https://www.npmjs.com/package/@fonticonpicker/react-fonticonpicker).
+
+From your project do
 
 ```bash
 npm i @fonticonpicker/react-fonticonpicker
