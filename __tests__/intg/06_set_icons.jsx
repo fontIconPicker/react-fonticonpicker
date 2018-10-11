@@ -71,4 +71,32 @@ describe('Clicking Icons', () => {
 			.simulate('click');
 		expect(wrapper.state('value')).toEqual([valFour]);
 	});
+	test('expect dropdown to stay open after selecting icon when closeOnSelect is false', () => {
+		const thisProps = {
+			...props,
+			closeOnSelect: false,
+		};
+		const wrapper = mount(<FontIconPicker {...thisProps} />);
+		wrapper.find(FipButton).simulate('click');
+		expect(wrapper.state('isOpen')).toBe(true);
+		wrapper
+			.find(clickerSelector)
+			.at(0)
+			.simulate('click');
+		expect(wrapper.state('isOpen')).toBe(true);
+	});
+	test('expect dropdown to close after selecting icon when closeOnSelect is false', () => {
+		const thisProps = {
+			...props,
+			closeOnSelect: true,
+		};
+		const wrapper = mount(<FontIconPicker {...thisProps} />);
+		wrapper.find(FipButton).simulate('click');
+		expect(wrapper.state('isOpen')).toBe(true);
+		wrapper
+			.find(clickerSelector)
+			.at(0)
+			.simulate('click');
+		expect(wrapper.state('isOpen')).toBe(false);
+	});
 });

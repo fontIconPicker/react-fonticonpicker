@@ -4,6 +4,7 @@ exports[`Multi Picker With Category & Search 1`] = `
 <FontIconPicker
   allCatPlaceholder="Show from all"
   appendTo={false}
+  closeOnSelect={false}
   convertHex={true}
   icons={
     Object {
@@ -1393,6 +1394,7 @@ exports[`Multi Picker Without Category & Search 1`] = `
 <FontIconPicker
   allCatPlaceholder="Show from all"
   appendTo={false}
+  closeOnSelect={false}
   convertHex={true}
   icons={
     Object {
@@ -2682,6 +2684,7 @@ exports[`Multi Picker Without Category & With Search 1`] = `
 <FontIconPicker
   allCatPlaceholder="Show from all"
   appendTo={false}
+  closeOnSelect={false}
   convertHex={true}
   icons={
     Object {
@@ -3995,6 +3998,7 @@ exports[`Single Picker With Category & Search 1`] = `
 <FontIconPicker
   allCatPlaceholder="Show from all"
   appendTo={false}
+  closeOnSelect={false}
   convertHex={true}
   icons={
     Object {
@@ -5446,6 +5450,7 @@ exports[`Single Picker Without Category & Search 1`] = `
 <FontIconPicker
   allCatPlaceholder="Show from all"
   appendTo={false}
+  closeOnSelect={false}
   convertHex={true}
   icons={
     Object {
@@ -6803,6 +6808,7 @@ exports[`Single Picker Without Category & With Search 1`] = `
 <FontIconPicker
   allCatPlaceholder="Show from all"
   appendTo={false}
+  closeOnSelect={false}
   convertHex={true}
   icons={
     Object {
