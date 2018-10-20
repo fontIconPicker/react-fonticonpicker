@@ -53,6 +53,7 @@ class FontIconPicker extends React.PureComponent {
 		searchPlaceholder: PropTypes.string,
 		noIconPlaceholder: PropTypes.string,
 		noSelectedPlaceholder: PropTypes.string,
+		closeOnSelect: PropTypes.bool,
 	};
 
 	static defaultProps = {
@@ -71,6 +72,7 @@ class FontIconPicker extends React.PureComponent {
 		searchPlaceholder: 'Search Icons',
 		noIconPlaceholder: 'No icons found',
 		noSelectedPlaceholder: 'Select icon',
+		closeOnSelect: false,
 	};
 
 	static displayName = 'FontIconPicker';
@@ -307,7 +309,7 @@ class FontIconPicker extends React.PureComponent {
 		} else {
 			newValue = value;
 		}
-		this.setState({ value: newValue });
+		this.setState({ value: newValue, isOpen: !this.props.closeOnSelect });
 		this.props.onChange(newValue);
 	};
 
