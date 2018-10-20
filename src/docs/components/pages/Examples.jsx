@@ -305,6 +305,27 @@ class Examples extends React.PureComponent {
 							isMulti
 						/>
 					</li>
+					<li className="list-group-item list-group-item-action flex-column align-items-start">
+						<div className="d-flex w-100 justify-content-between">
+							<h5 className="mb-1">Autoclose on Select</h5>
+							<small className="text-muted">
+								<code>closeOnSelect={'{true}'}</code>
+							</small>
+						</div>
+						<p className="mb-1">
+							With <code>closeOnSelect={'{true}'}</code> the modal
+							is closed on icon select.
+						</p>
+						<FontIconPicker
+							icons={iconDefs.fontAwesome}
+							value={[]}
+							onChange={val => val}
+							showSearch={false}
+							theme="purple"
+							isMulti={false}
+							closeOnSelect
+						/>
+					</li>
 					{/* <li className="list-group-item list-group-item-action flex-column align-items-start">
 						<div className="d-flex w-100 justify-content-between">
 							<h5 className="mb-1">List group item heading</h5>

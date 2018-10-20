@@ -405,3 +405,11 @@ Placeholder shown when no icons are present in the dropdown.
 | no | `string` | `"Select icon"` |
 
 Placeholder for empty icon value.
+
+### `closeOnSelect`
+
+| Required | Type | Default |
+| ---------| -----| --------|
+| no | `boolean` | `false` |
+
+Whether to automatically close the dropdown on selecting an icon.
