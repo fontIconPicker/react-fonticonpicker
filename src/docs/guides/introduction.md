@@ -30,7 +30,7 @@ npm install classnames prop-types react-transition-group @fonticonpicker/react-f
 3. Import FontIconPicker.
 
 ```js
-import FontIconPicker from '@fonticonpicker/react-fonticonpicker;
+import FontIconPicker from '@fonticonpicker/react-fonticonpicker';
 import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.base-theme.react.css';
 import '@fonticonpicker/react-fonticonpicker/dist/fonticonpicker.material-theme.react.css';
 ```
