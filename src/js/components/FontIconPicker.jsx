@@ -225,10 +225,20 @@ class FontIconPicker extends React.PureComponent {
 			this.closeDropdown();
 		}
 	};
-	isClickWithin = /* istanbul ignore next */ target =>
-		this.fipButtonRef.current.contains(target) ||
-		(this.fipDropDownRef.current &&
-			this.fipDropDownRef.current.contains(target));
+	isClickWithin = target => {
+		if (
+			target.className === 'fipicon-angle-left' ||
+			target.className === 'fipicon-angle-right' ||
+			target.className === 'rfipicons__label'
+		) {
+			return true;
+		}
+		return (
+			this.fipButtonRef.current.contains(target) ||
+			(this.fipDropDownRef.current &&
+				this.fipDropDownRef.current.contains(target))
+		);
+	};
 
 	/**
 	 * Handle the dropdown open thingy.
