@@ -225,7 +225,8 @@ class FontIconPicker extends React.PureComponent {
 			this.closeDropdown();
 		}
 	};
-	isClickWithin = /* istanbul ignore next */  target => { 
+
+	isClickWithin = /* istanbul ignore next */ target => {
 		if (
 			target.className === 'fipicon-angle-left' ||
 			target.className === 'fipicon-angle-right' ||
