@@ -119,10 +119,15 @@ class FipIconContainer extends React.PureComponent {
 
 		iconSet.forEach((value, index) => {
 			if (fuzzySearch(searchString, currentSearchSet[index])) {
-				nIconSet.push(value);
-				nSearchSet.push(currentSearchSet[index]);
+				if (!nIconSet.includes(value)) {
+					nIconSet.push(value);
+				}
+				if (!nSearchSet.includes(currentSearchSet[index])) {
+					nSearchSet.push(currentSearchSet[index]);
+				}
 			}
 		});
+
 		return {
 			activeIcons: nIconSet,
 			activeTitles: nSearchSet,
