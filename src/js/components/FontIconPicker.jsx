@@ -107,13 +107,13 @@ class FontIconPicker extends React.PureComponent {
 		);
 
 		// Set internal category to 0 if not showing category
-		if (!nextProps.showCategory) {
+		if (!nextProps.showCategory && prevState.currentCategory !== 0) {
 			newState.currentCategory = 0;
 			newState.currentPage = 0;
 		}
 
 		// Set internal search to empty, if not showing search
-		if (!nextProps.showSearch) {
+		if (!nextProps.showSearch && prevState.currentSearch !== '') {
 			newState.currentSearch = '';
 			newState.currentPage = 0;
 		}
